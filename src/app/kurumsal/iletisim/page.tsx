@@ -7,7 +7,6 @@ import { Footer } from "@/components/layout/footer";
 import { BlurFade } from "@/components/magicui/blur-fade";
 import {
   MapPin,
-  Phone,
   Mail,
   Clock,
   MessageSquare,
@@ -40,12 +39,6 @@ const contactInfo = [
     title: "Çalışma Saatleri",
     details: ["Teknik destek: 7/24", "Satış: Hafta içi 09:00 - 18:00"],
     description: "Tüm zaman dilimlerinde hizmet",
-  },
-  {
-    icon: Phone,
-    title: "Telefon",
-    details: ["+1 (307) 223-4050"],
-    description: "Hafta içi 09:00 - 18:00 (EST)",
   },
 ];
 

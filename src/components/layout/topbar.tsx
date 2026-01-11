@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Phone, Mail, Clock, ChevronRight, User } from "lucide-react";
+import { Mail, ChevronRight, User } from "lucide-react";
 
 export function Topbar() {
   return (
@@ -9,13 +9,6 @@ export function Topbar() {
       <div className="container flex items-center justify-between h-9">
         {/* Left - Contact Info */}
         <div className="hidden sm:flex items-center gap-4">
-          <a
-            href="tel:+13072234050"
-            className="flex items-center gap-1.5 hover:text-white transition-colors"
-          >
-            <Phone className="h-3 w-3" />
-            <span>+1 (307) 223-4050</span>
-          </a>
           <a
             href="mailto:support@kleacore.com"
             className="flex items-center gap-1.5 hover:text-white transition-colors"

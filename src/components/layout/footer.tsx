@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Facebook, Instagram, Linkedin, Youtube, Phone, Mail } from "lucide-react";
+import { Facebook, Instagram, Linkedin, Youtube, Mail } from "lucide-react";
 
 const footerLinks = {
   alanAdi: {
@@ -100,12 +100,9 @@ export function Footer() {
               {/* Contact Info */}
               <div className="space-y-3 text-sm">
                 <p className="text-zinc-400 leading-relaxed">
-                  30 N Gould St Ste R, Sheridan, WY 82801, USA
+                  30 N Gould St Ste R<br />
+                  Sheridan, WY 82801, USA
                 </p>
-                <div className="flex items-center gap-2">
-                  <Phone className="h-4 w-4 text-zinc-500" />
-                  <span>+1 (307) 223-4050</span>
-                </div>
                 <div className="flex items-center gap-2">
                   <Mail className="h-4 w-4 text-zinc-500" />
                   <span>support@kleacore.com</span>
