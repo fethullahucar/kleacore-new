@@ -14,6 +14,8 @@ import {
   Headphones,
   Building2,
   Send,
+  Zap,
+  Globe,
 } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -24,7 +26,7 @@ const contactInfo = [
   {
     icon: Mail,
     title: "E-posta",
-    details: ["destek@kleacore.com", "satis@kleacore.com"],
+    details: ["support@kleacore.com", "sales@kleacore.com"],
     description: "24 saat içinde yanıt garantisi",
   },
   {
@@ -36,14 +38,14 @@ const contactInfo = [
   {
     icon: Clock,
     title: "Çalışma Saatleri",
-    details: ["Pazartesi - Cuma: 09:00 - 18:00 (EST)", "Teknik destek 7/24"],
+    details: ["Teknik destek: 7/24", "Satış: Hafta içi 09:00 - 18:00"],
     description: "Tüm zaman dilimlerinde hizmet",
   },
   {
     icon: Phone,
-    title: "Ticari Bilgiler",
-    details: ["EIN: 36-5157418", "KLEAWORK DIGITAL LLC"],
-    description: "Wyoming, USA",
+    title: "Telefon",
+    details: ["+1 (307) 223-4050"],
+    description: "Hafta içi 09:00 - 18:00 (EST)",
   },
 ];
 
@@ -53,7 +55,7 @@ const supportChannels = [
     title: "Teknik Destek",
     description: "7/24 teknik destek hattı",
     action: "Destek Talebi",
-    href: "#",
+    href: "/musteri/destek",
   },
   {
     icon: MessageSquare,
@@ -72,10 +74,28 @@ const supportChannels = [
 ];
 
 const departments = [
-  { name: "Satış", email: "satis@kleacore.com", phone: "" },
-  { name: "Teknik Destek", email: "destek@kleacore.com", phone: "" },
-  { name: "Muhasebe", email: "muhasebe@kleacore.com", phone: "" },
-  { name: "Genel", email: "info@kleacore.com", phone: "" },
+  { name: "Satış", email: "sales@kleacore.com", description: "Yeni projeler ve fiyatlandırma" },
+  { name: "Teknik Destek", email: "support@kleacore.com", description: "Teknik sorunlar ve yardım" },
+  { name: "Muhasebe", email: "billing@kleacore.com", description: "Fatura ve ödeme işlemleri" },
+  { name: "Genel", email: "info@kleacore.com", description: "Diğer tüm konular" },
+];
+
+const features = [
+  {
+    icon: Zap,
+    title: "Hızlı Yanıt",
+    description: "Taleplerinize en geç 24 saat içinde dönüş yapıyoruz.",
+  },
+  {
+    icon: Globe,
+    title: "Global Erişim",
+    description: "Dünyanın her yerinden bize ulaşabilirsiniz.",
+  },
+  {
+    icon: Headphones,
+    title: "7/24 Destek",
+    description: "Teknik ekibimiz her an yanınızda.",
+  },
 ];
 
 export default function IletisimPage() {
@@ -108,11 +128,11 @@ export default function IletisimPage() {
                   7/24 Destek
                 </div>
                 <h1 className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">
-                  İletişim
+                  Bize Ulaşın
                 </h1>
                 <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
-                  Sorularınız için bize ulaşın. Ekibimiz size yardımcı olmaktan
-                  mutluluk duyacaktır.
+                  Sorularınız için bize ulaşın. Sizin dilinizden konuşan ekibimiz
+                  yardımcı olmaktan mutluluk duyacaktır.
                 </p>
               </div>
             </BlurFade>
@@ -121,7 +141,7 @@ export default function IletisimPage() {
             <BlurFade delay={0.2} inView>
               <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 max-w-6xl mx-auto">
                 {contactInfo.map((info) => (
-                  <Card key={info.title} className="text-center">
+                  <Card key={info.title} className="text-center hover:border-primary/50 transition-colors">
                     <CardContent className="p-6">
                       <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 mb-4">
                         <info.icon className="h-6 w-6 text-primary" />
@@ -143,7 +163,26 @@ export default function IletisimPage() {
           </div>
         </section>
 
-        {/* Contact Form & Map */}
+        {/* Features */}
+        <section className="py-12 border-b bg-muted/30">
+          <div className="container">
+            <div className="grid gap-8 md:grid-cols-3 max-w-4xl mx-auto">
+              {features.map((feature) => (
+                <div key={feature.title} className="flex items-start gap-4">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 shrink-0">
+                    <feature.icon className="h-5 w-5 text-primary" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold">{feature.title}</h3>
+                    <p className="text-sm text-muted-foreground">{feature.description}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Contact Form & Support */}
         <section className="py-16 md:py-24">
           <div className="container">
             <div className="grid gap-12 lg:grid-cols-2 max-w-6xl mx-auto">
@@ -152,6 +191,9 @@ export default function IletisimPage() {
                 <Card>
                   <CardHeader>
                     <CardTitle>Bize Yazın</CardTitle>
+                    <p className="text-sm text-muted-foreground">
+                      Formu doldurun, en kısa sürede size dönüş yapalım.
+                    </p>
                   </CardHeader>
                   <CardContent>
                     <form onSubmit={handleSubmit} className="space-y-4">
@@ -184,10 +226,10 @@ export default function IletisimPage() {
                       </div>
                       <div className="grid gap-4 sm:grid-cols-2">
                         <div className="space-y-2">
-                          <Label htmlFor="phone">Telefon</Label>
+                          <Label htmlFor="phone">Telefon (Opsiyonel)</Label>
                           <Input
                             id="phone"
-                            placeholder="0555 123 45 67"
+                            placeholder="+90 555 123 45 67"
                             value={formData.phone}
                             onChange={(e) =>
                               setFormData({ ...formData, phone: e.target.value })
@@ -212,7 +254,7 @@ export default function IletisimPage() {
                         <textarea
                           id="message"
                           className="flex min-h-[150px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                          placeholder="Mesajınızı buraya yazın..."
+                          placeholder="Size nasıl yardımcı olabiliriz?"
                           value={formData.message}
                           onChange={(e) =>
                             setFormData({ ...formData, message: e.target.value })
@@ -229,23 +271,9 @@ export default function IletisimPage() {
                 </Card>
               </BlurFade>
 
-              {/* Map Placeholder */}
+              {/* Support Channels & Company Info */}
               <BlurFade delay={0.2} inView>
                 <div className="space-y-6">
-                  <Card className="overflow-hidden">
-                    <div className="aspect-[4/3] bg-muted flex items-center justify-center">
-                      <div className="text-center p-8">
-                        <MapPin className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
-                        <p className="text-muted-foreground">
-                          Harita görüntüsü için Google Maps API entegrasyonu gerekli
-                        </p>
-                        <p className="text-sm text-muted-foreground mt-2">
-                          Maslak Mah. Büyükdere Cad. No: 123, Sarıyer/İstanbul
-                        </p>
-                      </div>
-                    </div>
-                  </Card>
-
                   {/* Quick Support */}
                   <div className="grid gap-4 sm:grid-cols-3">
                     {supportChannels.map((channel) => (
@@ -259,13 +287,50 @@ export default function IletisimPage() {
                           <p className="text-xs text-muted-foreground mb-2">
                             {channel.description}
                           </p>
-                          <Button variant="link" size="sm" className="h-auto p-0">
-                            {channel.action}
+                          <Button variant="link" size="sm" className="h-auto p-0" asChild>
+                            <a href={channel.href}>{channel.action}</a>
                           </Button>
                         </CardContent>
                       </Card>
                     ))}
                   </div>
+
+                  {/* Company Info */}
+                  <Card>
+                    <CardContent className="p-6">
+                      <h3 className="font-semibold text-lg mb-4">Şirket Bilgileri</h3>
+                      <div className="space-y-4">
+                        <div>
+                          <p className="font-medium">KLEAWORK DIGITAL LLC</p>
+                          <p className="text-sm text-muted-foreground">
+                            30 N Gould St Ste R, Sheridan, WY 82801, USA
+                          </p>
+                        </div>
+                        <div className="grid grid-cols-2 gap-4 pt-4 border-t">
+                          <div>
+                            <p className="text-xs text-muted-foreground">EIN</p>
+                            <p className="text-sm font-medium">36-5157418</p>
+                          </div>
+                          <div>
+                            <p className="text-xs text-muted-foreground">Kuruluş</p>
+                            <p className="text-sm font-medium">Wyoming, USA - 2026</p>
+                          </div>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+
+                  {/* Why Us */}
+                  <Card className="bg-primary/5 border-primary/20">
+                    <CardContent className="p-6">
+                      <h3 className="font-semibold mb-2">Neden KLEACORE?</h3>
+                      <p className="text-sm text-muted-foreground">
+                        2026&apos;nın modern standartlarıyla kurulduğumuz için eski nesil
+                        hantallıklardan uzağız. Karmaşık terimlerle değil, sizin dilinizden
+                        konuşan bir destek anlayışıyla her zaman yanınızdayız.
+                      </p>
+                    </CardContent>
+                  </Card>
                 </div>
               </BlurFade>
             </div>
@@ -289,30 +354,18 @@ export default function IletisimPage() {
             <BlurFade delay={0.2} inView>
               <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 max-w-5xl mx-auto">
                 {departments.map((dept) => (
-                  <Card key={dept.name}>
+                  <Card key={dept.name} className="hover:border-primary/50 transition-colors">
                     <CardContent className="p-6">
-                      <h3 className="font-semibold mb-3">{dept.name}</h3>
-                      <div className="space-y-2 text-sm">
-                        <div className="flex items-center gap-2 text-muted-foreground">
-                          <Mail className="h-4 w-4" />
-                          <a
-                            href={`mailto:${dept.email}`}
-                            className="hover:text-primary transition-colors"
-                          >
-                            {dept.email}
-                          </a>
-                        </div>
-                        {dept.phone && (
-                          <div className="flex items-center gap-2 text-muted-foreground">
-                            <Phone className="h-4 w-4" />
-                            <a
-                              href={`tel:${dept.phone.replace(/\s/g, "")}`}
-                              className="hover:text-primary transition-colors"
-                            >
-                              {dept.phone}
-                            </a>
-                          </div>
-                        )}
+                      <h3 className="font-semibold mb-1">{dept.name}</h3>
+                      <p className="text-xs text-muted-foreground mb-3">{dept.description}</p>
+                      <div className="flex items-center gap-2 text-sm">
+                        <Mail className="h-4 w-4 text-primary" />
+                        <a
+                          href={`mailto:${dept.email}`}
+                          className="text-primary hover:underline"
+                        >
+                          {dept.email}
+                        </a>
                       </div>
                     </CardContent>
                   </Card>
@@ -328,18 +381,18 @@ export default function IletisimPage() {
             <BlurFade delay={0.1} inView>
               <div className="max-w-3xl mx-auto text-center">
                 <h2 className="text-3xl font-bold tracking-tight sm:text-4xl mb-4">
-                  Sık Sorulan Sorular
+                  Hızlı Cevaplar mı Arıyorsunuz?
                 </h2>
                 <p className="text-muted-foreground mb-8">
-                  Belki aradığınız cevap SSS sayfamızda vardır. Hızlı çözümler
-                  için destek tabanımızı inceleyin.
+                  Sık sorulan sorular ve bilgi bankamızda aradığınız cevabı
+                  bulabilirsiniz. 7/24 erişilebilir destek kaynaklarımız yanınızda.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Button size="lg" className="px-8">
-                    SSS Sayfası
+                  <Button size="lg" className="px-8" asChild>
+                    <a href="/musteri/destek">Destek Merkezi</a>
                   </Button>
-                  <Button size="lg" variant="outline" className="px-8">
-                    Bilgi Bankası
+                  <Button size="lg" variant="outline" className="px-8" asChild>
+                    <a href="/musteri/panel">Müşteri Paneli</a>
                   </Button>
                 </div>
               </div>
