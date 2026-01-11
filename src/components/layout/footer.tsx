@@ -54,7 +54,7 @@ const footerLinks = {
 const legalLinks = [
   { name: "Kullanıcı Sözleşmesi", href: "/yasal/kullanim-kosullari" },
   { name: "Gizlilik Sözleşmesi", href: "/yasal/gizlilik" },
-  { name: "İade Koşulları", href: "/yasal/iade" },
+  { name: "İade Koşulları", href: "/yasal/iade-kosullari" },
   { name: "Çerez Politikası", href: "/yasal/cerez" },
   { name: "KVKK Aydınlatma Metni", href: "/yasal/kvkk" },
 ];
