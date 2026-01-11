@@ -180,7 +180,7 @@ export function HeroSlider() {
                           {slide.features.map((feature) => (
                             <div key={feature.title} className="flex items-center gap-3">
                               <div className={cn("p-2.5 rounded-xl", slide.accentColor)}>
-                                <feature.icon className="h-5 w-5 text-white" />
+                                <feature.icon className="h-5 w-5 text-primary-foreground" />
                               </div>
                               <div className="text-left">
                                 <p className="font-semibold text-white">{feature.title}</p>
