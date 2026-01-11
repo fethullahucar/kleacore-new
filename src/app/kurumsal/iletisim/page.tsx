@@ -15,6 +15,7 @@ import {
   Send,
   Zap,
   Globe,
+  Briefcase,
 } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -39,6 +40,12 @@ const contactInfo = [
     title: "Çalışma Saatleri",
     details: ["Teknik destek: 7/24", "Satış: Hafta içi 09:00 - 18:00"],
     description: "Tüm zaman dilimlerinde hizmet",
+  },
+  {
+    icon: Briefcase,
+    title: "Şirket Bilgileri",
+    details: ["KLEAWORK DIGITAL LLC", "EIN: 36-5157418"],
+    description: "Wyoming, USA",
   },
 ];
 

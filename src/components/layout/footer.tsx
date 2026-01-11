@@ -87,7 +87,7 @@ export function Footer() {
           {/* Brand Card */}
           <div className="lg:col-span-2">
             <div className="rounded-xl bg-zinc-800/50 p-6">
-              <Link href="/" className="inline-block mb-6">
+              <Link href="/" className="inline-block mb-4">
                 <Image
                   src="/logo.svg"
                   alt="KLEACORE"
@@ -96,6 +96,7 @@ export function Footer() {
                   className="h-7 w-auto"
                 />
               </Link>
+              <p className="text-xs text-zinc-500 mb-4">EIN: 36-5157418</p>
 
               {/* Contact Info */}
               <div className="space-y-3 text-sm">
