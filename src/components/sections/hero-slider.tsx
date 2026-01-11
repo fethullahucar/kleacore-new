@@ -18,8 +18,8 @@ const slides = [
     description: "NVMe SSD diskler, LiteSpeed web sunucusu ve ücretsiz SSL sertifikası ile web sitenizi hızlandırın.",
     cta: { text: "Detayları Gör", href: "/hosting/linux" },
     image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=2034&auto=format&fit=crop",
-    color: "from-blue-500 to-cyan-400",
-    accentColor: "bg-blue-500",
+    color: "from-zinc-400 to-zinc-200",
+    accentColor: "bg-primary",
     features: [
       { icon: Zap, title: "Yüksek Performans", desc: "LiteSpeed ile 10x hızlı" },
       { icon: HardDrive, title: "NVMe SSD", desc: "Ultra hızlı disk performansı" },
@@ -32,8 +32,8 @@ const slides = [
     description: "Tam root erişimi, özel kaynaklar ve anlık ölçeklendirme ile projelerinizi özgürce yönetin.",
     cta: { text: "Detayları Gör", href: "/sunucu/vps" },
     image: "https://images.unsplash.com/photo-1639322537228-f710d846310a?q=80&w=2832&auto=format&fit=crop",
-    color: "from-purple-500 to-pink-400",
-    accentColor: "bg-purple-500",
+    color: "from-zinc-400 to-zinc-200",
+    accentColor: "bg-primary",
     features: [
       { icon: Server, title: "Root Erişimi", desc: "Tam sunucu kontrolü" },
       { icon: Cloud, title: "Anlık Ölçeklendirme", desc: "İhtiyaca göre kaynak artırma" },
@@ -46,8 +46,8 @@ const slides = [
     description: "256-bit şifreleme ile müşterilerinizin verilerini koruyun. Tüm tarayıcılarda güvenilir.",
     cta: { text: "Detayları Gör", href: "/ssl/standart" },
     image: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?q=80&w=2070&auto=format&fit=crop",
-    color: "from-green-500 to-emerald-400",
-    accentColor: "bg-green-500",
+    color: "from-zinc-400 to-zinc-200",
+    accentColor: "bg-primary",
     features: [
       { icon: Shield, title: "256-bit Şifreleme", desc: "Bankacılık seviyesi güvenlik" },
       { icon: Globe, title: "Tüm Tarayıcılar", desc: "Evrensel uyumluluk" },
@@ -60,8 +60,8 @@ const slides = [
     description: "Kendi özel sunucularınızı, çeşitli işlemci türleri ve yüksek performanslı dedicated sunucular ile kiralayın.",
     cta: { text: "Detayları Gör", href: "/sunucu/fiziksel" },
     image: "https://images.unsplash.com/photo-1597852074816-d933c7d2b988?q=80&w=2070&auto=format&fit=crop",
-    color: "from-orange-500 to-amber-400",
-    accentColor: "bg-orange-500",
+    color: "from-zinc-400 to-zinc-200",
+    accentColor: "bg-primary",
     features: [
       { icon: Server, title: "Yüksek Performans", desc: "Yeni nesil işlemciler" },
       { icon: HardDrive, title: "Güçlü Altyapı", desc: "Yedekli veri merkezi" },
