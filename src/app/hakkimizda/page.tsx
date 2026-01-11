@@ -7,33 +7,21 @@ import {
   Building2,
   Target,
   Eye,
-  Users,
-  Award,
+  Lightbulb,
   Clock,
   Shield,
   Zap,
-  Heart,
+  HeartHandshake,
   Globe,
   Server,
   Headphones,
+  Rocket,
 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
 const stats = [
-  {
-    value: 15,
-    suffix: "+",
-    label: "Yıllık Deneyim",
-    icon: Clock,
-  },
-  {
-    value: 10000,
-    suffix: "+",
-    label: "Mutlu Müşteri",
-    icon: Users,
-  },
   {
     value: 99.9,
     suffix: "%",
@@ -47,83 +35,44 @@ const stats = [
     label: "Teknik Destek",
     icon: Headphones,
   },
+  {
+    value: 100,
+    suffix: "+",
+    label: "Mutlu Müşteri",
+    icon: HeartHandshake,
+  },
+  {
+    value: 2026,
+    suffix: "",
+    label: "Kuruluş Yılı",
+    icon: Clock,
+  },
 ];
 
 const values = [
   {
-    icon: Shield,
-    title: "Güvenilirlik",
+    icon: Lightbulb,
+    title: "Yenilikçi Yaklaşım",
     description:
-      "Müşterilerimizin verilerini en üst düzey güvenlik standartlarıyla koruyoruz.",
+      "2026'nın modern standartlarıyla kurulduğumuz için eski nesil hantallıklardan uzağız.",
   },
   {
     icon: Zap,
-    title: "Performans",
+    title: "Hız Odaklılık",
     description:
-      "En son teknolojileri kullanarak maksimum hız ve verimlilik sağlıyoruz.",
+      "Dijitalde zamanın ne kadar kıymetli olduğunu biliyoruz. Altyapımızı maksimum performans için optimize ediyoruz.",
   },
   {
-    icon: Heart,
-    title: "Müşteri Odaklılık",
+    icon: HeartHandshake,
+    title: "Kesintisiz Destek",
     description:
-      "Her müşterimizin ihtiyacını anlayarak özelleştirilmiş çözümler sunuyoruz.",
+      "Karmaşık terimlerle değil, sizin dilinizden konuşan bir destek anlayışıyla her zaman yanınızdayız.",
   },
   {
-    icon: Globe,
-    title: "Yenilikçilik",
+    icon: Shield,
+    title: "Güvenli Altyapı",
     description:
-      "Sektördeki gelişmeleri takip ederek sürekli kendimizi geliştiriyoruz.",
-  },
-];
-
-const milestones = [
-  {
-    year: "2009",
-    title: "Kuruluş",
-    description: "İstanbul'da küçük bir ekiple hosting hizmeti vermeye başladık.",
-  },
-  {
-    year: "2012",
-    title: "İlk Veri Merkezi",
-    description: "Kendi veri merkezimizi kurarak altyapımızı güçlendirdik.",
-  },
-  {
-    year: "2016",
-    title: "10.000 Müşteri",
-    description: "Güvenilir hizmetlerimizle 10.000 müşteriye ulaştık.",
-  },
-  {
-    year: "2020",
-    title: "Bulut Altyapısı",
-    description: "Modern bulut sunucu hizmetlerimizi devreye aldık.",
-  },
-  {
-    year: "2024",
-    title: "Uluslararası Genişleme",
-    description: "Avrupa veri merkezleriyle global hizmet vermeye başladık.",
-  },
-];
-
-const team = [
-  {
-    name: "Ahmet Yılmaz",
-    role: "Kurucu & CEO",
-    description: "20 yıllık sektör deneyimi",
-  },
-  {
-    name: "Elif Kaya",
-    role: "CTO",
-    description: "Altyapı ve güvenlik uzmanı",
-  },
-  {
-    name: "Mehmet Demir",
-    role: "Operasyon Direktörü",
-    description: "Müşteri deneyimi odaklı",
-  },
-  {
-    name: "Zeynep Arslan",
-    role: "Müşteri İlişkileri Müdürü",
-    description: "7/24 destek koordinasyonu",
+      "Verilerinizin güvenliğini, en modern güvenlik protokolleriyle en üst seviyede tutuyoruz.",
   },
 ];
 
@@ -140,16 +89,16 @@ export default function HakkimizdaPage() {
               <div className="text-center mb-12">
                 <div className="inline-flex items-center gap-2 rounded-full border bg-background px-4 py-1.5 text-sm font-medium mb-4">
                   <Building2 className="h-4 w-4 text-primary" />
-                  Hakkımızda
+                  2026&apos;da Kurulan
                 </div>
                 <h1 className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">
-                  Türkiye&apos;nin Güvenilir
+                  İşinizi Dijitalde Büyüten
                   <br />
-                  <span className="text-primary">Hosting Partneri</span>
+                  <span className="text-primary">Teknoloji Ortağınız</span>
                 </h1>
                 <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
-                  2009&apos;dan bu yana binlerce işletmeye güvenilir, hızlı ve
-                  uygun fiyatlı hosting çözümleri sunuyoruz.
+                  Dijital dünyanın hızına ve dinamizmine uyum sağlamak amacıyla temellerimizi attık.
+                  Yalnızca bir yer sağlayıcı değil, işinizi dijitalde büyüten teknoloji ortağınız olmayı hedefliyoruz.
                 </p>
               </div>
             </BlurFade>
@@ -182,10 +131,62 @@ export default function HakkimizdaPage() {
           </div>
         </section>
 
-        {/* Mission & Vision */}
+        {/* Story */}
         <section className="py-16 md:py-24">
           <div className="container">
-            <div className="grid gap-8 md:grid-cols-2 max-w-5xl mx-auto">
+            <div className="grid gap-12 lg:grid-cols-2 items-center max-w-6xl mx-auto">
+              <BlurFade delay={0.1} inView>
+                <div>
+                  <h2 className="text-3xl font-bold tracking-tight sm:text-4xl mb-6">
+                    Hikayemiz
+                  </h2>
+                  <div className="space-y-4 text-muted-foreground">
+                    <p>
+                      2026 yılında, dijital dünyanın hızına ve dinamizmine uyum sağlamak
+                      amacıyla temellerimizi attık. KLEACORE olarak, yalnızca bir yer
+                      sağlayıcı değil, işinizi dijitalde büyüten teknoloji ortağınız
+                      olmayı hedefliyoruz.
+                    </p>
+                    <p>
+                      Teknolojinin her saniye değiştiği bir çağda, yerimizde saymıyoruz.
+                      Sektördeki en yeni donanımları ve yazılım çözümlerini yakından takip
+                      ederek, projelerinizi en güncel altyapıda barındırıyoruz.
+                    </p>
+                    <p>
+                      Bizim için teknoloji, karmaşıklık değil; size sunulan bir kolaylık
+                      ve hız demektir. Her adımda müşterilerimizin yanında olarak,
+                      dijital başarılarına ortak olmayı amaçlıyoruz.
+                    </p>
+                  </div>
+                </div>
+              </BlurFade>
+
+              <BlurFade delay={0.2} inView>
+                <div className="relative">
+                  <div className="aspect-video rounded-2xl bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center">
+                    <Rocket className="h-24 w-24 text-primary/50" />
+                  </div>
+                </div>
+              </BlurFade>
+            </div>
+          </div>
+        </section>
+
+        {/* Mission & Vision */}
+        <section className="py-16 md:py-24 bg-muted/30">
+          <div className="container">
+            <BlurFade delay={0.1} inView>
+              <div className="text-center mb-12">
+                <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+                  Vizyonumuz ve Değerlerimiz
+                </h2>
+                <p className="mt-4 text-muted-foreground max-w-2xl mx-auto">
+                  Teknolojinin her saniye değiştiği bir çağda, yerimizde saymıyoruz
+                </p>
+              </div>
+            </BlurFade>
+
+            <div className="grid gap-8 md:grid-cols-2 max-w-5xl mx-auto mb-12">
               <BlurFade delay={0.1} inView>
                 <Card className="h-full hover:border-primary/50 transition-colors">
                   <CardContent className="p-8">
@@ -194,11 +195,10 @@ export default function HakkimizdaPage() {
                     </div>
                     <h2 className="text-2xl font-bold mb-4">Misyonumuz</h2>
                     <p className="text-muted-foreground leading-relaxed">
-                      Her ölçekteki işletmeye erişilebilir, güvenilir ve yüksek
-                      performanslı web hosting çözümleri sunarak dijital
-                      dünyada büyümelerine yardımcı olmak. Müşterilerimizin
-                      teknik detaylarla uğraşmadan işlerine odaklanmalarını
-                      sağlıyoruz.
+                      İşletmelerin dijital dönüşümüne güvenilir, yüksek performanslı
+                      ve modern altyapı çözümleriyle katkıda bulunmak. Karmaşıklığı
+                      basitleştirerek, teknolojinin size sunduğu kolaylık ve hızı
+                      deneyimlemenizi sağlamak.
                     </p>
                   </CardContent>
                 </Card>
@@ -212,10 +212,10 @@ export default function HakkimizdaPage() {
                     </div>
                     <h2 className="text-2xl font-bold mb-4">Vizyonumuz</h2>
                     <p className="text-muted-foreground leading-relaxed">
-                      Türkiye&apos;nin ve bölgenin en güvenilir hosting sağlayıcısı
-                      olmak. Sürekli yenilik ve müşteri memnuniyeti odaklı
-                      yaklaşımımızla sektörde standartları belirlemeyi ve
-                      dijital dönüşüme öncülük etmeyi hedefliyoruz.
+                      Sektördeki en yeni donanımları ve yazılım çözümlerini yakından
+                      takip ederek, projelerinizi en güncel altyapıda barındırmak.
+                      Yalnızca bir hizmet sağlayıcı değil, işinizi dijitalde büyüten
+                      gerçek bir teknoloji ortağı olmak.
                     </p>
                   </CardContent>
                 </Card>
@@ -224,16 +224,16 @@ export default function HakkimizdaPage() {
           </div>
         </section>
 
-        {/* Values */}
-        <section className="py-16 md:py-24 bg-muted/30">
+        {/* Why KLEACORE */}
+        <section className="py-16 md:py-24">
           <div className="container">
             <BlurFade delay={0.1} inView>
               <div className="text-center mb-12">
                 <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-                  Değerlerimiz
+                  Neden KLEACORE?
                 </h2>
                 <p className="mt-4 text-muted-foreground max-w-2xl mx-auto">
-                  Bizi biz yapan temel ilkeler
+                  Bizi tercih etmeniz için dört önemli neden
                 </p>
               </div>
             </BlurFade>
@@ -263,117 +263,25 @@ export default function HakkimizdaPage() {
           </div>
         </section>
 
-        {/* Timeline */}
-        <section className="py-16 md:py-24">
-          <div className="container">
-            <BlurFade delay={0.1} inView>
-              <div className="text-center mb-12">
-                <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-                  Yolculuğumuz
-                </h2>
-                <p className="mt-4 text-muted-foreground max-w-2xl mx-auto">
-                  2009&apos;dan bugüne önemli kilometre taşlarımız
-                </p>
-              </div>
-            </BlurFade>
-
-            <BlurFade delay={0.2} inView>
-              <div className="max-w-3xl mx-auto">
-                <div className="relative">
-                  {/* Timeline line */}
-                  <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-border md:left-1/2 md:-translate-x-0.5" />
-
-                  {milestones.map((milestone, idx) => (
-                    <div
-                      key={milestone.year}
-                      className={`relative flex gap-6 pb-10 last:pb-0 ${
-                        idx % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
-                      }`}
-                    >
-                      {/* Dot */}
-                      <div className="absolute left-8 w-4 h-4 rounded-full bg-primary border-4 border-background md:left-1/2 md:-translate-x-1/2 z-10" />
-
-                      {/* Content */}
-                      <div
-                        className={`ml-16 md:ml-0 md:w-1/2 ${
-                          idx % 2 === 0 ? "md:pr-12 md:text-right" : "md:pl-12"
-                        }`}
-                      >
-                        <span className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium mb-2">
-                          {milestone.year}
-                        </span>
-                        <h3 className="font-semibold text-lg">
-                          {milestone.title}
-                        </h3>
-                        <p className="text-sm text-muted-foreground mt-1">
-                          {milestone.description}
-                        </p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </BlurFade>
-          </div>
-        </section>
-
-        {/* Team */}
+        {/* CTA */}
         <section className="py-16 md:py-24 bg-muted/30">
           <div className="container">
             <BlurFade delay={0.1} inView>
-              <div className="text-center mb-12">
-                <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-                  Ekibimiz
-                </h2>
-                <p className="mt-4 text-muted-foreground max-w-2xl mx-auto">
-                  Deneyimli ve tutkulu ekibimizle yanınızdayız
-                </p>
-              </div>
-            </BlurFade>
-
-            <BlurFade delay={0.2} inView>
-              <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 max-w-5xl mx-auto">
-                {team.map((member) => (
-                  <Card
-                    key={member.name}
-                    className="text-center hover:border-primary/50 transition-colors"
-                  >
-                    <CardContent className="p-6">
-                      <div className="w-20 h-20 rounded-full bg-gradient-to-br from-primary/20 to-primary/5 mx-auto mb-4 flex items-center justify-center">
-                        <Users className="h-8 w-8 text-primary" />
-                      </div>
-                      <h3 className="font-semibold">{member.name}</h3>
-                      <p className="text-sm text-primary">{member.role}</p>
-                      <p className="text-xs text-muted-foreground mt-2">
-                        {member.description}
-                      </p>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
-            </BlurFade>
-          </div>
-        </section>
-
-        {/* CTA */}
-        <section className="py-16 md:py-24">
-          <div className="container">
-            <BlurFade delay={0.1} inView>
               <div className="max-w-3xl mx-auto text-center">
-                <Award className="h-12 w-12 text-primary mx-auto mb-6" />
+                <Globe className="h-12 w-12 text-primary mx-auto mb-6" />
                 <h2 className="text-3xl font-bold tracking-tight sm:text-4xl mb-4">
-                  Siz de Ailemize Katılın
+                  Dijital Yolculuğunuza Başlayın
                 </h2>
                 <p className="text-muted-foreground mb-8">
-                  10.000&apos;den fazla mutlu müşterimize katılın ve dijital
-                  dünyadaki yerinizi alın. Sorularınız için bize ulaşın.
+                  KLEACORE ile tanışın, projelerinizi en güncel teknoloji altyapısında barındırın.
+                  Sorularınız için 7/24 destek ekibimiz yanınızda.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <Button size="lg" className="px-8" asChild>
-                    <Link href="/iletisim">Bize Ulaşın</Link>
+                    <Link href="/kurumsal/iletisim">Bize Ulaşın</Link>
                   </Button>
                   <Button size="lg" variant="outline" className="px-8" asChild>
-                    <Link href="/hosting">Hizmetlerimizi İnceleyin</Link>
+                    <Link href="/hosting/linux">Paketleri İncele</Link>
                   </Button>
                 </div>
               </div>
