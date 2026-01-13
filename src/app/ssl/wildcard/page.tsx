@@ -4,6 +4,7 @@ import { Topbar } from "@/components/layout/topbar";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { SSLFeatures } from "@/components/ssl/ssl-features";
+import { SSLFaq } from "@/components/ssl/ssl-faq";
 import { BlurFade } from "@/components/magicui/blur-fade";
 import {
   Shield,
@@ -209,6 +210,9 @@ export default function WildcardSSLPage() {
 
         {/* Features */}
         <SSLFeatures />
+
+        {/* FAQ */}
+        <SSLFaq />
 
         {/* CTA */}
         <section className="py-16 md:py-24 bg-muted/30">

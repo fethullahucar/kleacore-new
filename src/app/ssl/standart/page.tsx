@@ -4,6 +4,7 @@ import { Topbar } from "@/components/layout/topbar";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { SSLFeatures } from "@/components/ssl/ssl-features";
+import { SSLFaq } from "@/components/ssl/ssl-faq";
 import { BlurFade } from "@/components/magicui/blur-fade";
 import {
   Shield,
@@ -163,6 +164,9 @@ export default function StandartSSLPage() {
 
         {/* Features */}
         <SSLFeatures />
+
+        {/* FAQ */}
+        <SSLFaq />
 
         {/* Brands */}
         <section className="py-16 md:py-24">
