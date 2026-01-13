@@ -20,11 +20,23 @@ import {
   Headphones,
   MapPin,
   Code,
+  Layers,
+  Monitor,
+  Terminal,
+  Activity,
+  Cloud,
+  Bot,
 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 const vpsPlans = [
   {
@@ -84,36 +96,86 @@ const planFeatures = [
   { icon: Headphones, text: "7/24 Destek" },
 ];
 
+const faqs = [
+  {
+    question: "VPS nedir?",
+    answer: "VPS (Virtual Private Server), fiziksel bir sunucunun sanal olarak bölünmesiyle oluşturulan özel sunucudur. Paylaşımlı hostinge göre daha fazla kaynak ve kontrol sunar, dedicated sunucuya göre daha ekonomiktir.",
+  },
+  {
+    question: "OpenVZ sanallaştırma nedir?",
+    answer: "OpenVZ, konteyner tabanlı bir sanallaştırma teknolojisidir. Düşük kaynak tüketimi ve yüksek performans sunar. Linux işletim sistemleri için idealdir.",
+  },
+  {
+    question: "Hangi işletim sistemlerini kurabilirim?",
+    answer: "Ubuntu, Debian, CentOS, AlmaLinux ve diğer popüler Linux dağıtımlarını kurabilirsiniz. Windows desteği için VDS sunucularımıza bakabilirsiniz.",
+  },
+  {
+    question: "Sunucu ne kadar sürede aktif olur?",
+    answer: "Ödeme onayından sonra sunucunuz otomatik olarak birkaç dakika içinde aktif edilir. Kontrol paneline giriş bilgileriniz e-posta ile gönderilir.",
+  },
+  {
+    question: "Root erişimim var mı?",
+    answer: "Evet, tüm VPS paketlerinde tam root erişimi sunuyoruz. SSH ile bağlanabilir, istediğiniz yazılımı kurabilirsiniz.",
+  },
+  {
+    question: "Trafik limiti aşılırsa ne olur?",
+    answer: "Trafik limitiniz aşıldığında sunucunuz kapatılmaz, sadece hız kısıtlaması uygulanır. Ek trafik paketi satın alabilirsiniz.",
+  },
+  {
+    question: "Paket yükseltme yapabilir miyim?",
+    answer: "Evet, istediğiniz zaman daha üst bir pakete geçiş yapabilirsiniz. Yükseltme işlemi kısa bir kesinti ile gerçekleşir.",
+  },
+  {
+    question: "Teknik destek 7/24 mü?",
+    answer: "Evet, teknik destek ekibimiz 7/24 hizmetinizdedir. Canlı destek, ticket sistemi veya telefon ile bize ulaşabilirsiniz.",
+  },
+];
+
 const features = [
   {
-    icon: Server,
-    title: "Güçlü Sunucular",
-    description: "Yüksek performanslı donanımlarla desteklenen VPS sunucularımız, projelerinizi hızlı ve güvenilir şekilde çalıştırır.",
+    icon: Layers,
+    title: "OpenVZ Sanallaştırma",
+    description: "Konteyner tabanlı sanallaştırma ile düşük overhead ve yüksek performans. Kaynaklarınızı verimli kullanın.",
   },
   {
-    icon: Headphones,
-    title: "7/24 Teknik Destek",
-    description: "Her an yanınızdayız. Teknik ekibimize günün her saati ulaşarak sorunlarınıza hızlı çözümler bulabilirsiniz.",
+    icon: Monitor,
+    title: "İşletim Sistemi Seçimi",
+    description: "Ubuntu, Debian, CentOS, AlmaLinux ve daha fazlası. İstediğiniz Linux dağıtımını tek tıkla kurabilirsiniz.",
   },
   {
-    icon: Clock,
-    title: "Kesintisiz Hizmet",
-    description: "VPS sunucularımızda %99.9 uptime garantisi ile projeleriniz her zaman erişilebilir kalır. Minimum downtime.",
-  },
-  {
-    icon: Shield,
-    title: "Gelişmiş Güvenlik",
-    description: "SecureWAN ve Voxility DDoS koruması ile sunucunuz güvende. Siber tehditlere karşı tam koruma sağlıyoruz.",
+    icon: Terminal,
+    title: "Tam Root Erişimi",
+    description: "Sunucunuz üzerinde tam kontrol. SSH ile root erişimi, istediğiniz yazılımı kurma ve yapılandırma özgürlüğü.",
   },
   {
     icon: RefreshCw,
-    title: "Yedekli Yapı",
-    description: "Teknik sorunlarda kesintisiz hizmet garantisi. Yedekli altyapımız sayesinde verileriniz her zaman güvende.",
+    title: "Haftalık Yedekleme",
+    description: "Verileriniz otomatik olarak yedeklenir. İstediğiniz zaman geri yükleme yapabilir, verilerinizi güvende tutabilirsiniz.",
   },
   {
-    icon: Code,
-    title: "Yazılım Desteği",
-    description: "Linux ve Windows işletim sistemleri dahil tüm popüler yazılımlar için destek. Kolay kurulum ve entegrasyon.",
+    icon: Activity,
+    title: "Kaynak İzleme",
+    description: "CPU, RAM, disk ve ağ kullanımınızı gerçek zamanlı izleyin. Detaylı grafikler ve raporlarla performansı takip edin.",
+  },
+  {
+    icon: Shield,
+    title: "DDoS Koruması",
+    description: "SecureWAN ve Voxility DDoS koruması ile sunucunuz güvende. Layer 3-4 saldırılara karşı tam koruma.",
+  },
+  {
+    icon: Cloud,
+    title: "IPv6 Desteği",
+    description: "IPv6 ağ desteği ile geleceğe hazır altyapı. Ek ücret ödemeden IPv6 subnet alabilirsiniz.",
+  },
+  {
+    icon: Settings,
+    title: "Kolay Yönetim Paneli",
+    description: "Sunucunuzu yeniden başlatın, işletim sistemi değiştirin ve kaynaklarınızı tek panelden yönetin.",
+  },
+  {
+    icon: Bot,
+    title: "Otomatik Kurulum",
+    description: "Web sunucu, veritabanı ve control panel kurulumları otomatik. Plesk, cPanel, LAMP stack hazır scriptler.",
   },
 ];
 
@@ -338,88 +400,64 @@ export default function VPSSunucuPage() {
             <BlurFade delay={0.1} inView>
               <div className="text-center mb-12">
                 <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-                  VPS Sunucu Özellikleri
+                  Neden VPS Sunucu?
                 </h2>
-                <p className="mt-4 text-muted-foreground max-w-2xl mx-auto">
-                  Projeleriniz için ihtiyacınız olan tüm özellikler
+                <p className="mt-3 text-muted-foreground max-w-2xl mx-auto">
+                  VPS sunucularımızda sunduğumuz tüm özellikler
                 </p>
               </div>
             </BlurFade>
 
             <BlurFade delay={0.2} inView>
-              <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto">
                 {features.map((feature) => (
-                  <Card
-                    key={feature.title}
-                    className="hover:border-primary/50 transition-colors"
-                  >
-                    <CardContent className="p-6">
-                      <feature.icon className="h-10 w-10 text-primary mb-4" />
-                      <h3 className="font-semibold text-lg mb-2">
-                        {feature.title}
-                      </h3>
-                      <p className="text-sm text-muted-foreground">
+                  <div key={feature.title} className="flex gap-4">
+                    <div className="flex-shrink-0">
+                      <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
+                        <feature.icon className="h-6 w-6 text-primary" />
+                      </div>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-lg mb-1">{feature.title}</h4>
+                      <p className="text-sm text-muted-foreground leading-relaxed">
                         {feature.description}
                       </p>
-                    </CardContent>
-                  </Card>
+                    </div>
+                  </div>
                 ))}
               </div>
             </BlurFade>
           </div>
         </section>
 
-        {/* Specs */}
+        {/* FAQ */}
         <section className="py-16 md:py-24">
           <div className="container">
             <BlurFade delay={0.1} inView>
               <div className="text-center mb-12">
                 <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-                  Teknik Özellikler
+                  Sık Sorulan Sorular
                 </h2>
+                <p className="mt-4 text-muted-foreground max-w-2xl mx-auto">
+                  VPS sunucu hakkında merak edilenler
+                </p>
               </div>
             </BlurFade>
 
             <BlurFade delay={0.2} inView>
-              <div className="grid gap-6 md:grid-cols-2 max-w-4xl mx-auto">
-                <Card>
-                  <CardContent className="p-6">
-                    <h3 className="font-semibold text-lg mb-4">Donanım</h3>
-                    <ul className="space-y-3 text-sm">
-                      {[
-                        "Intel Xeon işlemciler",
-                        "DDR4 ECC RAM",
-                        "Enterprise SSD diskler",
-                        "1 Gbps network portu",
-                        "RAID yapılandırma",
-                      ].map((item) => (
-                        <li key={item} className="flex items-center gap-2">
-                          <Check className="h-4 w-4 text-primary" />
-                          {item}
-                        </li>
-                      ))}
-                    </ul>
-                  </CardContent>
-                </Card>
-                <Card>
-                  <CardContent className="p-6">
-                    <h3 className="font-semibold text-lg mb-4">Dahil Özellikler</h3>
-                    <ul className="space-y-3 text-sm">
-                      {[
-                        "1 IPv4 adres dahil",
-                        "Temel DDoS koruması",
-                        "Haftalık yedekleme",
-                        "Web tabanlı kontrol paneli",
-                        "7/24 e-posta desteği",
-                      ].map((item) => (
-                        <li key={item} className="flex items-center gap-2">
-                          <Check className="h-4 w-4 text-primary" />
-                          {item}
-                        </li>
-                      ))}
-                    </ul>
-                  </CardContent>
-                </Card>
+              <div className="max-w-3xl mx-auto">
+                <Accordion type="single" collapsible className="w-full">
+                  {faqs.map((faq, index) => (
+                    <AccordionItem key={index} value={`item-${index}`}>
+                      <AccordionTrigger className="text-left">
+                        {faq.question}
+                      </AccordionTrigger>
+                      <AccordionContent className="text-muted-foreground">
+                        {faq.answer}
+                      </AccordionContent>
+                    </AccordionItem>
+                  ))}
+                </Accordion>
               </div>
             </BlurFade>
           </div>

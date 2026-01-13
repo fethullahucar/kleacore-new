@@ -22,11 +22,24 @@ import {
   Clock,
   RefreshCcw,
   Code,
+  Layers,
+  Monitor,
+  Terminal,
+  Activity,
+  Settings,
+  Bot,
+  Scale,
 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 const cloudPlans = [
   {
@@ -86,36 +99,86 @@ const planFeatures = [
   { icon: Headphones, text: "7/24 Destek" },
 ];
 
+const faqs = [
+  {
+    question: "Bulut sunucu nedir?",
+    answer: "Bulut sunucu, fiziksel sunucular üzerinde sanallaştırılmış ve esnek kaynak yönetimi sunan sunucu çözümüdür. İhtiyacınıza göre kaynakları anında artırıp azaltabilir, sadece kullandığınız kadar ödeme yapabilirsiniz.",
+  },
+  {
+    question: "VDS'ten farkı nedir?",
+    answer: "Bulut sunucular daha esnek ölçeklenebilirlik, yüksek erişilebilirlik ve otomatik yük dengeleme sunar. Altyapı dağıtık olduğu için tek noktadan arıza riski minimuma iner.",
+  },
+  {
+    question: "Hangi işletim sistemlerini kurabilirim?",
+    answer: "Ubuntu, Debian, CentOS, AlmaLinux, Windows Server ve daha fazlası. Ayrıca Docker, Kubernetes gibi hazır imajları da kullanabilirsiniz.",
+  },
+  {
+    question: "Sunucu ne kadar sürede aktif olur?",
+    answer: "Ödeme onayından sonra sunucunuz saniyeler içinde otomatik olarak oluşturulur ve aktif edilir. API ile de sunucu oluşturabilirsiniz.",
+  },
+  {
+    question: "Kaynak yükseltme/düşürme yapabilir miyim?",
+    answer: "Evet, istediğiniz zaman CPU, RAM ve disk kaynaklarını artırıp azaltabilirsiniz. Değişiklikler anında uygulanır.",
+  },
+  {
+    question: "Snapshot ve yedekleme dahil mi?",
+    answer: "Evet, günlük otomatik yedekleme ve anlık snapshot alma özelliği tüm paketlerde dahildir. İstediğiniz zaman geri yükleme yapabilirsiniz.",
+  },
+  {
+    question: "API desteği var mı?",
+    answer: "Evet, RESTful API ve Terraform desteği sunuyoruz. Sunucularınızı programatik olarak oluşturabilir, yönetebilir ve izleyebilirsiniz.",
+  },
+  {
+    question: "Teknik destek 7/24 mü?",
+    answer: "Evet, uzman cloud ekibimiz 7/24 hizmetinizdedir. Canlı destek, ticket sistemi veya telefon ile bize ulaşabilirsiniz.",
+  },
+];
+
 const features = [
   {
-    icon: Cloud,
-    title: "Güçlü Bulut Altyapısı",
-    description: "Enterprise seviyesinde bulut altyapımız ile yüksek performans ve ölçeklenebilirlik. İşletmenizi büyütürken kaynaklarınız da sizinle büyür.",
+    icon: Scale,
+    title: "Esnek Ölçeklendirme",
+    description: "İhtiyacınıza göre kaynakları anında artırın veya azaltın. Trafik artışlarında otomatik ölçeklendirme ile kesintisiz hizmet.",
   },
   {
-    icon: Headphones,
-    title: "7/24 Teknik Destek",
-    description: "Uzman cloud ekibimiz her an yanınızda. Migrasyon, optimizasyon ve teknik sorunlarda profesyonel destek alın.",
+    icon: Monitor,
+    title: "İşletim Sistemi Seçimi",
+    description: "Ubuntu, Debian, CentOS, Windows Server ve özel imajlar. İstediğiniz işletim sistemini saniyeler içinde kurun.",
   },
   {
-    icon: Clock,
-    title: "Kesintisiz Hizmet",
-    description: "Bulut sunucularımızda %99.99 uptime garantisi. Yüksek erişilebilirlik ile kritik uygulamalarınız her zaman çevrimiçi.",
-  },
-  {
-    icon: Shield,
-    title: "Gelişmiş Güvenlik",
-    description: "Katmanlı güvenlik mimarisi, DDoS koruması ve gelişmiş firewall ile verileriniz her zaman güvende kalır.",
+    icon: Terminal,
+    title: "Tam Root Erişimi",
+    description: "Sunucunuz üzerinde tam kontrol. SSH ve VNC ile doğrudan erişim, istediğiniz yapılandırmayı uygulayın.",
   },
   {
     icon: RefreshCcw,
-    title: "Yedekli Yapı",
-    description: "Otomatik snapshot ve yedekleme sistemi ile veri kaybı riski minimuma indirilir. Anında geri yükleme imkanı.",
+    title: "Otomatik Snapshot",
+    description: "Günlük otomatik yedekleme ve anlık snapshot. İstediğiniz zaman tek tıkla geri dönüş yapabilirsiniz.",
   },
   {
-    icon: Code,
-    title: "Yazılım Desteği",
-    description: "Docker, Kubernetes ve tüm modern teknolojiler için hazır altyapı. Uygulamalarınızı kolayca deploy edin.",
+    icon: Activity,
+    title: "Gelişmiş İzleme",
+    description: "Gerçek zamanlı metrikler, uyarı sistemleri ve detaylı raporlar. Performansı sürekli optimize edin.",
+  },
+  {
+    icon: Shield,
+    title: "Enterprise Güvenlik",
+    description: "Layer 3-7 DDoS koruması, firewall, ağ izolasyonu ve şifreli depolama ile maksimum güvenlik.",
+  },
+  {
+    icon: Globe,
+    title: "Global Ağ",
+    description: "Dünya genelinde 10+ lokasyon. Kullanıcılarınıza en yakın veri merkezinden hizmet verin.",
+  },
+  {
+    icon: Settings,
+    title: "API & Terraform",
+    description: "RESTful API ve Terraform desteği ile altyapınızı kod olarak yönetin. CI/CD entegrasyonu.",
+  },
+  {
+    icon: Bot,
+    title: "Marketplace",
+    description: "Hazır uygulama imajları ve one-click deployment. WordPress, Docker, Kubernetes saniyeler içinde hazır.",
   },
 ];
 
@@ -340,88 +403,64 @@ export default function BulutSunucuPage() {
             <BlurFade delay={0.1} inView>
               <div className="text-center mb-12">
                 <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-                  Bulut Sunucu Özellikleri
+                  Neden Bulut Sunucu?
                 </h2>
-                <p className="mt-4 text-muted-foreground max-w-2xl mx-auto">
-                  Enterprise düzeyinde altyapı ile işletmenizi büyütün
+                <p className="mt-3 text-muted-foreground max-w-2xl mx-auto">
+                  Bulut sunucularımızda sunduğumuz tüm özellikler
                 </p>
               </div>
             </BlurFade>
 
             <BlurFade delay={0.2} inView>
-              <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto">
                 {features.map((feature) => (
-                  <Card
-                    key={feature.title}
-                    className="hover:border-primary/50 transition-colors"
-                  >
-                    <CardContent className="p-6">
-                      <feature.icon className="h-10 w-10 text-primary mb-4" />
-                      <h3 className="font-semibold text-lg mb-2">
-                        {feature.title}
-                      </h3>
-                      <p className="text-sm text-muted-foreground">
+                  <div key={feature.title} className="flex gap-4">
+                    <div className="flex-shrink-0">
+                      <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
+                        <feature.icon className="h-6 w-6 text-primary" />
+                      </div>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-lg mb-1">{feature.title}</h4>
+                      <p className="text-sm text-muted-foreground leading-relaxed">
                         {feature.description}
                       </p>
-                    </CardContent>
-                  </Card>
+                    </div>
+                  </div>
                 ))}
               </div>
             </BlurFade>
           </div>
         </section>
 
-        {/* Specs */}
+        {/* FAQ */}
         <section className="py-16 md:py-24">
           <div className="container">
             <BlurFade delay={0.1} inView>
               <div className="text-center mb-12">
                 <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-                  Teknik Özellikler
+                  Sık Sorulan Sorular
                 </h2>
+                <p className="mt-3 text-muted-foreground max-w-2xl mx-auto">
+                  Bulut sunucu hizmetlerimiz hakkında merak edilenler
+                </p>
               </div>
             </BlurFade>
 
             <BlurFade delay={0.2} inView>
-              <div className="grid gap-6 md:grid-cols-2 max-w-4xl mx-auto">
-                <Card>
-                  <CardContent className="p-6">
-                    <h3 className="font-semibold text-lg mb-4">Altyapı</h3>
-                    <ul className="space-y-3 text-sm">
-                      {[
-                        "AMD EPYC / Intel Xeon Scalable işlemciler",
-                        "DDR5 ECC RAM",
-                        "Enterprise NVMe SSD (RAID-10)",
-                        "10 Gbps network bağlantısı",
-                        "Tier III+ veri merkezi",
-                      ].map((item) => (
-                        <li key={item} className="flex items-center gap-2">
-                          <Check className="h-4 w-4 text-primary" />
-                          {item}
-                        </li>
-                      ))}
-                    </ul>
-                  </CardContent>
-                </Card>
-                <Card>
-                  <CardContent className="p-6">
-                    <h3 className="font-semibold text-lg mb-4">Özellikler</h3>
-                    <ul className="space-y-3 text-sm">
-                      {[
-                        "Otomatik yük dengeleme",
-                        "Anlık snapshot oluşturma",
-                        "API ile tam kontrol",
-                        "Kubernetes desteği",
-                        "7/24 teknik destek",
-                      ].map((item) => (
-                        <li key={item} className="flex items-center gap-2">
-                          <Check className="h-4 w-4 text-primary" />
-                          {item}
-                        </li>
-                      ))}
-                    </ul>
-                  </CardContent>
-                </Card>
+              <div className="max-w-3xl mx-auto">
+                <Accordion type="single" collapsible className="w-full">
+                  {faqs.map((faq, index) => (
+                    <AccordionItem key={index} value={`item-${index}`}>
+                      <AccordionTrigger className="text-left">
+                        {faq.question}
+                      </AccordionTrigger>
+                      <AccordionContent className="text-muted-foreground">
+                        {faq.answer}
+                      </AccordionContent>
+                    </AccordionItem>
+                  ))}
+                </Accordion>
               </div>
             </BlurFade>
           </div>

@@ -19,11 +19,26 @@ import {
   MapPin,
   RefreshCcw,
   Code,
+  Layers,
+  Monitor,
+  Terminal,
+  Activity,
+  Cloud,
+  Settings,
+  Bot,
+  Lock,
+  Truck,
 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 const vdsPlans = [
   {
@@ -94,36 +109,86 @@ const planFeatures = [
   { icon: Headphones, text: "7/24 Destek" },
 ];
 
+const faqs = [
+  {
+    question: "VDS nedir, VPS'ten farkı ne?",
+    answer: "VDS (Virtual Dedicated Server), KVM sanallaştırma teknolojisi ile tam izole edilmiş sanal sunucudur. VPS'e göre daha yüksek performans ve güvenlik sunar. Kendi çekirdeğinizi yönetebilir, özel kernel modülleri yükleyebilirsiniz.",
+  },
+  {
+    question: "Hangi işletim sistemlerini kurabilirim?",
+    answer: "Ubuntu, Debian, CentOS, AlmaLinux, Rocky Linux, Fedora gibi Linux dağıtımlarını ve Windows Server 2019/2022 işletim sistemlerini kurabilirsiniz. Kendi ISO dosyanızı da yükleyebilirsiniz.",
+  },
+  {
+    question: "Sunucu ne kadar sürede aktif olur?",
+    answer: "Ödeme onayından sonra sunucunuz otomatik olarak birkaç dakika içinde aktif edilir. Kontrol paneline giriş bilgileriniz e-posta ile gönderilir.",
+  },
+  {
+    question: "Root erişimim var mı?",
+    answer: "Evet, tüm VDS paketlerinde tam root erişimi sunuyoruz. SSH ile bağlanabilir, istediğiniz yazılımı kurabilir ve sunucunuzu tamamen özelleştirebilirsiniz.",
+  },
+  {
+    question: "DDoS koruması dahil mi?",
+    answer: "Evet, tüm VDS paketlerimizde Layer 3-4 DDoS koruması ücretsiz olarak dahildir. Sunucunuz saldırılara karşı 7/24 korunur.",
+  },
+  {
+    question: "Yedekleme yapılıyor mu?",
+    answer: "Snapshot özelliği ile istediğiniz zaman sunucunuzun anlık görüntüsünü alabilirsiniz. Ayrıca otomatik yedekleme eklentisi satın alabilirsiniz.",
+  },
+  {
+    question: "Paket yükseltme yapabilir miyim?",
+    answer: "Evet, istediğiniz zaman daha üst bir pakete geçiş yapabilirsiniz. Yükseltme işlemi kısa bir kesinti ile gerçekleşir.",
+  },
+  {
+    question: "Teknik destek 7/24 mü?",
+    answer: "Evet, teknik destek ekibimiz 7/24 hizmetinizdedir. Canlı destek, ticket sistemi veya telefon ile bize ulaşabilirsiniz.",
+  },
+];
+
 const features = [
   {
-    icon: Server,
-    title: "Güçlü Sunucular",
-    description: "Son teknoloji donanımlarla donatılmış VDS sunucularımız, yoğun iş yüklerinizi kolayca kaldırır. Maksimum performans ve stabilite garantisi.",
+    icon: Layers,
+    title: "KVM Sanallaştırma",
+    description: "Tam izole KVM tabanlı sanallaştırma ile kendi çekirdeğinizi yönetin. Donanım düzeyinde izolasyon ve maksimum performans.",
   },
   {
-    icon: Headphones,
-    title: "7/24 Teknik Destek",
-    description: "Uzman teknik ekibimiz günün her saati yanınızda. Sorularınız ve sorunlarınız için anında destek alın, projelerinizi aksatmadan ilerletin.",
+    icon: Monitor,
+    title: "İşletim Sistemi Seçimi",
+    description: "Ubuntu, Debian, CentOS, Windows Server ve daha fazlası. İstediğiniz işletim sistemini tek tıkla kurabilirsiniz.",
   },
   {
-    icon: Clock,
-    title: "Kesintisiz Hizmet",
-    description: "VDS sunucularımızda %99.9 uptime garantisi sunuyoruz. Minimum kesinti süresi ile işleriniz her zaman çevrimiçi kalsın.",
-  },
-  {
-    icon: Shield,
-    title: "Gelişmiş Güvenlik",
-    description: "Ücretsiz DDoS koruması ve gelişmiş güvenlik duvarı ile sunucunuz her zaman güvende. Verilerinizi koruma altına alıyoruz.",
+    icon: Terminal,
+    title: "Tam Root Erişimi",
+    description: "Sunucunuz üzerinde tam kontrol. SSH ile root erişimi, istediğiniz yazılımı kurma ve yapılandırma özgürlüğü.",
   },
   {
     icon: RefreshCcw,
-    title: "Yedekli Altyapı",
-    description: "Olası donanım arızalarında sunucunuz otomatik olarak yedek sisteme geçer. Kesintisiz performansı garanti ediyoruz.",
+    title: "Anlık Yedekleme",
+    description: "Sunucunuzun anlık görüntüsünü alın. Snapshot özelliği ile istediğiniz zaman geri dönüş yapabilirsiniz.",
   },
   {
-    icon: Code,
-    title: "Yazılım Desteği",
-    description: "Tüm popüler işletim sistemleri ve yazılımlar için tam destek. Uygulamalarınızı sorunsuz şekilde çalıştırın.",
+    icon: Activity,
+    title: "Kaynak İzleme",
+    description: "CPU, RAM, disk ve ağ kullanımınızı gerçek zamanlı izleyin. Detaylı grafikler ve raporlarla performansı takip edin.",
+  },
+  {
+    icon: Shield,
+    title: "DDoS Koruması",
+    description: "Ücretsiz Layer 3-4 DDoS koruması dahil. Sunucunuz saldırılara karşı 7/24 korunur.",
+  },
+  {
+    icon: Cloud,
+    title: "Özel Ağ (Private Network)",
+    description: "Sunucularınız arasında güvenli özel ağ oluşturun. Dahili trafik ücretsiz ve yüksek hızlı.",
+  },
+  {
+    icon: Settings,
+    title: "API Desteği",
+    description: "RESTful API ile sunucularınızı programatik olarak yönetin. Otomasyon ve entegrasyon kolaylığı.",
+  },
+  {
+    icon: Bot,
+    title: "Otomatik Kurulum",
+    description: "Control panel, web sunucu ve veritabanı kurulumları otomatik. cPanel, Plesk, LAMP/LEMP stack hazır scriptler.",
   },
 ];
 
@@ -348,85 +413,64 @@ export default function VDSPage() {
             <BlurFade delay={0.1} inView>
               <div className="text-center mb-12">
                 <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-                  VDS Özellikleri
+                  Neden VDS Sunucu?
                 </h2>
+                <p className="mt-3 text-muted-foreground max-w-2xl mx-auto">
+                  VDS sunucularımızda sunduğumuz tüm özellikler
+                </p>
               </div>
             </BlurFade>
 
             <BlurFade delay={0.2} inView>
-              <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto">
                 {features.map((feature) => (
-                  <Card
-                    key={feature.title}
-                    className="hover:border-primary/50 transition-colors"
-                  >
-                    <CardContent className="p-6">
-                      <feature.icon className="h-10 w-10 text-primary mb-4" />
-                      <h3 className="font-semibold text-lg mb-2">
-                        {feature.title}
-                      </h3>
-                      <p className="text-sm text-muted-foreground">
+                  <div key={feature.title} className="flex gap-4">
+                    <div className="flex-shrink-0">
+                      <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
+                        <feature.icon className="h-6 w-6 text-primary" />
+                      </div>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-lg mb-1">{feature.title}</h4>
+                      <p className="text-sm text-muted-foreground leading-relaxed">
                         {feature.description}
                       </p>
-                    </CardContent>
-                  </Card>
+                    </div>
+                  </div>
                 ))}
               </div>
             </BlurFade>
           </div>
         </section>
 
-        {/* Specs */}
+        {/* FAQ */}
         <section className="py-16 md:py-24">
           <div className="container">
             <BlurFade delay={0.1} inView>
               <div className="text-center mb-12">
                 <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-                  Teknik Özellikler
+                  Sık Sorulan Sorular
                 </h2>
+                <p className="mt-4 text-muted-foreground max-w-2xl mx-auto">
+                  VDS sunucu hakkında merak edilenler
+                </p>
               </div>
             </BlurFade>
 
             <BlurFade delay={0.2} inView>
-              <div className="grid gap-6 md:grid-cols-2 max-w-4xl mx-auto">
-                <Card>
-                  <CardContent className="p-6">
-                    <h3 className="font-semibold text-lg mb-4">Donanım</h3>
-                    <ul className="space-y-3 text-sm">
-                      {[
-                        "AMD EPYC / Intel Xeon işlemciler",
-                        "DDR4 ECC RAM",
-                        "Enterprise NVMe SSD",
-                        "1 Gbps network portu",
-                        "RAID-10 yapılandırma",
-                      ].map((item) => (
-                        <li key={item} className="flex items-center gap-2">
-                          <Check className="h-4 w-4 text-primary" />
-                          {item}
-                        </li>
-                      ))}
-                    </ul>
-                  </CardContent>
-                </Card>
-                <Card>
-                  <CardContent className="p-6">
-                    <h3 className="font-semibold text-lg mb-4">Ağ & Güvenlik</h3>
-                    <ul className="space-y-3 text-sm">
-                      {[
-                        "1 IPv4 adres dahil",
-                        "IPv6 desteği (/64 subnet)",
-                        "Ücretsiz DDoS koruması",
-                        "Private network desteği",
-                        "Firewall yönetim paneli",
-                      ].map((item) => (
-                        <li key={item} className="flex items-center gap-2">
-                          <Check className="h-4 w-4 text-primary" />
-                          {item}
-                        </li>
-                      ))}
-                    </ul>
-                  </CardContent>
-                </Card>
+              <div className="max-w-3xl mx-auto">
+                <Accordion type="single" collapsible className="w-full">
+                  {faqs.map((faq, index) => (
+                    <AccordionItem key={index} value={`item-${index}`}>
+                      <AccordionTrigger className="text-left">
+                        {faq.question}
+                      </AccordionTrigger>
+                      <AccordionContent className="text-muted-foreground">
+                        {faq.answer}
+                      </AccordionContent>
+                    </AccordionItem>
+                  ))}
+                </Accordion>
               </div>
             </BlurFade>
           </div>

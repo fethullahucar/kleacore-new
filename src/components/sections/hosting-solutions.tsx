@@ -285,12 +285,13 @@ export function HostingSolutions() {
           {/* VDS Pricing Table */}
           <Card className="max-w-5xl mx-auto overflow-hidden">
             {/* Table Header */}
-            <div className="grid grid-cols-6 gap-4 p-4 bg-muted/50 border-b text-sm font-medium text-muted-foreground">
+            <div className="grid grid-cols-7 gap-4 p-4 bg-muted/50 border-b text-sm font-medium text-muted-foreground">
               <div>Paket</div>
-              <div className="text-center">CPU</div>
-              <div className="text-center">RAM</div>
+              <div className="text-center">Core</div>
+              <div className="text-center">Bellek</div>
               <div className="text-center">Disk</div>
-              <div className="text-center">Fiyat</div>
+              <div className="text-center">Trafik</div>
+              <div className="text-right">Fiyat</div>
               <div></div>
             </div>
 
@@ -304,7 +305,7 @@ export function HostingSolutions() {
                   <div
                     key={plan.name}
                     className={cn(
-                      "grid grid-cols-6 items-center gap-4 p-4 border-b last:border-b-0 hover:bg-muted/30 transition-colors",
+                      "grid grid-cols-7 items-center gap-4 p-4 border-b last:border-b-0 hover:bg-muted/30 transition-colors",
                       plan.popular && "bg-primary/5"
                     )}
                   >
@@ -320,14 +321,16 @@ export function HostingSolutions() {
                       </div>
                     </div>
 
-                    {/* CPU */}
+                    {/* Core */}
                     <div className="text-center">
                       <p className="font-semibold">{plan.cpu}</p>
+                      <p className="text-xs text-muted-foreground">İşlemci</p>
                     </div>
 
-                    {/* RAM */}
+                    {/* Bellek */}
                     <div className="text-center">
                       <p className="font-semibold">{plan.ram}</p>
+                      <p className="text-xs text-muted-foreground">DDR4</p>
                     </div>
 
                     {/* Disk */}
@@ -336,10 +339,16 @@ export function HostingSolutions() {
                       <p className="text-xs text-muted-foreground">NVMe</p>
                     </div>
 
-                    {/* Fiyat */}
+                    {/* Trafik */}
                     <div className="text-center">
+                      <p className="font-semibold text-sm">{plan.traffic}</p>
+                      <p className="text-xs text-muted-foreground">{plan.port}</p>
+                    </div>
+
+                    {/* Fiyat */}
+                    <div className="text-right">
                       <p className="text-xs text-muted-foreground line-through">
-                        {originalPrice.toFixed(2)}₺
+                        {originalPrice.toFixed(2)}₺/ay
                       </p>
                       <p className="font-bold text-lg">
                         {price.toFixed(2)}₺<span className="text-sm font-normal text-muted-foreground">/ay</span>
