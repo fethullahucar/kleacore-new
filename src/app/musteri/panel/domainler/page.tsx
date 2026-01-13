@@ -225,9 +225,10 @@ export default function DomainlerPage() {
                 const StatusIcon = status.icon;
 
                 return (
-                  <div
+                  <Link
                     key={domain.id}
-                    className="flex items-center gap-4 p-4 rounded-lg border hover:shadow-sm transition-shadow"
+                    href={`/musteri/panel/domainler/${domain.id}`}
+                    className="flex items-center gap-4 p-4 rounded-lg border hover:shadow-sm transition-shadow cursor-pointer"
                   >
                     <div className={cn("p-3 rounded-lg", status.bgColor)}>
                       <Globe className={cn("h-6 w-6", status.color)} />
@@ -314,7 +315,7 @@ export default function DomainlerPage() {
                         </DropdownMenuContent>
                       </DropdownMenu>
                     </div>
-                  </div>
+                  </Link>
                 );
               })}
 
