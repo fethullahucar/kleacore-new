@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import { Switch } from "@/components/ui/switch";
 import {
   User,
   Mail,
@@ -16,12 +17,20 @@ import {
   Shield,
   Key,
   Smartphone,
-  Globe,
   Building,
   MapPin,
   Save,
   Eye,
   EyeOff,
+  Copy,
+  RefreshCw,
+  Trash2,
+  AlertTriangle,
+  Monitor,
+  LogOut,
+  Clock,
+  CheckCircle2,
+  Globe,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -32,6 +41,7 @@ const userData = {
   email: "ahmet@example.com",
   phone: "+90 532 123 45 67",
   company: "Örnek Şirket A.Ş.",
+  taxNumber: "1234567890",
   address: "Levent Mah. Büyükdere Cad. No:123",
   city: "İstanbul",
   country: "Türkiye",
@@ -46,16 +56,63 @@ const notificationSettings = [
   { id: "sms_critical", label: "SMS bildirimleri", description: "Kritik uyarılar için SMS", enabled: true },
 ];
 
+const apiKeys = [
+  {
+    id: "api_1",
+    name: "Üretim API Anahtarı",
+    key: "sk_live_xxxxxxxxxxxxxxxxxxxx",
+    createdAt: "15 Ocak 2024",
+    lastUsed: "Bugün",
+  },
+  {
+    id: "api_2",
+    name: "Test API Anahtarı",
+    key: "sk_test_xxxxxxxxxxxxxxxxxxxx",
+    createdAt: "10 Ocak 2024",
+    lastUsed: "3 gün önce",
+  },
+];
+
+const sessions = [
+  {
+    id: "session_1",
+    device: "Chrome - Windows",
+    ip: "195.85.201.xxx",
+    location: "İstanbul, Türkiye",
+    lastActive: "Şu an aktif",
+    current: true,
+  },
+  {
+    id: "session_2",
+    device: "Safari - iPhone",
+    ip: "176.42.xxx.xxx",
+    location: "İstanbul, Türkiye",
+    lastActive: "2 saat önce",
+    current: false,
+  },
+  {
+    id: "session_3",
+    device: "Firefox - MacOS",
+    ip: "85.107.xxx.xxx",
+    location: "Ankara, Türkiye",
+    lastActive: "3 gün önce",
+    current: false,
+  },
+];
+
 export default function AyarlarPage() {
   const [activeTab, setActiveTab] = useState("profile");
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState(userData);
   const [notifications, setNotifications] = useState(notificationSettings);
+  const [copiedKey, setCopiedKey] = useState<string | null>(null);
 
   const tabs = [
     { id: "profile", label: "Profil", icon: User },
     { id: "security", label: "Güvenlik", icon: Shield },
     { id: "notifications", label: "Bildirimler", icon: Bell },
+    { id: "api", label: "API", icon: Key },
+    { id: "sessions", label: "Oturumlar", icon: Monitor },
   ];
 
   const toggleNotification = (id: string) => {
@@ -64,6 +121,12 @@ export default function AyarlarPage() {
         n.id === id ? { ...n, enabled: !n.enabled } : n
       )
     );
+  };
+
+  const copyToClipboard = (key: string, id: string) => {
+    navigator.clipboard.writeText(key);
+    setCopiedKey(id);
+    setTimeout(() => setCopiedKey(null), 2000);
   };
 
   return (
@@ -80,13 +143,13 @@ export default function AyarlarPage() {
 
       {/* Tabs */}
       <BlurFade delay={0.15} inView>
-        <div className="flex gap-2 border-b pb-2">
+        <div className="flex gap-2 border-b pb-2 overflow-x-auto">
           {tabs.map((tab) => (
             <Button
               key={tab.id}
               variant={activeTab === tab.id ? "default" : "ghost"}
               onClick={() => setActiveTab(tab.id)}
-              className="gap-2"
+              className="gap-2 shrink-0"
             >
               <tab.icon className="h-4 w-4" />
               {tab.label}
@@ -186,17 +249,29 @@ export default function AyarlarPage() {
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
-                <div className="space-y-2">
-                  <Label htmlFor="company">Şirket Adı</Label>
-                  <div className="relative">
-                    <Building className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                <div className="grid gap-4 sm:grid-cols-2">
+                  <div className="space-y-2">
+                    <Label htmlFor="company">Şirket Adı</Label>
+                    <div className="relative">
+                      <Building className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                      <Input
+                        id="company"
+                        value={formData.company}
+                        onChange={(e) =>
+                          setFormData({ ...formData, company: e.target.value })
+                        }
+                        className="pl-10"
+                      />
+                    </div>
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="taxNumber">Vergi No</Label>
                     <Input
-                      id="company"
-                      value={formData.company}
+                      id="taxNumber"
+                      value={formData.taxNumber}
                       onChange={(e) =>
-                        setFormData({ ...formData, company: e.target.value })
+                        setFormData({ ...formData, taxNumber: e.target.value })
                       }
-                      className="pl-10"
                     />
                   </div>
                 </div>
@@ -381,6 +456,33 @@ export default function AyarlarPage() {
                 </div>
               </CardContent>
             </Card>
+
+            {/* Danger Zone */}
+            <Card className="lg:col-span-2 border-red-500/20">
+              <CardHeader>
+                <CardTitle className="text-red-500 flex items-center gap-2">
+                  <AlertTriangle className="h-5 w-5" />
+                  Tehlikeli Bölge
+                </CardTitle>
+                <CardDescription>
+                  Bu işlemler geri alınamaz. Dikkatli olun.
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 rounded-lg border border-red-500/20 bg-red-500/5">
+                  <div>
+                    <p className="font-medium">Hesabı Sil</p>
+                    <p className="text-sm text-muted-foreground">
+                      Hesabınızı ve tüm verilerinizi kalıcı olarak silin. Bu işlem geri alınamaz.
+                    </p>
+                  </div>
+                  <Button variant="destructive" className="shrink-0">
+                    <Trash2 className="mr-2 h-4 w-4" />
+                    Hesabı Sil
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
           </div>
         </BlurFade>
       )}
@@ -427,20 +529,10 @@ export default function AyarlarPage() {
                         </p>
                       </div>
                     </div>
-                    <button
-                      onClick={() => toggleNotification(notification.id)}
-                      className={cn(
-                        "relative w-11 h-6 rounded-full transition-colors",
-                        notification.enabled ? "bg-green-500" : "bg-muted"
-                      )}
-                    >
-                      <span
-                        className={cn(
-                          "absolute top-1 left-1 w-4 h-4 rounded-full bg-white transition-transform",
-                          notification.enabled && "translate-x-5"
-                        )}
-                      />
-                    </button>
+                    <Switch
+                      checked={notification.enabled}
+                      onCheckedChange={() => toggleNotification(notification.id)}
+                    />
                   </div>
                 ))}
               </div>
@@ -450,6 +542,176 @@ export default function AyarlarPage() {
                   <Save className="mr-2 h-4 w-4" />
                   Tercihleri Kaydet
                 </Button>
+              </div>
+            </CardContent>
+          </Card>
+        </BlurFade>
+      )}
+
+      {/* API Tab */}
+      {activeTab === "api" && (
+        <BlurFade delay={0.2} inView>
+          <div className="space-y-6">
+            <Card>
+              <CardHeader className="flex flex-row items-center justify-between">
+                <div>
+                  <CardTitle>API Anahtarları</CardTitle>
+                  <CardDescription>
+                    API entegrasyonlarınız için anahtarlarınızı yönetin
+                  </CardDescription>
+                </div>
+                <Button>
+                  <Key className="mr-2 h-4 w-4" />
+                  Yeni Anahtar
+                </Button>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-4">
+                  {apiKeys.map((apiKey) => (
+                    <div
+                      key={apiKey.id}
+                      className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 rounded-lg border"
+                    >
+                      <div className="flex items-center gap-3">
+                        <div className="p-2 rounded-lg bg-primary/10">
+                          <Key className="h-5 w-5 text-primary" />
+                        </div>
+                        <div>
+                          <p className="font-medium">{apiKey.name}</p>
+                          <p className="text-sm font-mono text-muted-foreground">
+                            {apiKey.key}
+                          </p>
+                          <p className="text-xs text-muted-foreground mt-1">
+                            Oluşturuldu: {apiKey.createdAt} • Son kullanım: {apiKey.lastUsed}
+                          </p>
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          onClick={() => copyToClipboard(apiKey.key, apiKey.id)}
+                        >
+                          {copiedKey === apiKey.id ? (
+                            <>
+                              <CheckCircle2 className="mr-2 h-4 w-4 text-green-500" />
+                              Kopyalandı
+                            </>
+                          ) : (
+                            <>
+                              <Copy className="mr-2 h-4 w-4" />
+                              Kopyala
+                            </>
+                          )}
+                        </Button>
+                        <Button variant="outline" size="sm">
+                          <RefreshCw className="mr-2 h-4 w-4" />
+                          Yenile
+                        </Button>
+                        <Button variant="outline" size="sm" className="text-red-500 hover:text-red-500">
+                          <Trash2 className="h-4 w-4" />
+                        </Button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardHeader>
+                <CardTitle>API Dokümantasyonu</CardTitle>
+                <CardDescription>
+                  API entegrasyonunuz için gerekli bilgiler
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="grid gap-4 sm:grid-cols-2">
+                  <div className="p-4 rounded-lg border">
+                    <p className="text-sm text-muted-foreground">Base URL</p>
+                    <p className="font-mono text-sm mt-1">https://api.kleacore.com/v1</p>
+                  </div>
+                  <div className="p-4 rounded-lg border">
+                    <p className="text-sm text-muted-foreground">Rate Limit</p>
+                    <p className="font-mono text-sm mt-1">1000 istek/dakika</p>
+                  </div>
+                </div>
+                <div className="mt-4">
+                  <Button variant="outline" asChild>
+                    <a href="/api-docs" target="_blank">
+                      <Globe className="mr-2 h-4 w-4" />
+                      API Dokümantasyonunu Görüntüle
+                    </a>
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </BlurFade>
+      )}
+
+      {/* Sessions Tab */}
+      {activeTab === "sessions" && (
+        <BlurFade delay={0.2} inView>
+          <Card>
+            <CardHeader className="flex flex-row items-center justify-between">
+              <div>
+                <CardTitle>Aktif Oturumlar</CardTitle>
+                <CardDescription>
+                  Hesabınıza bağlı cihazları görüntüleyin ve yönetin
+                </CardDescription>
+              </div>
+              <Button variant="outline" className="text-red-500 hover:text-red-500">
+                <LogOut className="mr-2 h-4 w-4" />
+                Tüm Oturumları Kapat
+              </Button>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-4">
+                {sessions.map((session) => (
+                  <div
+                    key={session.id}
+                    className={cn(
+                      "flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 rounded-lg border",
+                      session.current && "border-green-500/50 bg-green-500/5"
+                    )}
+                  >
+                    <div className="flex items-center gap-3">
+                      <div className={cn(
+                        "p-2 rounded-lg",
+                        session.current ? "bg-green-500/10" : "bg-muted"
+                      )}>
+                        <Monitor className={cn(
+                          "h-5 w-5",
+                          session.current ? "text-green-500" : "text-muted-foreground"
+                        )} />
+                      </div>
+                      <div>
+                        <div className="flex items-center gap-2">
+                          <p className="font-medium">{session.device}</p>
+                          {session.current && (
+                            <span className="text-xs px-2 py-0.5 rounded-full bg-green-500/10 text-green-500">
+                              Bu cihaz
+                            </span>
+                          )}
+                        </div>
+                        <p className="text-sm text-muted-foreground">
+                          {session.ip} • {session.location}
+                        </p>
+                        <p className="text-xs text-muted-foreground flex items-center gap-1 mt-1">
+                          <Clock className="h-3 w-3" />
+                          {session.lastActive}
+                        </p>
+                      </div>
+                    </div>
+                    {!session.current && (
+                      <Button variant="outline" size="sm" className="text-red-500 hover:text-red-500">
+                        <LogOut className="mr-2 h-4 w-4" />
+                        Oturumu Kapat
+                      </Button>
+                    )}
+                  </div>
+                ))}
               </div>
             </CardContent>
           </Card>
