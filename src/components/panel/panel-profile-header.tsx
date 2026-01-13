@@ -1,14 +1,4 @@
-"use client";
-
-import { User, Settings } from "lucide-react";
-import Link from "next/link";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { ChevronDown } from "lucide-react";
+import { User } from "lucide-react";
 
 // Mock user data
 const user = {
@@ -25,6 +15,7 @@ export function PanelProfileHeader() {
             <User className="h-8 w-8 text-muted-foreground" />
           </div>
           <div>
+            <p className="text-sm text-muted-foreground">Hoş geldin,</p>
             <div className="flex items-center gap-2">
               <h2 className="text-xl font-semibold">{user.name}</h2>
               <span className="h-5 w-5 rounded-full bg-green-500 flex items-center justify-center">
@@ -33,35 +24,6 @@ export function PanelProfileHeader() {
                 </svg>
               </span>
             </div>
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <button className="flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground transition-colors">
-                  <User className="h-4 w-4" />
-                  Hesap Bilgileri
-                  <ChevronDown className="h-3 w-3" />
-                </button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="start">
-                <DropdownMenuItem asChild>
-                  <Link href="/musteri/panel/ayarlar">
-                    <Settings className="mr-2 h-4 w-4" />
-                    Profil Bilgileri
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link href="/musteri/panel/ayarlar">
-                    <User className="mr-2 h-4 w-4" />
-                    İletişim Bilgileri
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link href="/musteri/panel/ayarlar">
-                    <Settings className="mr-2 h-4 w-4" />
-                    Şifre Değiştir
-                  </Link>
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
           </div>
         </div>
       </div>
