@@ -4,15 +4,11 @@ import { Topbar } from "@/components/layout/topbar";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { BlurFade } from "@/components/magicui/blur-fade";
+import { DatacenterFeatures } from "@/components/veri-merkezi/datacenter-features";
 import { BorderBeam } from "@/components/magicui/border-beam";
 import {
   Globe,
-  Zap,
-  Shield,
   Check,
-  BarChart3,
-  Lock,
-  RefreshCcw,
 } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -71,39 +67,6 @@ const cdnPlans = [
       "Video streaming desteği",
       "API erişimi",
     ],
-  },
-];
-
-const features = [
-  {
-    icon: Globe,
-    title: "Global Dağıtım",
-    description: "200+ lokasyonda PoP noktaları ile içeriğiniz kullanıcılarınıza en yakın sunucudan iletilir.",
-  },
-  {
-    icon: Zap,
-    title: "Ultra Hızlı",
-    description: "Statik ve dinamik içerik önbellekleme ile sayfa yükleme sürelerinizi %60'a kadar azaltın.",
-  },
-  {
-    icon: Shield,
-    title: "Güvenlik Katmanı",
-    description: "DDoS koruması, WAF ve SSL ile web siteniz her zaman güvende.",
-  },
-  {
-    icon: BarChart3,
-    title: "Detaylı Analitik",
-    description: "Gerçek zamanlı trafik analizi, coğrafi dağılım ve performans metrikleri.",
-  },
-  {
-    icon: RefreshCcw,
-    title: "Akıllı Önbellekleme",
-    description: "Otomatik cache invalidation ve özelleştirilebilir TTL ayarları.",
-  },
-  {
-    icon: Lock,
-    title: "Ücretsiz SSL",
-    description: "Tüm domainleriniz için ücretsiz SSL sertifikası ve otomatik yenileme.",
   },
 ];
 
@@ -237,41 +200,7 @@ export default function CDNPage() {
         </section>
 
         {/* Features */}
-        <section className="py-16 md:py-24">
-          <div className="container">
-            <BlurFade delay={0.1} inView>
-              <div className="text-center mb-12">
-                <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-                  Neden Bizi Tercih Etmelisiniz?
-                </h2>
-                <p className="mt-4 text-muted-foreground max-w-2xl mx-auto">
-                  Global CDN altyapısı ile yüksek performans ve güvenlik
-                </p>
-              </div>
-            </BlurFade>
-
-            <BlurFade delay={0.2} inView>
-              <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                {features.map((feature) => (
-                  <Card
-                    key={feature.title}
-                    className="hover:border-primary/50 transition-colors"
-                  >
-                    <CardContent className="p-6">
-                      <feature.icon className="h-10 w-10 text-primary mb-4" />
-                      <h3 className="font-semibold text-lg mb-2">
-                        {feature.title}
-                      </h3>
-                      <p className="text-sm text-muted-foreground">
-                        {feature.description}
-                      </p>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
-            </BlurFade>
-          </div>
-        </section>
+        <DatacenterFeatures />
 
         {/* FAQ */}
         <section className="py-16 md:py-24 bg-muted/30">

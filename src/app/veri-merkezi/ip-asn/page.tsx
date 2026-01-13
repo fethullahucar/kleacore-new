@@ -4,16 +4,11 @@ import { Topbar } from "@/components/layout/topbar";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { BlurFade } from "@/components/magicui/blur-fade";
+import { DatacenterFeatures } from "@/components/veri-merkezi/datacenter-features";
 import { BorderBeam } from "@/components/magicui/border-beam";
 import {
-  Globe,
-  Shield,
-  Zap,
   Check,
   Network,
-  Server,
-  FileText,
-  Headphones,
 } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -106,39 +101,6 @@ const asnServices = [
       "LOA belgesi",
       "Geolocation güncelleme",
     ],
-  },
-];
-
-const features = [
-  {
-    icon: Globe,
-    title: "RIPE Kayıtlı",
-    description: "Tüm IP blokları ve ASN'ler RIPE NCC veritabanında kayıtlı",
-  },
-  {
-    icon: Shield,
-    title: "Temiz IP Geçmişi",
-    description: "Spam veya kara listeye alınmamış temiz IP adresleri",
-  },
-  {
-    icon: Zap,
-    title: "Anında Aktivasyon",
-    description: "Ödeme sonrası dakikalar içinde kullanıma hazır",
-  },
-  {
-    icon: Network,
-    title: "BGP Desteği",
-    description: "ASN ile kendi IP bloklarınızı announce edin",
-  },
-  {
-    icon: FileText,
-    title: "LOA Belgesi",
-    description: "IP kullanım yetkisi belgesi anında sağlanır",
-  },
-  {
-    icon: Headphones,
-    title: "Teknik Destek",
-    description: "BGP konfigürasyonu ve routing desteği",
   },
 ];
 
@@ -350,41 +312,7 @@ export default function IpAsnPage() {
         </section>
 
         {/* Features */}
-        <section className="py-16 md:py-24">
-          <div className="container">
-            <BlurFade delay={0.1} inView>
-              <div className="text-center mb-12">
-                <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-                  Neden Bizi Tercih Etmelisiniz?
-                </h2>
-                <p className="mt-4 text-muted-foreground max-w-2xl mx-auto">
-                  IP ve ASN hizmetlerinde güvenilir çözüm ortağınız
-                </p>
-              </div>
-            </BlurFade>
-
-            <BlurFade delay={0.2} inView>
-              <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                {features.map((feature) => (
-                  <Card
-                    key={feature.title}
-                    className="hover:border-primary/50 transition-colors"
-                  >
-                    <CardContent className="p-6">
-                      <feature.icon className="h-10 w-10 text-primary mb-4" />
-                      <h3 className="font-semibold text-lg mb-2">
-                        {feature.title}
-                      </h3>
-                      <p className="text-sm text-muted-foreground">
-                        {feature.description}
-                      </p>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
-            </BlurFade>
-          </div>
-        </section>
+        <DatacenterFeatures />
 
         {/* FAQ */}
         <section className="py-16 md:py-24 bg-muted/30">
