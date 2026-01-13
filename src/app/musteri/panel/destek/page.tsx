@@ -245,8 +245,9 @@ export default function DestekPage() {
                 const StatusIcon = status.icon;
 
                 return (
-                  <div
+                  <Link
                     key={ticket.id}
+                    href={`/musteri/panel/destek/${ticket.id}`}
                     className="flex items-center gap-4 p-4 rounded-lg border hover:shadow-sm transition-shadow cursor-pointer group"
                   >
                     <div className={cn("p-3 rounded-lg", status.bgColor)}>
@@ -287,7 +288,7 @@ export default function DestekPage() {
                     </div>
 
                     <ChevronRight className="h-5 w-5 text-muted-foreground group-hover:text-foreground transition-colors" />
-                  </div>
+                  </Link>
                 );
               })}
 
