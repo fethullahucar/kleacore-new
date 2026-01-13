@@ -12,6 +12,9 @@ import {
   Mail,
   CreditCard,
   Users,
+  BarChart3,
+  HardDrive,
+  Settings,
 } from "lucide-react";
 
 const tabs = [
@@ -55,6 +58,21 @@ const tabs = [
     title: "Satış Ortaklığı",
     href: "/musteri/panel/satis-ortakligi",
     icon: Users,
+  },
+  {
+    title: "İstatistikler",
+    href: "/musteri/panel/istatistikler",
+    icon: BarChart3,
+  },
+  {
+    title: "Yedekleme",
+    href: "/musteri/panel/yedekleme",
+    icon: HardDrive,
+  },
+  {
+    title: "Ayarlar",
+    href: "/musteri/panel/ayarlar",
+    icon: Settings,
   },
 ];
 
