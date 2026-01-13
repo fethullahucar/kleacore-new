@@ -6,15 +6,10 @@ import {
   Mail,
   ChevronRight,
   ChevronDown,
-  Home,
-  Package,
-  Globe,
   FileText,
-  Headphones,
   LogOut,
-  CreditCard,
-  Users,
   User,
+  Shield,
 } from "lucide-react";
 import {
   DropdownMenu,
@@ -26,14 +21,9 @@ import {
 
 // Panel menu items
 const panelMenuItems = [
-  { title: "Anasayfa", href: "/musteri/panel", icon: Home },
-  { title: "Hizmetlerim", href: "/musteri/panel/hizmetlerim", icon: Package },
-  { title: "Alan Adlarım", href: "/musteri/panel/domainler", icon: Globe },
+  { title: "Profil", href: "/musteri/panel/ayarlar", icon: User },
+  { title: "Güvenlik", href: "/musteri/panel/ayarlar#guvenlik", icon: Shield },
   { title: "Faturalarım", href: "/musteri/panel/faturalar", icon: FileText },
-  { title: "Destek Talepleri", href: "/musteri/panel/destek", icon: Headphones },
-  { title: "E-Postalarım", href: "/musteri/panel/e-posta", icon: Mail },
-  { title: "Kredi Ekle", href: "/musteri/panel/kredi", icon: CreditCard },
-  { title: "Satış Ortaklığı", href: "/musteri/panel/satis-ortakligi", icon: Users },
 ];
 
 export function Topbar() {
@@ -71,7 +61,6 @@ export function Topbar() {
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <button className="flex items-center gap-1.5 text-primary hover:text-primary/80 transition-colors font-medium">
-                  <span>₺43.10</span>
                   <User className="h-3 w-3" />
                   <span>Müşteri Paneli</span>
                   <ChevronDown className="h-3 w-3" />
@@ -90,7 +79,7 @@ export function Topbar() {
                 <DropdownMenuItem asChild>
                   <Link href="/" className="flex items-center gap-2 cursor-pointer text-destructive">
                     <LogOut className="h-4 w-4" />
-                    Çıkış
+                    Çıkış Yap
                   </Link>
                 </DropdownMenuItem>
               </DropdownMenuContent>
