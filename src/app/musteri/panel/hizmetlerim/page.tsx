@@ -264,9 +264,10 @@ export default function HizmetlerimPage() {
                 const StatusIcon = status.icon;
 
                 return (
-                  <div
+                  <Link
                     key={service.id}
-                    className="flex items-center gap-4 p-4 rounded-lg border hover:shadow-sm transition-shadow"
+                    href={`/musteri/panel/hizmetlerim/${service.id}`}
+                    className="flex items-center gap-4 p-4 rounded-lg border hover:shadow-sm transition-shadow cursor-pointer"
                   >
                     <div className={cn("p-3 rounded-lg", status.bgColor)}>
                       <service.icon className={cn("h-6 w-6", status.color)} />
@@ -319,7 +320,7 @@ export default function HizmetlerimPage() {
                         </DropdownMenuContent>
                       </DropdownMenu>
                     </div>
-                  </div>
+                  </Link>
                 );
               })}
 
