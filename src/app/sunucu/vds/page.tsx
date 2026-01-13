@@ -6,6 +6,7 @@ import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { BlurFade } from "@/components/magicui/blur-fade";
 import { ServerFeatures } from "@/components/sunucu/server-features";
+import { ServerFaq } from "@/components/sunucu/server-faq";
 import {
   Cpu,
   HardDrive,
@@ -21,12 +22,6 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
 
 const vdsPlans = [
   {
@@ -95,41 +90,6 @@ const planFeatures = [
   { icon: Shield, text: "%99.9 Uptime" },
   { icon: Check, text: "Ücretsiz Kurulum" },
   { icon: Headphones, text: "7/24 Destek" },
-];
-
-const faqs = [
-  {
-    question: "VDS nedir, VPS'ten farkı ne?",
-    answer: "VDS (Virtual Dedicated Server), KVM sanallaştırma teknolojisi ile tam izole edilmiş sanal sunucudur. VPS'e göre daha yüksek performans ve güvenlik sunar. Kendi çekirdeğinizi yönetebilir, özel kernel modülleri yükleyebilirsiniz.",
-  },
-  {
-    question: "Hangi işletim sistemlerini kurabilirim?",
-    answer: "Ubuntu, Debian, CentOS, AlmaLinux, Rocky Linux, Fedora gibi Linux dağıtımlarını ve Windows Server 2019/2022 işletim sistemlerini kurabilirsiniz. Kendi ISO dosyanızı da yükleyebilirsiniz.",
-  },
-  {
-    question: "Sunucu ne kadar sürede aktif olur?",
-    answer: "Ödeme onayından sonra sunucunuz otomatik olarak birkaç dakika içinde aktif edilir. Kontrol paneline giriş bilgileriniz e-posta ile gönderilir.",
-  },
-  {
-    question: "Root erişimim var mı?",
-    answer: "Evet, tüm VDS paketlerinde tam root erişimi sunuyoruz. SSH ile bağlanabilir, istediğiniz yazılımı kurabilir ve sunucunuzu tamamen özelleştirebilirsiniz.",
-  },
-  {
-    question: "DDoS koruması dahil mi?",
-    answer: "Evet, tüm VDS paketlerimizde Layer 3-4 DDoS koruması ücretsiz olarak dahildir. Sunucunuz saldırılara karşı 7/24 korunur.",
-  },
-  {
-    question: "Yedekleme yapılıyor mu?",
-    answer: "Snapshot özelliği ile istediğiniz zaman sunucunuzun anlık görüntüsünü alabilirsiniz. Ayrıca otomatik yedekleme eklentisi satın alabilirsiniz.",
-  },
-  {
-    question: "Paket yükseltme yapabilir miyim?",
-    answer: "Evet, istediğiniz zaman daha üst bir pakete geçiş yapabilirsiniz. Yükseltme işlemi kısa bir kesinti ile gerçekleşir.",
-  },
-  {
-    question: "Teknik destek 7/24 mü?",
-    answer: "Evet, teknik destek ekibimiz 7/24 hizmetinizdedir. Canlı destek, ticket sistemi veya telefon ile bize ulaşabilirsiniz.",
-  },
 ];
 
 interface PlanRowProps {
@@ -351,37 +311,7 @@ export default function VDSPage() {
         <ServerFeatures />
 
         {/* FAQ */}
-        <section className="py-16 md:py-24">
-          <div className="container">
-            <BlurFade delay={0.1} inView>
-              <div className="text-center mb-12">
-                <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-                  Sık Sorulan Sorular
-                </h2>
-                <p className="mt-4 text-muted-foreground max-w-2xl mx-auto">
-                  VDS sunucu hakkında merak edilenler
-                </p>
-              </div>
-            </BlurFade>
-
-            <BlurFade delay={0.2} inView>
-              <div className="max-w-3xl mx-auto">
-                <Accordion type="single" collapsible className="w-full">
-                  {faqs.map((faq, index) => (
-                    <AccordionItem key={index} value={`item-${index}`}>
-                      <AccordionTrigger className="text-left">
-                        {faq.question}
-                      </AccordionTrigger>
-                      <AccordionContent className="text-muted-foreground">
-                        {faq.answer}
-                      </AccordionContent>
-                    </AccordionItem>
-                  ))}
-                </Accordion>
-              </div>
-            </BlurFade>
-          </div>
-        </section>
+        <ServerFaq />
       </main>
       <Footer />
     </div>

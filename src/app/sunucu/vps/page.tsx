@@ -6,6 +6,7 @@ import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { BlurFade } from "@/components/magicui/blur-fade";
 import { ServerFeatures } from "@/components/sunucu/server-features";
+import { ServerFaq } from "@/components/sunucu/server-faq";
 import {
   Cpu,
   HardDrive,
@@ -21,12 +22,6 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
 
 const vpsPlans = [
   {
@@ -84,41 +79,6 @@ const planFeatures = [
   { icon: Shield, text: "%99.9 Uptime" },
   { icon: Check, text: "Ücretsiz Kurulum" },
   { icon: Headphones, text: "7/24 Destek" },
-];
-
-const faqs = [
-  {
-    question: "VPS nedir?",
-    answer: "VPS (Virtual Private Server), fiziksel bir sunucunun sanal olarak bölünmesiyle oluşturulan özel sunucudur. Paylaşımlı hostinge göre daha fazla kaynak ve kontrol sunar, dedicated sunucuya göre daha ekonomiktir.",
-  },
-  {
-    question: "OpenVZ sanallaştırma nedir?",
-    answer: "OpenVZ, konteyner tabanlı bir sanallaştırma teknolojisidir. Düşük kaynak tüketimi ve yüksek performans sunar. Linux işletim sistemleri için idealdir.",
-  },
-  {
-    question: "Hangi işletim sistemlerini kurabilirim?",
-    answer: "Ubuntu, Debian, CentOS, AlmaLinux ve diğer popüler Linux dağıtımlarını kurabilirsiniz. Windows desteği için VDS sunucularımıza bakabilirsiniz.",
-  },
-  {
-    question: "Sunucu ne kadar sürede aktif olur?",
-    answer: "Ödeme onayından sonra sunucunuz otomatik olarak birkaç dakika içinde aktif edilir. Kontrol paneline giriş bilgileriniz e-posta ile gönderilir.",
-  },
-  {
-    question: "Root erişimim var mı?",
-    answer: "Evet, tüm VPS paketlerinde tam root erişimi sunuyoruz. SSH ile bağlanabilir, istediğiniz yazılımı kurabilirsiniz.",
-  },
-  {
-    question: "Trafik limiti aşılırsa ne olur?",
-    answer: "Trafik limitiniz aşıldığında sunucunuz kapatılmaz, sadece hız kısıtlaması uygulanır. Ek trafik paketi satın alabilirsiniz.",
-  },
-  {
-    question: "Paket yükseltme yapabilir miyim?",
-    answer: "Evet, istediğiniz zaman daha üst bir pakete geçiş yapabilirsiniz. Yükseltme işlemi kısa bir kesinti ile gerçekleşir.",
-  },
-  {
-    question: "Teknik destek 7/24 mü?",
-    answer: "Evet, teknik destek ekibimiz 7/24 hizmetinizdedir. Canlı destek, ticket sistemi veya telefon ile bize ulaşabilirsiniz.",
-  },
 ];
 
 interface PlanRowProps {
@@ -340,37 +300,7 @@ export default function VPSSunucuPage() {
         <ServerFeatures />
 
         {/* FAQ */}
-        <section className="py-16 md:py-24">
-          <div className="container">
-            <BlurFade delay={0.1} inView>
-              <div className="text-center mb-12">
-                <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-                  Sık Sorulan Sorular
-                </h2>
-                <p className="mt-4 text-muted-foreground max-w-2xl mx-auto">
-                  VPS sunucu hakkında merak edilenler
-                </p>
-              </div>
-            </BlurFade>
-
-            <BlurFade delay={0.2} inView>
-              <div className="max-w-3xl mx-auto">
-                <Accordion type="single" collapsible className="w-full">
-                  {faqs.map((faq, index) => (
-                    <AccordionItem key={index} value={`item-${index}`}>
-                      <AccordionTrigger className="text-left">
-                        {faq.question}
-                      </AccordionTrigger>
-                      <AccordionContent className="text-muted-foreground">
-                        {faq.answer}
-                      </AccordionContent>
-                    </AccordionItem>
-                  ))}
-                </Accordion>
-              </div>
-            </BlurFade>
-          </div>
-        </section>
+        <ServerFaq />
       </main>
       <Footer />
     </div>

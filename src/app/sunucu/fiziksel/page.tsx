@@ -6,6 +6,7 @@ import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { BlurFade } from "@/components/magicui/blur-fade";
 import { ServerFeatures } from "@/components/sunucu/server-features";
+import { ServerFaq } from "@/components/sunucu/server-faq";
 import {
   Cpu,
   HardDrive,
@@ -302,6 +303,9 @@ export default function FizikselSunucuPage() {
 
         {/* Features */}
         <ServerFeatures />
+
+        {/* FAQ */}
+        <ServerFaq />
 
         {/* Specs */}
         <section className="py-16 md:py-24">

@@ -6,6 +6,7 @@ import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { BlurFade } from "@/components/magicui/blur-fade";
 import { ServerFeatures } from "@/components/sunucu/server-features";
+import { ServerFaq } from "@/components/sunucu/server-faq";
 import {
   Cpu,
   HardDrive,
@@ -21,12 +22,6 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
 
 const cloudPlans = [
   {
@@ -84,41 +79,6 @@ const planFeatures = [
   { icon: Shield, text: "%99.99 Uptime" },
   { icon: Check, text: "Ücretsiz Kurulum" },
   { icon: Headphones, text: "7/24 Destek" },
-];
-
-const faqs = [
-  {
-    question: "Bulut sunucu nedir?",
-    answer: "Bulut sunucu, fiziksel sunucular üzerinde sanallaştırılmış ve esnek kaynak yönetimi sunan sunucu çözümüdür. İhtiyacınıza göre kaynakları anında artırıp azaltabilir, sadece kullandığınız kadar ödeme yapabilirsiniz.",
-  },
-  {
-    question: "VDS'ten farkı nedir?",
-    answer: "Bulut sunucular daha esnek ölçeklenebilirlik, yüksek erişilebilirlik ve otomatik yük dengeleme sunar. Altyapı dağıtık olduğu için tek noktadan arıza riski minimuma iner.",
-  },
-  {
-    question: "Hangi işletim sistemlerini kurabilirim?",
-    answer: "Ubuntu, Debian, CentOS, AlmaLinux, Windows Server ve daha fazlası. Ayrıca Docker, Kubernetes gibi hazır imajları da kullanabilirsiniz.",
-  },
-  {
-    question: "Sunucu ne kadar sürede aktif olur?",
-    answer: "Ödeme onayından sonra sunucunuz saniyeler içinde otomatik olarak oluşturulur ve aktif edilir. API ile de sunucu oluşturabilirsiniz.",
-  },
-  {
-    question: "Kaynak yükseltme/düşürme yapabilir miyim?",
-    answer: "Evet, istediğiniz zaman CPU, RAM ve disk kaynaklarını artırıp azaltabilirsiniz. Değişiklikler anında uygulanır.",
-  },
-  {
-    question: "Snapshot ve yedekleme dahil mi?",
-    answer: "Evet, günlük otomatik yedekleme ve anlık snapshot alma özelliği tüm paketlerde dahildir. İstediğiniz zaman geri yükleme yapabilirsiniz.",
-  },
-  {
-    question: "API desteği var mı?",
-    answer: "Evet, RESTful API ve Terraform desteği sunuyoruz. Sunucularınızı programatik olarak oluşturabilir, yönetebilir ve izleyebilirsiniz.",
-  },
-  {
-    question: "Teknik destek 7/24 mü?",
-    answer: "Evet, uzman cloud ekibimiz 7/24 hizmetinizdedir. Canlı destek, ticket sistemi veya telefon ile bize ulaşabilirsiniz.",
-  },
 ];
 
 interface PlanRowProps {
@@ -340,37 +300,7 @@ export default function BulutSunucuPage() {
         <ServerFeatures />
 
         {/* FAQ */}
-        <section className="py-16 md:py-24">
-          <div className="container">
-            <BlurFade delay={0.1} inView>
-              <div className="text-center mb-12">
-                <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-                  Sık Sorulan Sorular
-                </h2>
-                <p className="mt-3 text-muted-foreground max-w-2xl mx-auto">
-                  Bulut sunucu hizmetlerimiz hakkında merak edilenler
-                </p>
-              </div>
-            </BlurFade>
-
-            <BlurFade delay={0.2} inView>
-              <div className="max-w-3xl mx-auto">
-                <Accordion type="single" collapsible className="w-full">
-                  {faqs.map((faq, index) => (
-                    <AccordionItem key={index} value={`item-${index}`}>
-                      <AccordionTrigger className="text-left">
-                        {faq.question}
-                      </AccordionTrigger>
-                      <AccordionContent className="text-muted-foreground">
-                        {faq.answer}
-                      </AccordionContent>
-                    </AccordionItem>
-                  ))}
-                </Accordion>
-              </div>
-            </BlurFade>
-          </div>
-        </section>
+        <ServerFaq />
       </main>
       <Footer />
     </div>
