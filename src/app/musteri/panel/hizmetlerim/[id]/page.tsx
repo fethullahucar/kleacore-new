@@ -1,6 +1,6 @@
 "use client";
 
-import { use } from "react";
+import { useParams } from "next/navigation";
 import Link from "next/link";
 import { BlurFade } from "@/components/magicui/blur-fade";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
@@ -238,9 +238,10 @@ const recentActivity = [
   { action: "DNS güncellendi", detail: "A kaydı", time: "3 gün önce", icon: Globe },
 ];
 
-export default function HizmetDetayPage({ params }: { params: Promise<{ id: string }> }) {
-  const resolvedParams = use(params);
-  const service = servicesDB[resolvedParams.id];
+export default function HizmetDetayPage() {
+  const params = useParams();
+  const id = params.id as string;
+  const service = servicesDB[id];
 
   if (!service) {
     return (
