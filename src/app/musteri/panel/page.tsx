@@ -4,17 +4,12 @@ import Link from "next/link";
 import { BlurFade } from "@/components/magicui/blur-fade";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import {
   Package,
-  Globe,
-  FileText,
   Headphones,
   ArrowRight,
-  Search,
   ChevronRight,
   CheckCircle2,
-  Book,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -48,14 +43,6 @@ const statCards = [
     href: "/musteri/panel/faturalar",
     bgColor: "bg-red-500",
   },
-];
-
-// Knowledge base quick links
-const knowledgeBaseLinks = [
-  { title: "Hosting", href: "/bilgi-bankasi" },
-  { title: "Domain", href: "/bilgi-bankasi" },
-  { title: "MySQL", href: "/bilgi-bankasi" },
-  { title: "E-posta", href: "/bilgi-bankasi" },
 ];
 
 // Mock services data
@@ -107,41 +94,8 @@ export default function DashboardPage() {
         </div>
       </BlurFade>
 
-      {/* Knowledge Base Search */}
-      <BlurFade delay={0.15} inView>
-        <Card>
-          <CardHeader className="pb-3">
-            <CardTitle className="flex items-center gap-2 text-base">
-              <Book className="h-5 w-5 text-primary" />
-              Bilgi Bankası
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <div className="flex gap-2">
-              <div className="relative flex-1">
-                <Input
-                  placeholder="Nasıl yardımcı olabiliriz?"
-                  className="pr-20"
-                />
-              </div>
-              <Button>
-                <Search className="h-4 w-4 mr-2" />
-                Ara
-              </Button>
-            </div>
-            <div className="flex flex-wrap gap-2">
-              {knowledgeBaseLinks.map((link) => (
-                <Button key={link.title} variant="outline" size="sm" asChild>
-                  <Link href={link.href}>{link.title}</Link>
-                </Button>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
-      </BlurFade>
-
       {/* Active Services Table */}
-      <BlurFade delay={0.2} inView>
+      <BlurFade delay={0.15} inView>
         <Card>
           <CardHeader className="flex flex-row items-center justify-between pb-3">
             <CardTitle className="flex items-center gap-2 text-base">
@@ -196,7 +150,7 @@ export default function DashboardPage() {
       </BlurFade>
 
       {/* Support Tickets Table */}
-      <BlurFade delay={0.25} inView>
+      <BlurFade delay={0.2} inView>
         <Card>
           <CardHeader className="flex flex-row items-center justify-between pb-3">
             <CardTitle className="flex items-center gap-2 text-base">
