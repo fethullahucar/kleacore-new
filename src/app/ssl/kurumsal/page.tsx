@@ -3,20 +3,14 @@
 import { Topbar } from "@/components/layout/topbar";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
+import { SSLFeatures } from "@/components/ssl/ssl-features";
 import { BlurFade } from "@/components/magicui/blur-fade";
 import {
   Shield,
-  Lock,
   Check,
   ArrowRight,
   Building2,
-  Globe,
   Headphones,
-  Server,
-  Users,
-  FileCheck,
-  Award,
-  Briefcase,
 } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -104,39 +98,6 @@ const sslTypes = [
     description: "Yazılım imzalama",
     useCase: "Uygulama geliştiriciler",
     price: "₺999'dan",
-  },
-];
-
-const features = [
-  {
-    icon: Building2,
-    title: "Merkezi Yönetim",
-    description: "Tüm SSL sertifikalarınızı tek bir panelden yönetin. Kolayca izleyin, yenileyin ve raporlayın.",
-  },
-  {
-    icon: Server,
-    title: "API Entegrasyonu",
-    description: "REST API ile SSL işlemlerini otomatikleştirin. CI/CD pipeline'larınıza entegre edin.",
-  },
-  {
-    icon: Users,
-    title: "Dedicated Destek",
-    description: "Kurumsal müşterilerimize özel hesap yöneticisi ve öncelikli teknik destek.",
-  },
-  {
-    icon: FileCheck,
-    title: "Otomatik Yenileme",
-    description: "SSL sertifikalarınız süresi dolmadan otomatik olarak yenilenir. Asla kesinti yaşamayın.",
-  },
-  {
-    icon: Award,
-    title: "SLA Garantisi",
-    description: "%99.99 uptime garantisi ve hızlı müdahale süreleri ile kurumsal güvence.",
-  },
-  {
-    icon: Briefcase,
-    title: "Özel Fiyatlandırma",
-    description: "Sertifika sayısına ve ihtiyaçlarınıza göre özel kurumsal fiyatlar.",
   },
 ];
 
@@ -320,38 +281,7 @@ export default function KurumsalSSLPage() {
         </section>
 
         {/* Features */}
-        <section className="py-16 md:py-24">
-          <div className="container">
-            <BlurFade delay={0.1} inView>
-              <div className="text-center mb-12">
-                <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-                  Kurumsal Avantajlar
-                </h2>
-              </div>
-            </BlurFade>
-
-            <BlurFade delay={0.2} inView>
-              <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                {features.map((feature) => (
-                  <Card
-                    key={feature.title}
-                    className="hover:border-primary/50 transition-colors"
-                  >
-                    <CardContent className="p-6">
-                      <feature.icon className="h-10 w-10 text-primary mb-4" />
-                      <h3 className="font-semibold text-lg mb-2">
-                        {feature.title}
-                      </h3>
-                      <p className="text-sm text-muted-foreground">
-                        {feature.description}
-                      </p>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
-            </BlurFade>
-          </div>
-        </section>
+        <SSLFeatures />
 
         {/* Brands */}
         <section className="py-16 md:py-24 bg-muted/30">

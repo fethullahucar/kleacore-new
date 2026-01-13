@@ -3,17 +3,12 @@
 import { Topbar } from "@/components/layout/topbar";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
+import { SSLFeatures } from "@/components/ssl/ssl-features";
 import { BlurFade } from "@/components/magicui/blur-fade";
 import {
   Shield,
-  Lock,
   Check,
   ArrowRight,
-  Zap,
-  Globe,
-  Headphones,
-  Server,
-  RefreshCcw,
   Layers,
 } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -92,39 +87,6 @@ const useCases = [
   {
     title: "Çoklu Lokasyon",
     description: "istanbul.domain.com, ankara.domain.com gibi lokasyon bazlı alt domainlerinizi koruyun.",
-  },
-];
-
-const features = [
-  {
-    icon: Layers,
-    title: "Sınırsız Alt Domain",
-    description: "Tek bir sertifika ile sınırsız sayıda alt domain koruyun. Yeni alt domain eklemek için yeni sertifika gerekmez.",
-  },
-  {
-    icon: Zap,
-    title: "Maliyet Tasarrufu",
-    description: "Her alt domain için ayrı SSL almak yerine tek wildcard sertifika ile %80'e varan tasarruf sağlayın.",
-  },
-  {
-    icon: Shield,
-    title: "Güçlü Şifreleme",
-    description: "256-bit SSL şifreleme ile tüm alt domainlerinizde aynı güvenlik seviyesini sağlayın.",
-  },
-  {
-    icon: RefreshCcw,
-    title: "Kolay Yönetim",
-    description: "Tek sertifika yönetimi ile zaman kazanın. Yenileme ve kurulum işlemleri çok daha basit.",
-  },
-  {
-    icon: Globe,
-    title: "Tam Uyumluluk",
-    description: "Tüm modern tarayıcılar ve mobil cihazlarla %99.9 uyumluluk sağlar.",
-  },
-  {
-    icon: Headphones,
-    title: "7/24 Destek",
-    description: "Wildcard SSL kurulumu ve yapılandırması için uzman teknik destek.",
   },
 ];
 
@@ -246,38 +208,7 @@ export default function WildcardSSLPage() {
         </section>
 
         {/* Features */}
-        <section className="py-16 md:py-24">
-          <div className="container">
-            <BlurFade delay={0.1} inView>
-              <div className="text-center mb-12">
-                <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-                  Wildcard SSL Avantajları
-                </h2>
-              </div>
-            </BlurFade>
-
-            <BlurFade delay={0.2} inView>
-              <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                {features.map((feature) => (
-                  <Card
-                    key={feature.title}
-                    className="hover:border-primary/50 transition-colors"
-                  >
-                    <CardContent className="p-6">
-                      <feature.icon className="h-10 w-10 text-primary mb-4" />
-                      <h3 className="font-semibold text-lg mb-2">
-                        {feature.title}
-                      </h3>
-                      <p className="text-sm text-muted-foreground">
-                        {feature.description}
-                      </p>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
-            </BlurFade>
-          </div>
-        </section>
+        <SSLFeatures />
 
         {/* CTA */}
         <section className="py-16 md:py-24 bg-muted/30">

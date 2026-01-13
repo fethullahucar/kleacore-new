@@ -3,18 +3,14 @@
 import { Topbar } from "@/components/layout/topbar";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
+import { SSLFeatures } from "@/components/ssl/ssl-features";
 import { BlurFade } from "@/components/magicui/blur-fade";
 import {
   Shield,
   Lock,
   Check,
   ArrowRight,
-  Zap,
   Clock,
-  Globe,
-  Headphones,
-  Server,
-  RefreshCcw,
 } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -71,39 +67,6 @@ const sslPlans = [
       "Öncelikli destek",
       "Şirket bilgisi gösterimi",
     ],
-  },
-];
-
-const features = [
-  {
-    icon: Zap,
-    title: "Hızlı Aktivasyon",
-    description: "DV sertifikalar dakikalar içinde aktif edilir. OV sertifikalar 1-3 iş günü içinde hazır.",
-  },
-  {
-    icon: Shield,
-    title: "Güçlü Şifreleme",
-    description: "256-bit SSL şifreleme ile verileriniz güvenle aktarılır. SHA-256 algoritması kullanılır.",
-  },
-  {
-    icon: Globe,
-    title: "Tam Uyumluluk",
-    description: "Tüm modern tarayıcılar ve mobil cihazlarla %99.9 uyumluluk sağlar.",
-  },
-  {
-    icon: RefreshCcw,
-    title: "Ücretsiz Yenileme",
-    description: "Sunucu değişikliklerinde sertifikanızı ücretsiz olarak yeniden oluşturabilirsiniz.",
-  },
-  {
-    icon: Headphones,
-    title: "7/24 Destek",
-    description: "SSL kurulumu ve teknik sorunlar için uzman ekibimiz her zaman yanınızda.",
-  },
-  {
-    icon: Server,
-    title: "Kolay Kurulum",
-    description: "Detaylı kurulum kılavuzları ve teknik destek ile hızlıca SSL'inizi aktif edin.",
   },
 ];
 
@@ -199,41 +162,7 @@ export default function StandartSSLPage() {
         </section>
 
         {/* Features */}
-        <section className="py-16 md:py-24 bg-muted/30">
-          <div className="container">
-            <BlurFade delay={0.1} inView>
-              <div className="text-center mb-12">
-                <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-                  Standart SSL Avantajları
-                </h2>
-                <p className="mt-4 text-muted-foreground max-w-2xl mx-auto">
-                  Güvenli web sitesi için ihtiyacınız olan tüm özellikler
-                </p>
-              </div>
-            </BlurFade>
-
-            <BlurFade delay={0.2} inView>
-              <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                {features.map((feature) => (
-                  <Card
-                    key={feature.title}
-                    className="hover:border-primary/50 transition-colors"
-                  >
-                    <CardContent className="p-6">
-                      <feature.icon className="h-10 w-10 text-primary mb-4" />
-                      <h3 className="font-semibold text-lg mb-2">
-                        {feature.title}
-                      </h3>
-                      <p className="text-sm text-muted-foreground">
-                        {feature.description}
-                      </p>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
-            </BlurFade>
-          </div>
-        </section>
+        <SSLFeatures />
 
         {/* Brands */}
         <section className="py-16 md:py-24">
