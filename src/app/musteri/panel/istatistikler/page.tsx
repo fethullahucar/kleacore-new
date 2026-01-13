@@ -2,22 +2,30 @@
 
 import { useState } from "react";
 import { BlurFade } from "@/components/magicui/blur-fade";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import {
-  BarChart3,
-  Activity,
   HardDrive,
   Globe,
-  TrendingUp,
-  TrendingDown,
   Users,
-  Clock,
-  Calendar,
   ArrowUpRight,
   ArrowDownRight,
   Cpu,
   Wifi,
+  CheckCircle2,
+  AlertTriangle,
+  XCircle,
+  Clock,
+  Activity,
+  Server,
+  Database,
+  Zap,
+  RefreshCw,
+  Download,
+  Upload,
+  Eye,
+  MousePointer,
+  Timer,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -65,6 +73,38 @@ const overviewStats = [
   },
 ];
 
+// Uptime stats
+const uptimeStats = [
+  {
+    service: "Linux Hosting Pro",
+    uptime: 99.98,
+    lastDowntime: "15 gün önce",
+    duration: "3 dakika",
+    status: "operational",
+  },
+  {
+    service: "VDS-M Production",
+    uptime: 99.99,
+    lastDowntime: "32 gün önce",
+    duration: "45 saniye",
+    status: "operational",
+  },
+  {
+    service: "Cloud-S Dev",
+    uptime: 100.0,
+    lastDowntime: "Hiç",
+    duration: "-",
+    status: "operational",
+  },
+  {
+    service: "WordPress Starter",
+    uptime: 99.95,
+    lastDowntime: "2 gün önce",
+    duration: "12 dakika",
+    status: "degraded",
+  },
+];
+
 // Mock bandwidth data (simulating chart data)
 const bandwidthData = [
   { day: "Pzt", incoming: 8.2, outgoing: 12.4 },
@@ -76,6 +116,17 @@ const bandwidthData = [
   { day: "Paz", incoming: 5.8, outgoing: 8.4 },
 ];
 
+// Response time data
+const responseTimeData = [
+  { hour: "00:00", time: 245 },
+  { hour: "04:00", time: 198 },
+  { hour: "08:00", time: 312 },
+  { hour: "12:00", time: 456 },
+  { hour: "16:00", time: 523 },
+  { hour: "20:00", time: 389 },
+  { hour: "24:00", time: 267 },
+];
+
 // Mock service usage
 const serviceUsage = [
   {
@@ -83,24 +134,24 @@ const serviceUsage = [
     disk: { used: 12.4, total: 50 },
     bandwidth: { used: 45.2, total: 100 },
     cpu: 28,
+    ram: 45,
+    iops: 1250,
   },
   {
     name: "VDS-M Production",
     disk: { used: 85, total: 160 },
     bandwidth: { used: 156.8, total: 1000 },
     cpu: 45,
+    ram: 62,
+    iops: 4500,
   },
   {
     name: "Cloud-S Dev",
     disk: { used: 25, total: 80 },
     bandwidth: { used: 32.4, total: 500 },
     cpu: 18,
-  },
-  {
-    name: "WordPress Starter",
-    disk: { used: 2.8, total: 10 },
-    bandwidth: { used: 22.4, total: 50 },
-    cpu: 12,
+    ram: 35,
+    iops: 2100,
   },
 ];
 
@@ -111,6 +162,22 @@ const visitorStats = [
   { country: "Amerika", visitors: 1245, percentage: 10 },
   { country: "İngiltere", visitors: 621, percentage: 5 },
   { country: "Diğer", visitors: 500, percentage: 4 },
+];
+
+// Traffic sources
+const trafficSources = [
+  { source: "Organik Arama", visits: 5234, percentage: 42, icon: Globe },
+  { source: "Direkt Trafik", visits: 3125, percentage: 25, icon: MousePointer },
+  { source: "Sosyal Medya", visits: 2456, percentage: 20, icon: Users },
+  { source: "Referans", visits: 1641, percentage: 13, icon: Eye },
+];
+
+// Error rates
+const errorRates = [
+  { code: "2xx", label: "Başarılı", count: 45234, percentage: 96.2, color: "bg-green-500" },
+  { code: "3xx", label: "Yönlendirme", count: 1234, percentage: 2.6, color: "bg-blue-500" },
+  { code: "4xx", label: "İstemci Hatası", count: 456, percentage: 0.97, color: "bg-orange-500" },
+  { code: "5xx", label: "Sunucu Hatası", count: 108, percentage: 0.23, color: "bg-red-500" },
 ];
 
 function ProgressBar({ value, max, color }: { value: number; max: number; color: string }) {
@@ -134,12 +201,12 @@ function SimpleBarChart({ data }: { data: typeof bandwidthData }) {
         <div key={item.day} className="flex-1 flex flex-col items-center gap-1">
           <div className="flex-1 w-full flex items-end gap-1">
             <div
-              className="flex-1 bg-blue-500 rounded-t"
+              className="flex-1 bg-blue-500 rounded-t transition-all hover:opacity-80"
               style={{ height: `${(item.incoming / maxValue) * 100}%` }}
               title={`Gelen: ${item.incoming} GB`}
             />
             <div
-              className="flex-1 bg-green-500 rounded-t"
+              className="flex-1 bg-green-500 rounded-t transition-all hover:opacity-80"
               style={{ height: `${(item.outgoing / maxValue) * 100}%` }}
               title={`Giden: ${item.outgoing} GB`}
             />
@@ -147,6 +214,50 @@ function SimpleBarChart({ data }: { data: typeof bandwidthData }) {
           <span className="text-xs text-muted-foreground">{item.day}</span>
         </div>
       ))}
+    </div>
+  );
+}
+
+function ResponseTimeChart({ data }: { data: typeof responseTimeData }) {
+  const maxTime = Math.max(...data.map((d) => d.time));
+  const minTime = Math.min(...data.map((d) => d.time));
+  const avgTime = Math.round(data.reduce((acc, d) => acc + d.time, 0) / data.length);
+
+  return (
+    <div className="space-y-4">
+      <div className="flex items-end justify-between gap-1 h-32">
+        {data.map((item, index) => (
+          <div key={item.hour} className="flex-1 flex flex-col items-center gap-1">
+            <div
+              className={cn(
+                "w-full rounded-t transition-all hover:opacity-80",
+                item.time > 400 ? "bg-orange-500" : item.time > 300 ? "bg-yellow-500" : "bg-green-500"
+              )}
+              style={{ height: `${(item.time / maxTime) * 100}%` }}
+              title={`${item.time}ms`}
+            />
+          </div>
+        ))}
+      </div>
+      <div className="flex justify-between text-xs text-muted-foreground">
+        {data.map((item) => (
+          <span key={item.hour}>{item.hour}</span>
+        ))}
+      </div>
+      <div className="grid grid-cols-3 gap-4 pt-2 border-t">
+        <div className="text-center">
+          <p className="text-xs text-muted-foreground">Min</p>
+          <p className="font-semibold text-green-500">{minTime}ms</p>
+        </div>
+        <div className="text-center">
+          <p className="text-xs text-muted-foreground">Ortalama</p>
+          <p className="font-semibold text-yellow-500">{avgTime}ms</p>
+        </div>
+        <div className="text-center">
+          <p className="text-xs text-muted-foreground">Max</p>
+          <p className="font-semibold text-orange-500">{maxTime}ms</p>
+        </div>
+      </div>
     </div>
   );
 }
@@ -230,20 +341,67 @@ export default function IstatistiklerPage() {
         </div>
       </BlurFade>
 
+      {/* Uptime Stats */}
+      <BlurFade delay={0.2} inView>
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <Activity className="h-5 w-5 text-green-500" />
+              Uptime Durumu
+            </CardTitle>
+            <CardDescription>
+              Son 30 günlük çalışma süresi istatistikleri
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              {uptimeStats.map((stat) => (
+                <div key={stat.service} className="p-4 rounded-lg border">
+                  <div className="flex items-center justify-between mb-3">
+                    <p className="font-medium text-sm">{stat.service}</p>
+                    {stat.status === "operational" ? (
+                      <CheckCircle2 className="h-4 w-4 text-green-500" />
+                    ) : stat.status === "degraded" ? (
+                      <AlertTriangle className="h-4 w-4 text-orange-500" />
+                    ) : (
+                      <XCircle className="h-4 w-4 text-red-500" />
+                    )}
+                  </div>
+                  <p className={cn(
+                    "text-3xl font-bold",
+                    stat.uptime >= 99.99 ? "text-green-500" :
+                    stat.uptime >= 99.9 ? "text-yellow-500" : "text-orange-500"
+                  )}>
+                    {stat.uptime}%
+                  </p>
+                  <div className="mt-2 text-xs text-muted-foreground">
+                    <p>Son kesinti: {stat.lastDowntime}</p>
+                    <p>Süre: {stat.duration}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+      </BlurFade>
+
       <div className="grid gap-6 lg:grid-cols-2">
         {/* Bandwidth Chart */}
-        <BlurFade delay={0.2} inView>
+        <BlurFade delay={0.25} inView>
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center justify-between">
-                <span>Bandwidth Kullanımı</span>
+                <span className="flex items-center gap-2">
+                  <Wifi className="h-5 w-5 text-blue-500" />
+                  Bandwidth Kullanımı
+                </span>
                 <div className="flex items-center gap-4 text-sm font-normal">
                   <span className="flex items-center gap-1">
-                    <span className="h-3 w-3 rounded-full bg-blue-500" />
+                    <Download className="h-3 w-3 text-blue-500" />
                     Gelen
                   </span>
                   <span className="flex items-center gap-1">
-                    <span className="h-3 w-3 rounded-full bg-green-500" />
+                    <Upload className="h-3 w-3 text-green-500" />
                     Giden
                   </span>
                 </div>
@@ -251,15 +409,46 @@ export default function IstatistiklerPage() {
             </CardHeader>
             <CardContent>
               <SimpleBarChart data={bandwidthData} />
+              <div className="grid grid-cols-2 gap-4 mt-4 pt-4 border-t">
+                <div className="text-center">
+                  <p className="text-sm text-muted-foreground">Toplam Gelen</p>
+                  <p className="text-xl font-bold text-blue-500">60.1 GB</p>
+                </div>
+                <div className="text-center">
+                  <p className="text-sm text-muted-foreground">Toplam Giden</p>
+                  <p className="text-xl font-bold text-green-500">90.5 GB</p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </BlurFade>
+
+        {/* Response Time */}
+        <BlurFade delay={0.3} inView>
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Timer className="h-5 w-5 text-purple-500" />
+                Yanıt Süresi
+              </CardTitle>
+              <CardDescription>
+                Son 24 saatlik ortalama yanıt süreleri
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <ResponseTimeChart data={responseTimeData} />
             </CardContent>
           </Card>
         </BlurFade>
 
         {/* Visitor Stats */}
-        <BlurFade delay={0.25} inView>
+        <BlurFade delay={0.35} inView>
           <Card>
             <CardHeader>
-              <CardTitle>Ziyaretçi Dağılımı</CardTitle>
+              <CardTitle className="flex items-center gap-2">
+                <Globe className="h-5 w-5 text-cyan-500" />
+                Ziyaretçi Dağılımı
+              </CardTitle>
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
@@ -267,7 +456,6 @@ export default function IstatistiklerPage() {
                   <div key={stat.country} className="space-y-2">
                     <div className="flex items-center justify-between text-sm">
                       <span className="flex items-center gap-2">
-                        <Globe className="h-4 w-4 text-muted-foreground" />
                         {stat.country}
                       </span>
                       <span className="font-medium">
@@ -277,8 +465,40 @@ export default function IstatistiklerPage() {
                     <ProgressBar
                       value={stat.percentage}
                       max={100}
-                      color="bg-primary"
+                      color="bg-cyan-500"
                     />
+                  </div>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+        </BlurFade>
+
+        {/* Traffic Sources */}
+        <BlurFade delay={0.4} inView>
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Zap className="h-5 w-5 text-yellow-500" />
+                Trafik Kaynakları
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-4">
+                {trafficSources.map((source) => (
+                  <div key={source.source} className="flex items-center justify-between p-3 rounded-lg border">
+                    <div className="flex items-center gap-3">
+                      <div className="p-2 rounded-lg bg-muted">
+                        <source.icon className="h-4 w-4 text-muted-foreground" />
+                      </div>
+                      <div>
+                        <p className="font-medium text-sm">{source.source}</p>
+                        <p className="text-xs text-muted-foreground">
+                          {source.visits.toLocaleString()} ziyaret
+                        </p>
+                      </div>
+                    </div>
+                    <span className="text-lg font-bold">{source.percentage}%</span>
                   </div>
                 ))}
               </div>
@@ -287,18 +507,66 @@ export default function IstatistiklerPage() {
         </BlurFade>
       </div>
 
-      {/* Service Usage */}
-      <BlurFade delay={0.3} inView>
+      {/* Error Rates */}
+      <BlurFade delay={0.45} inView>
         <Card>
           <CardHeader>
-            <CardTitle>Hizmet Bazlı Kullanım</CardTitle>
+            <CardTitle className="flex items-center gap-2">
+              <Server className="h-5 w-5 text-red-500" />
+              HTTP Yanıt Kodları
+            </CardTitle>
+            <CardDescription>
+              Son 7 günlük HTTP durum kodu dağılımı
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              {errorRates.map((rate) => (
+                <div key={rate.code} className="p-4 rounded-lg border">
+                  <div className="flex items-center justify-between mb-2">
+                    <span className={cn(
+                      "px-2 py-1 rounded text-xs font-bold text-white",
+                      rate.color
+                    )}>
+                      {rate.code}
+                    </span>
+                    <span className="text-xs text-muted-foreground">{rate.label}</span>
+                  </div>
+                  <p className="text-2xl font-bold">{rate.count.toLocaleString()}</p>
+                  <p className="text-sm text-muted-foreground">{rate.percentage}%</p>
+                </div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+      </BlurFade>
+
+      {/* Service Usage */}
+      <BlurFade delay={0.5} inView>
+        <Card>
+          <CardHeader>
+            <div className="flex items-center justify-between">
+              <div>
+                <CardTitle className="flex items-center gap-2">
+                  <Database className="h-5 w-5 text-indigo-500" />
+                  Hizmet Bazlı Kullanım
+                </CardTitle>
+                <CardDescription>
+                  Her hizmetin kaynak kullanım detayları
+                </CardDescription>
+              </div>
+              <Button variant="outline" size="sm">
+                <RefreshCw className="mr-2 h-4 w-4" />
+                Yenile
+              </Button>
+            </div>
           </CardHeader>
           <CardContent>
             <div className="space-y-6">
               {serviceUsage.map((service) => (
-                <div key={service.name} className="space-y-3">
-                  <p className="font-semibold">{service.name}</p>
-                  <div className="grid gap-4 sm:grid-cols-3">
+                <div key={service.name} className="p-4 rounded-lg border">
+                  <p className="font-semibold mb-4">{service.name}</p>
+                  <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
                     <div className="space-y-2">
                       <div className="flex items-center justify-between text-sm">
                         <span className="flex items-center gap-1 text-muted-foreground">
@@ -361,6 +629,40 @@ export default function IstatistiklerPage() {
                             ? "bg-orange-500"
                             : "bg-purple-500"
                         }
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <div className="flex items-center justify-between text-sm">
+                        <span className="flex items-center gap-1 text-muted-foreground">
+                          <Activity className="h-4 w-4" />
+                          RAM
+                        </span>
+                        <span>{service.ram}%</span>
+                      </div>
+                      <ProgressBar
+                        value={service.ram}
+                        max={100}
+                        color={
+                          service.ram > 80
+                            ? "bg-red-500"
+                            : service.ram > 60
+                            ? "bg-orange-500"
+                            : "bg-cyan-500"
+                        }
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <div className="flex items-center justify-between text-sm">
+                        <span className="flex items-center gap-1 text-muted-foreground">
+                          <Zap className="h-4 w-4" />
+                          IOPS
+                        </span>
+                        <span>{service.iops.toLocaleString()}</span>
+                      </div>
+                      <ProgressBar
+                        value={service.iops}
+                        max={5000}
+                        color="bg-yellow-500"
                       />
                     </div>
                   </div>
