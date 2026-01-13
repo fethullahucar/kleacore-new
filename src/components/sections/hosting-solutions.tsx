@@ -63,7 +63,6 @@ const vdsFeatures = [
   { icon: HardDrive, text: "NVMe Storage" },
   { icon: Globe, text: "Limitsiz Trafik" },
   { icon: MapPin, text: "İstanbul Lokasyon" },
-  { icon: Cpu, text: "Platinum 8160" },
   { icon: Shield, text: "%99.9 Uptime" },
   { icon: Check, text: "Ücretsiz Kurulum" },
   { icon: Headphones, text: "7/24 Destek" },
