@@ -321,7 +321,6 @@ export function Header() {
             <ShoppingCart className="h-5 w-5" />
           </Button>
 
-
           {/* Mobile Menu */}
           <Sheet open={isOpen} onOpenChange={setIsOpen}>
             <SheetTrigger asChild className="lg:hidden">
@@ -357,19 +356,6 @@ export function Header() {
                     onClose={() => setIsOpen(false)}
                   />
                 ))}
-                <hr className="my-2" />
-                <div className="flex flex-col gap-2 px-2">
-                  <Button variant="outline" asChild>
-                    <Link href="/musteri/panel" onClick={() => setIsOpen(false)}>
-                      Giriş Yap
-                    </Link>
-                  </Button>
-                  <Button className="bg-foreground text-background hover:bg-foreground/90" asChild>
-                    <Link href="/musteri/panel" onClick={() => setIsOpen(false)}>
-                      Kayıt Ol
-                    </Link>
-                  </Button>
-                </div>
               </nav>
             </SheetContent>
           </Sheet>
