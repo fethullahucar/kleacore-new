@@ -10,6 +10,7 @@ import {
   LogOut,
   User,
   Shield,
+  Package,
 } from "lucide-react";
 import {
   DropdownMenu,
@@ -21,6 +22,7 @@ import {
 
 // Panel menu items
 const panelMenuItems = [
+  { title: "Hizmetlerim", href: "/musteri/panel/hizmetlerim", icon: Package },
   { title: "Profil", href: "/musteri/panel/ayarlar", icon: User },
   { title: "Güvenlik", href: "/musteri/panel/ayarlar#guvenlik", icon: Shield },
   { title: "Faturalarım", href: "/musteri/panel/faturalar", icon: FileText },
