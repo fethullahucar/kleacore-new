@@ -148,10 +148,12 @@ export default function DestekPage() {
               Destek taleplerinizi görüntüleyin ve yönetin.
             </p>
           </div>
-          <Button>
-            <Plus className="mr-2 h-4 w-4" />
-            Yeni Talep
-          </Button>
+          <Link href="/musteri/panel/destek/yeni">
+            <Button>
+              <Plus className="mr-2 h-4 w-4" />
+              Yeni Talep
+            </Button>
+          </Link>
         </div>
       </BlurFade>
 
