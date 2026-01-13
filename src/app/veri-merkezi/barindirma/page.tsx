@@ -4,20 +4,14 @@ import { Topbar } from "@/components/layout/topbar";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { BlurFade } from "@/components/magicui/blur-fade";
+import { DatacenterFeatures } from "@/components/veri-merkezi/datacenter-features";
 import { BorderBeam } from "@/components/magicui/border-beam";
 import {
   Server,
-  Shield,
   Zap,
   Check,
   Building2,
-  Thermometer,
-  Wifi,
-  Battery,
-  Eye,
-  HardDrive,
   Globe,
-  Cpu,
 } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -90,39 +84,6 @@ const colocationPlans = [
       "Özel VLAN",
       "Private ağ",
     ],
-  },
-];
-
-const dcFeatures = [
-  {
-    icon: Building2,
-    title: "Tier III+ Sertifikalı",
-    description: "Uluslararası standartlarda veri merkezi altyapısı",
-  },
-  {
-    icon: Battery,
-    title: "Kesintisiz Güç",
-    description: "N+1 UPS, diesel jeneratörler, 72+ saat özerklik",
-  },
-  {
-    icon: Thermometer,
-    title: "Hassas Soğutma",
-    description: "N+1 CRAC sistemleri, sıcak/soğuk koridor izolasyonu",
-  },
-  {
-    icon: Shield,
-    title: "Fiziksel Güvenlik",
-    description: "Biometrik erişim, 7/24 güvenlik, CCTV kayıt",
-  },
-  {
-    icon: Wifi,
-    title: "Premium Bağlantı",
-    description: "Çoklu Tier-1 carrier, düşük latency, BGP",
-  },
-  {
-    icon: Eye,
-    title: "7/24 NOC İzleme",
-    description: "Proaktif izleme ve hızlı müdahale",
   },
 ];
 
@@ -272,41 +233,7 @@ export default function BarindirmaPage() {
         </section>
 
         {/* DC Features */}
-        <section className="py-16 md:py-24">
-          <div className="container">
-            <BlurFade delay={0.1} inView>
-              <div className="text-center mb-12">
-                <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-                  Neden Bizi Tercih Etmelisiniz?
-                </h2>
-                <p className="mt-4 text-muted-foreground max-w-2xl mx-auto">
-                  Uluslararası standartlarda altyapı ile güvenli barındırma
-                </p>
-              </div>
-            </BlurFade>
-
-            <BlurFade delay={0.2} inView>
-              <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                {dcFeatures.map((feature) => (
-                  <Card
-                    key={feature.title}
-                    className="hover:border-primary/50 transition-colors"
-                  >
-                    <CardContent className="p-6">
-                      <feature.icon className="h-10 w-10 text-primary mb-4" />
-                      <h3 className="font-semibold text-lg mb-2">
-                        {feature.title}
-                      </h3>
-                      <p className="text-sm text-muted-foreground">
-                        {feature.description}
-                      </p>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
-            </BlurFade>
-          </div>
-        </section>
+        <DatacenterFeatures />
 
         {/* FAQ */}
         <section className="py-16 md:py-24 bg-muted/30">
