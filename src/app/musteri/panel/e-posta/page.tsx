@@ -250,15 +250,6 @@ export default function EPostaPage() {
         <Card>
           <CardContent className="p-4">
             <div className="flex flex-col sm:flex-row gap-4">
-              <div className="relative flex-1">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                <Input
-                  placeholder="E-posta ara..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="pl-10"
-                />
-              </div>
               <div className="flex gap-2 flex-wrap">
                 {filterOptions.map((option) => (
                   <Button
@@ -270,6 +261,15 @@ export default function EPostaPage() {
                     {option.label}
                   </Button>
                 ))}
+              </div>
+              <div className="relative flex-1">
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                <Input
+                  placeholder="E-posta ara..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="pl-10"
+                />
               </div>
             </div>
           </CardContent>

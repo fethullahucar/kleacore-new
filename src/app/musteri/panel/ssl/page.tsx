@@ -286,15 +286,6 @@ export default function SSLPage() {
         <Card>
           <CardContent className="p-4">
             <div className="flex flex-col sm:flex-row gap-4">
-              <div className="relative flex-1">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                <Input
-                  placeholder="Domain ara..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="pl-10"
-                />
-              </div>
               <div className="flex gap-2">
                 {filterOptions.map((option) => (
                   <Button
@@ -306,6 +297,15 @@ export default function SSLPage() {
                     {option.label}
                   </Button>
                 ))}
+              </div>
+              <div className="relative flex-1">
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                <Input
+                  placeholder="Domain ara..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="pl-10"
+                />
               </div>
             </div>
           </CardContent>
