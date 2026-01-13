@@ -1,6 +1,27 @@
+"use client";
+
+import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Facebook, Instagram, Linkedin, Youtube, Mail } from "lucide-react";
+import { Facebook, Instagram, Linkedin, Youtube, Mail, ChevronDown } from "lucide-react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+
+const languages = [
+  { code: "tr", name: "Türkçe", flag: "tr" },
+  { code: "en", name: "English", flag: "gb" },
+  { code: "de", name: "Deutsch", flag: "de" },
+];
+
+const currencies = [
+  { code: "TRY", symbol: "₺", name: "Türk Lirası", flag: "tr" },
+  { code: "USD", symbol: "$", name: "US Dollar", flag: "us" },
+  { code: "EUR", symbol: "€", name: "Euro", flag: "eu" },
+];
 
 const footerLinks = {
   alanAdi: {
@@ -60,6 +81,9 @@ const legalLinks = [
 ];
 
 export function Footer() {
+  const [selectedLanguage, setSelectedLanguage] = useState(languages[0]);
+  const [selectedCurrency, setSelectedCurrency] = useState(currencies[0]);
+
   return (
     <footer className="relative bg-zinc-900 text-zinc-300 overflow-hidden">
       {/* Background Effects */}
@@ -186,10 +210,62 @@ export function Footer() {
       {/* Bottom Bar */}
       <div className="border-t border-zinc-800">
         <div className="container py-6">
-          <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
+          <div className="flex flex-col items-center justify-between gap-4 lg:flex-row">
+            {/* Copyright */}
             <p className="text-sm text-zinc-500">
               Copyright © {new Date().getFullYear()} KLEACORE. Tüm Hakları Saklıdır.
             </p>
+
+            {/* Language & Currency Selectors */}
+            <div className="flex items-center gap-3">
+              {/* Language Selector */}
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <button className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-zinc-800/50 hover:bg-zinc-800 transition-colors text-sm text-zinc-400 hover:text-white">
+                    <span className={`fi fi-${selectedLanguage.flag}`} />
+                    <span className="hidden sm:inline">{selectedLanguage.name}</span>
+                    <ChevronDown className="h-3 w-3" />
+                  </button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="center" className="min-w-[140px]">
+                  {languages.map((lang) => (
+                    <DropdownMenuItem
+                      key={lang.code}
+                      onClick={() => setSelectedLanguage(lang)}
+                      className="flex items-center gap-2 cursor-pointer"
+                    >
+                      <span className={`fi fi-${lang.flag}`} />
+                      {lang.name}
+                    </DropdownMenuItem>
+                  ))}
+                </DropdownMenuContent>
+              </DropdownMenu>
+
+              {/* Currency Selector */}
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <button className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-zinc-800/50 hover:bg-zinc-800 transition-colors text-sm text-zinc-400 hover:text-white">
+                    <span className={`fi fi-${selectedCurrency.flag}`} />
+                    <span>{selectedCurrency.symbol} {selectedCurrency.code}</span>
+                    <ChevronDown className="h-3 w-3" />
+                  </button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="center" className="min-w-[160px]">
+                  {currencies.map((currency) => (
+                    <DropdownMenuItem
+                      key={currency.code}
+                      onClick={() => setSelectedCurrency(currency)}
+                      className="flex items-center gap-2 cursor-pointer"
+                    >
+                      <span className={`fi fi-${currency.flag}`} />
+                      {currency.symbol} {currency.name}
+                    </DropdownMenuItem>
+                  ))}
+                </DropdownMenuContent>
+              </DropdownMenu>
+            </div>
+
+            {/* Legal Links */}
             <div className="flex flex-wrap justify-center gap-4 text-sm text-zinc-500">
               {legalLinks.map((link) => (
                 <Link
