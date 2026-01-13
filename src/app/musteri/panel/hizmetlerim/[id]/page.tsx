@@ -135,7 +135,7 @@ const servicesDB: Record<string, {
     expiresAt: "10 Şubat 2025",
     price: "549.00",
     billingCycle: "Aylık",
-    ip: "195.85.201.156",
+    ip: "203.0.113.42",
     specs: {
       cpu: "4 vCPU (AMD EPYC)",
       ram: "8 GB DDR4 ECC",
@@ -162,7 +162,7 @@ const servicesDB: Record<string, {
     expiresAt: "5 Nisan 2025",
     price: "299.00",
     billingCycle: "Aylık",
-    ip: "195.85.202.89",
+    ip: "203.0.113.88",
     specs: {
       cpu: "2 vCPU",
       ram: "4 GB DDR5",

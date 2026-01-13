@@ -49,8 +49,8 @@ const statCards = [
 const services = [
   {
     id: 1,
-    name: "C-Power",
-    domain: "195.85.201.243",
+    name: "VDS-3",
+    domain: "vds1.kleacore.com",
     nextPayment: "10/01/2027",
     status: "active",
   },

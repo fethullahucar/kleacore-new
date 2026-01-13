@@ -77,7 +77,7 @@ const sessions = [
   {
     id: "session_1",
     device: "Chrome - Windows",
-    ip: "195.85.201.xxx",
+    ip: "192.0.2.xxx",
     location: "İstanbul, Türkiye",
     lastActive: "Şu an aktif",
     current: true,

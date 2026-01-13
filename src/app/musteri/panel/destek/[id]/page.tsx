@@ -76,7 +76,7 @@ const ticketsDB: Record<string, {
         id: 1,
         sender: "customer",
         senderName: "Ahmet Yılmaz",
-        content: "Merhaba,\n\nexample.com domainim için DNS ayarlarını değiştirmek istiyorum. A kaydını yeni sunucu IP adresine yönlendirmem gerekiyor.\n\nYeni IP: 195.85.201.100\n\nNasıl yapabilirim?",
+        content: "Merhaba,\n\nexample.com domainim için DNS ayarlarını değiştirmek istiyorum. A kaydını yeni sunucu IP adresine yönlendirmem gerekiyor.\n\nYeni IP: 198.51.100.25\n\nNasıl yapabilirim?",
         timestamp: "11 Ocak 2025, 14:32",
       },
       {
@@ -84,7 +84,7 @@ const ticketsDB: Record<string, {
         sender: "support",
         senderName: "Mehmet Demir",
         senderRole: "Teknik Destek Uzmanı",
-        content: "Merhaba Ahmet Bey,\n\nDNS ayarlarınızı değiştirmek için aşağıdaki adımları takip edebilirsiniz:\n\n1. Müşteri panelinize giriş yapın\n2. Domainler > example.com > DNS Yönetimi'ne gidin\n3. Mevcut A kaydını bulun ve düzenle butonuna tıklayın\n4. IP adresini 195.85.201.100 olarak güncelleyin\n5. Kaydet butonuna tıklayın\n\nDeğişiklikler 24-48 saat içinde yayılacaktır.\n\nBaşka bir sorunuz olursa yardımcı olmaktan memnuniyet duyarız.",
+        content: "Merhaba Ahmet Bey,\n\nDNS ayarlarınızı değiştirmek için aşağıdaki adımları takip edebilirsiniz:\n\n1. Müşteri panelinize giriş yapın\n2. Domainler > example.com > DNS Yönetimi'ne gidin\n3. Mevcut A kaydını bulun ve düzenle butonuna tıklayın\n4. IP adresini 198.51.100.25 olarak güncelleyin\n5. Kaydet butonuna tıklayın\n\nDeğişiklikler 24-48 saat içinde yayılacaktır.\n\nBaşka bir sorunuz olursa yardımcı olmaktan memnuniyet duyarız.",
         timestamp: "11 Ocak 2025, 15:45",
       },
       {
