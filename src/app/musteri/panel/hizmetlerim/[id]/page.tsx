@@ -337,12 +337,14 @@ export default function HizmetDetayPage() {
                       <p className="text-xs text-muted-foreground">Kontrol paneli</p>
                     </div>
                   </Button>
-                  <Button variant="outline" className="justify-start h-auto py-3">
-                    <Mail className="mr-2 h-4 w-4 text-primary" />
-                    <div className="text-left">
-                      <p className="font-medium">Webmail</p>
-                      <p className="text-xs text-muted-foreground">E-posta yönetimi</p>
-                    </div>
+                  <Button variant="outline" className="justify-start h-auto py-3" asChild>
+                    <Link href="/musteri/panel/webmail">
+                      <Mail className="mr-2 h-4 w-4 text-primary" />
+                      <div className="text-left">
+                        <p className="font-medium">Webmail</p>
+                        <p className="text-xs text-muted-foreground">E-posta yönetimi</p>
+                      </div>
+                    </Link>
                   </Button>
                   <Button variant="outline" className="justify-start h-auto py-3">
                     <Database className="mr-2 h-4 w-4 text-primary" />
