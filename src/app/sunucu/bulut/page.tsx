@@ -5,8 +5,8 @@ import { Topbar } from "@/components/layout/topbar";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { BlurFade } from "@/components/magicui/blur-fade";
+import { ServerFeatures } from "@/components/sunucu/server-features";
 import {
-  Cloud,
   Cpu,
   HardDrive,
   Globe,
@@ -14,21 +14,8 @@ import {
   Zap,
   Check,
   ChevronDown,
-  ArrowUpDown,
-  Server,
-  Gauge,
   Headphones,
   MapPin,
-  Clock,
-  RefreshCcw,
-  Code,
-  Layers,
-  Monitor,
-  Terminal,
-  Activity,
-  Settings,
-  Bot,
-  Scale,
 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -131,54 +118,6 @@ const faqs = [
   {
     question: "Teknik destek 7/24 mü?",
     answer: "Evet, uzman cloud ekibimiz 7/24 hizmetinizdedir. Canlı destek, ticket sistemi veya telefon ile bize ulaşabilirsiniz.",
-  },
-];
-
-const features = [
-  {
-    icon: Scale,
-    title: "Esnek Ölçeklendirme",
-    description: "İhtiyacınıza göre kaynakları anında artırın veya azaltın. Trafik artışlarında otomatik ölçeklendirme ile kesintisiz hizmet.",
-  },
-  {
-    icon: Monitor,
-    title: "İşletim Sistemi Seçimi",
-    description: "Ubuntu, Debian, CentOS, Windows Server ve özel imajlar. İstediğiniz işletim sistemini saniyeler içinde kurun.",
-  },
-  {
-    icon: Terminal,
-    title: "Tam Root Erişimi",
-    description: "Sunucunuz üzerinde tam kontrol. SSH ve VNC ile doğrudan erişim, istediğiniz yapılandırmayı uygulayın.",
-  },
-  {
-    icon: RefreshCcw,
-    title: "Otomatik Snapshot",
-    description: "Günlük otomatik yedekleme ve anlık snapshot. İstediğiniz zaman tek tıkla geri dönüş yapabilirsiniz.",
-  },
-  {
-    icon: Activity,
-    title: "Gelişmiş İzleme",
-    description: "Gerçek zamanlı metrikler, uyarı sistemleri ve detaylı raporlar. Performansı sürekli optimize edin.",
-  },
-  {
-    icon: Shield,
-    title: "Enterprise Güvenlik",
-    description: "Layer 3-7 DDoS koruması, firewall, ağ izolasyonu ve şifreli depolama ile maksimum güvenlik.",
-  },
-  {
-    icon: Globe,
-    title: "Global Ağ",
-    description: "Dünya genelinde 10+ lokasyon. Kullanıcılarınıza en yakın veri merkezinden hizmet verin.",
-  },
-  {
-    icon: Settings,
-    title: "API & Terraform",
-    description: "RESTful API ve Terraform desteği ile altyapınızı kod olarak yönetin. CI/CD entegrasyonu.",
-  },
-  {
-    icon: Bot,
-    title: "Marketplace",
-    description: "Hazır uygulama imajları ve one-click deployment. WordPress, Docker, Kubernetes saniyeler içinde hazır.",
   },
 ];
 
@@ -398,40 +337,7 @@ export default function BulutSunucuPage() {
         </section>
 
         {/* Features */}
-        <section className="py-16 md:py-24 bg-muted/30">
-          <div className="container">
-            <BlurFade delay={0.1} inView>
-              <div className="text-center mb-12">
-                <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-                  Neden Bulut Sunucu?
-                </h2>
-                <p className="mt-3 text-muted-foreground max-w-2xl mx-auto">
-                  Bulut sunucularımızda sunduğumuz tüm özellikler
-                </p>
-              </div>
-            </BlurFade>
-
-            <BlurFade delay={0.2} inView>
-              <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto">
-                {features.map((feature) => (
-                  <div key={feature.title} className="flex gap-4">
-                    <div className="flex-shrink-0">
-                      <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
-                        <feature.icon className="h-6 w-6 text-primary" />
-                      </div>
-                    </div>
-                    <div>
-                      <h4 className="font-semibold text-lg mb-1">{feature.title}</h4>
-                      <p className="text-sm text-muted-foreground leading-relaxed">
-                        {feature.description}
-                      </p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </BlurFade>
-          </div>
-        </section>
+        <ServerFeatures />
 
         {/* FAQ */}
         <section className="py-16 md:py-24">

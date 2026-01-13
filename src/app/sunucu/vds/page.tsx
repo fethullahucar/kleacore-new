@@ -5,6 +5,7 @@ import { Topbar } from "@/components/layout/topbar";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { BlurFade } from "@/components/magicui/blur-fade";
+import { ServerFeatures } from "@/components/sunucu/server-features";
 import {
   Cpu,
   HardDrive,
@@ -13,21 +14,8 @@ import {
   Zap,
   Check,
   ChevronDown,
-  Server,
-  Clock,
   Headphones,
   MapPin,
-  RefreshCcw,
-  Code,
-  Layers,
-  Monitor,
-  Terminal,
-  Activity,
-  Cloud,
-  Settings,
-  Bot,
-  Lock,
-  Truck,
 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -141,54 +129,6 @@ const faqs = [
   {
     question: "Teknik destek 7/24 mü?",
     answer: "Evet, teknik destek ekibimiz 7/24 hizmetinizdedir. Canlı destek, ticket sistemi veya telefon ile bize ulaşabilirsiniz.",
-  },
-];
-
-const features = [
-  {
-    icon: Layers,
-    title: "KVM Sanallaştırma",
-    description: "Tam izole KVM tabanlı sanallaştırma ile kendi çekirdeğinizi yönetin. Donanım düzeyinde izolasyon ve maksimum performans.",
-  },
-  {
-    icon: Monitor,
-    title: "İşletim Sistemi Seçimi",
-    description: "Ubuntu, Debian, CentOS, Windows Server ve daha fazlası. İstediğiniz işletim sistemini tek tıkla kurabilirsiniz.",
-  },
-  {
-    icon: Terminal,
-    title: "Tam Root Erişimi",
-    description: "Sunucunuz üzerinde tam kontrol. SSH ile root erişimi, istediğiniz yazılımı kurma ve yapılandırma özgürlüğü.",
-  },
-  {
-    icon: RefreshCcw,
-    title: "Anlık Yedekleme",
-    description: "Sunucunuzun anlık görüntüsünü alın. Snapshot özelliği ile istediğiniz zaman geri dönüş yapabilirsiniz.",
-  },
-  {
-    icon: Activity,
-    title: "Kaynak İzleme",
-    description: "CPU, RAM, disk ve ağ kullanımınızı gerçek zamanlı izleyin. Detaylı grafikler ve raporlarla performansı takip edin.",
-  },
-  {
-    icon: Shield,
-    title: "DDoS Koruması",
-    description: "Ücretsiz Layer 3-4 DDoS koruması dahil. Sunucunuz saldırılara karşı 7/24 korunur.",
-  },
-  {
-    icon: Cloud,
-    title: "Özel Ağ (Private Network)",
-    description: "Sunucularınız arasında güvenli özel ağ oluşturun. Dahili trafik ücretsiz ve yüksek hızlı.",
-  },
-  {
-    icon: Settings,
-    title: "API Desteği",
-    description: "RESTful API ile sunucularınızı programatik olarak yönetin. Otomasyon ve entegrasyon kolaylığı.",
-  },
-  {
-    icon: Bot,
-    title: "Otomatik Kurulum",
-    description: "Control panel, web sunucu ve veritabanı kurulumları otomatik. cPanel, Plesk, LAMP/LEMP stack hazır scriptler.",
   },
 ];
 
@@ -408,40 +348,7 @@ export default function VDSPage() {
         </section>
 
         {/* Features */}
-        <section className="py-16 md:py-24 bg-muted/30">
-          <div className="container">
-            <BlurFade delay={0.1} inView>
-              <div className="text-center mb-12">
-                <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-                  Neden VDS Sunucu?
-                </h2>
-                <p className="mt-3 text-muted-foreground max-w-2xl mx-auto">
-                  VDS sunucularımızda sunduğumuz tüm özellikler
-                </p>
-              </div>
-            </BlurFade>
-
-            <BlurFade delay={0.2} inView>
-              <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto">
-                {features.map((feature) => (
-                  <div key={feature.title} className="flex gap-4">
-                    <div className="flex-shrink-0">
-                      <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
-                        <feature.icon className="h-6 w-6 text-primary" />
-                      </div>
-                    </div>
-                    <div>
-                      <h4 className="font-semibold text-lg mb-1">{feature.title}</h4>
-                      <p className="text-sm text-muted-foreground leading-relaxed">
-                        {feature.description}
-                      </p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </BlurFade>
-          </div>
-        </section>
+        <ServerFeatures />
 
         {/* FAQ */}
         <section className="py-16 md:py-24">

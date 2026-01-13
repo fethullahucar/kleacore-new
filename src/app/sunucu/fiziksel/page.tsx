@@ -5,6 +5,7 @@ import { Topbar } from "@/components/layout/topbar";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { BlurFade } from "@/components/magicui/blur-fade";
+import { ServerFeatures } from "@/components/sunucu/server-features";
 import {
   Cpu,
   HardDrive,
@@ -12,11 +13,7 @@ import {
   Zap,
   Check,
   ChevronDown,
-  Server,
-  Network,
-  Gauge,
   Wrench,
-  Clock,
   Headphones,
   MapPin,
   Globe,
@@ -86,39 +83,6 @@ const planFeatures = [
   { icon: Shield, text: "%99.99 Uptime" },
   { icon: Wrench, text: "IPMI/KVM Erişimi" },
   { icon: Headphones, text: "7/24 Destek" },
-];
-
-const features = [
-  {
-    icon: Server,
-    title: "Tam Donanım Ayrılmış",
-    description: "Sunucu tamamen size ait, paylaşım yok",
-  },
-  {
-    icon: Gauge,
-    title: "Maksimum Performans",
-    description: "Fiziksel CPU ve RAM ile en yüksek performans",
-  },
-  {
-    icon: Shield,
-    title: "Enterprise Güvenlik",
-    description: "Hardware firewall ve DDoS mitigasyonu",
-  },
-  {
-    icon: Network,
-    title: "Premium Ağ",
-    description: "Tier-1 carrier bağlantıları, düşük latency",
-  },
-  {
-    icon: Wrench,
-    title: "IPMI/KVM Erişimi",
-    description: "Uzaktan tam sunucu kontrolü",
-  },
-  {
-    icon: Clock,
-    title: "Hızlı Kurulum",
-    description: "Stok sunucular 4 saat içinde aktif",
-  },
 ];
 
 interface PlanRowProps {
@@ -337,41 +301,7 @@ export default function FizikselSunucuPage() {
         </section>
 
         {/* Features */}
-        <section className="py-16 md:py-24 bg-muted/30">
-          <div className="container">
-            <BlurFade delay={0.1} inView>
-              <div className="text-center mb-12">
-                <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-                  Neden Fiziksel Sunucu?
-                </h2>
-                <p className="mt-4 text-muted-foreground max-w-2xl mx-auto">
-                  Paylaşımsız kaynaklar ile maksimum performans ve güvenlik
-                </p>
-              </div>
-            </BlurFade>
-
-            <BlurFade delay={0.2} inView>
-              <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                {features.map((feature) => (
-                  <Card
-                    key={feature.title}
-                    className="hover:border-primary/50 transition-colors"
-                  >
-                    <CardContent className="p-6">
-                      <feature.icon className="h-10 w-10 text-primary mb-4" />
-                      <h3 className="font-semibold text-lg mb-2">
-                        {feature.title}
-                      </h3>
-                      <p className="text-sm text-muted-foreground">
-                        {feature.description}
-                      </p>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
-            </BlurFade>
-          </div>
-        </section>
+        <ServerFeatures />
 
         {/* Specs */}
         <section className="py-16 md:py-24">
