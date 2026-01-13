@@ -15,6 +15,7 @@ import {
   BarChart3,
   HardDrive,
   Settings,
+  Shield,
 } from "lucide-react";
 
 const tabs = [
@@ -33,6 +34,11 @@ const tabs = [
     title: "Alan Adlarım",
     href: "/musteri/panel/domainler",
     icon: Globe,
+  },
+  {
+    title: "SSL Sertifikaları",
+    href: "/musteri/panel/ssl",
+    icon: Shield,
   },
   {
     title: "Faturalarım",
