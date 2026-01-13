@@ -24,7 +24,9 @@
       "Bash(tree:*)",
       "Bash(pnpm run dev)",
       "Bash(timeout:*)",
-      "Bash(npx tsc:*)"
+      "Bash(npx tsc:*)",
+      "WebSearch",
+      "Bash(pnpm update:*)"
     ]
   }
 }
