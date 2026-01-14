@@ -26,7 +26,10 @@
       "Bash(timeout:*)",
       "Bash(npx tsc:*)",
       "WebSearch",
-      "Bash(pnpm update:*)"
+      "Bash(pnpm update:*)",
+      "Bash(find:*)",
+      "Bash(ls -la \"C:\\\\Users\\\\User\\\\Desktop\\\\theme\\\\src\\\\app\\\\musteri\\\\panel\"\" | grep -E \"page.tsx)",
+      "Bash(^w \")"
     ]
   }
 }

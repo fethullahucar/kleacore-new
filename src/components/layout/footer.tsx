@@ -67,6 +67,8 @@ const footerLinks = {
       { name: "İletişim", href: "/iletisim" },
       { name: "Blog", href: "/blog" },
       { name: "Bilgi Bankası", href: "/bilgi-bankasi" },
+      { name: "Kariyer", href: "/kurumsal/kariyer" },
+      { name: "Sistem Durumu", href: "/musteri/durum" },
     ],
   },
 };
