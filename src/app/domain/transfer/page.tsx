@@ -9,6 +9,12 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import {
   ArrowRight,
   Check,
   Loader2,
@@ -16,6 +22,9 @@ import {
   Shield,
   Clock,
   Gift,
+  Zap,
+  HeartHandshake,
+  Lock,
 } from "lucide-react";
 
 const transferSteps = [
@@ -233,42 +242,170 @@ export default function DomainTransferPage() {
           </div>
         </section>
 
-        {/* FAQ */}
+        {/* Why Choose Us */}
         <section className="py-16 md:py-24 bg-muted/30">
-          <div className="container max-w-3xl">
+          <div className="container">
             <BlurFade delay={0.1} inView>
-              <h2 className="text-3xl font-bold tracking-tight text-center mb-10">
-                Sık Sorulan Sorular
-              </h2>
+              <div className="text-center mb-12">
+                <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+                  Neden KLEACORE?
+                </h2>
+                <p className="mt-4 text-muted-foreground max-w-2xl mx-auto">
+                  Domain transferinde güvenilir çözüm ortağınız
+                </p>
+              </div>
             </BlurFade>
 
             <BlurFade delay={0.2} inView>
-              <div className="space-y-4">
+              <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+                <div className="text-center p-6 rounded-xl bg-card border">
+                  <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-primary/10">
+                    <Gift className="h-7 w-7 text-primary" />
+                  </div>
+                  <h3 className="font-semibold mb-2">+1 Yıl Hediye</h3>
+                  <p className="text-sm text-muted-foreground">
+                    Her transferde domain süreniz 1 yıl uzar
+                  </p>
+                </div>
+                <div className="text-center p-6 rounded-xl bg-card border">
+                  <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-green-500/10">
+                    <Zap className="h-7 w-7 text-green-500" />
+                  </div>
+                  <h3 className="font-semibold mb-2">Hızlı Transfer</h3>
+                  <p className="text-sm text-muted-foreground">
+                    5-7 gün içinde tamamlanan süreç
+                  </p>
+                </div>
+                <div className="text-center p-6 rounded-xl bg-card border">
+                  <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-blue-500/10">
+                    <Lock className="h-7 w-7 text-blue-500" />
+                  </div>
+                  <h3 className="font-semibold mb-2">Güvenli İşlem</h3>
+                  <p className="text-sm text-muted-foreground">
+                    DNS ayarlarınız korunarak kesintisiz transfer
+                  </p>
+                </div>
+                <div className="text-center p-6 rounded-xl bg-card border">
+                  <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-purple-500/10">
+                    <HeartHandshake className="h-7 w-7 text-purple-500" />
+                  </div>
+                  <h3 className="font-semibold mb-2">7/24 Destek</h3>
+                  <p className="text-sm text-muted-foreground">
+                    Transfer sürecinde yanınızdayız
+                  </p>
+                </div>
+              </div>
+            </BlurFade>
+
+            <BlurFade delay={0.3} inView>
+              <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
                 {[
-                  {
-                    q: "Transfer ne kadar sürer?",
-                    a: "Genellikle 5-7 gün içinde tamamlanır. .tr uzantıları için bu süre 1-2 gün olabilir.",
-                  },
-                  {
-                    q: "EPP kodu nedir?",
-                    a: "EPP (Authorization) kodu, domain transferi için gereken güvenlik kodudur. Mevcut sağlayıcınızın kontrol panelinden alabilirsiniz.",
-                  },
-                  {
-                    q: "Transfer ücreti var mı?",
-                    a: "Transfer ücreti domain uzantısına göre değişir ve genellikle kayıt ücreti ile aynıdır. Ayrıca +1 yıl uzatma hediye edilir.",
-                  },
-                  {
-                    q: "Transfer sırasında sitem çalışır mı?",
-                    a: "Evet, DNS ayarlarınız korunduğu sürece siteniz kesintisiz çalışmaya devam eder.",
-                  },
-                ].map((faq) => (
-                  <Card key={faq.q}>
-                    <CardContent className="p-6">
-                      <h3 className="font-semibold">{faq.q}</h3>
-                      <p className="mt-2 text-muted-foreground">{faq.a}</p>
-                    </CardContent>
-                  </Card>
+                  "Ücretsiz WHOIS gizliliği",
+                  "Kolay DNS yönetimi",
+                  "Otomatik yenileme",
+                  "E-posta yönlendirme",
+                  "Domain kilitleme",
+                  "Tüm uzantılar desteklenir",
+                  "Toplu transfer imkanı",
+                  "Rekabetçi fiyatlar",
+                ].map((item) => (
+                  <div
+                    key={item}
+                    className="flex items-center gap-3 p-3 rounded-lg bg-background border"
+                  >
+                    <Check className="h-5 w-5 text-green-500 shrink-0" />
+                    <span className="text-sm">{item}</span>
+                  </div>
                 ))}
+              </div>
+            </BlurFade>
+          </div>
+        </section>
+
+        {/* FAQ */}
+        <section className="py-16 md:py-24">
+          <div className="container">
+            <BlurFade delay={0.1} inView>
+              <div className="text-center mb-12">
+                <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+                  Sıkça Sorulan Sorular
+                </h2>
+                <p className="mt-4 text-muted-foreground max-w-2xl mx-auto">
+                  Domain transferi hakkında merak edilenler
+                </p>
+              </div>
+            </BlurFade>
+
+            <BlurFade delay={0.2} inView>
+              <div className="max-w-3xl mx-auto">
+                <Accordion type="single" collapsible className="w-full">
+                  <AccordionItem value="item-1">
+                    <AccordionTrigger>Domain transferi nedir?</AccordionTrigger>
+                    <AccordionContent>
+                      Domain transferi, alan adınızı bir kayıt firmasından başka bir kayıt
+                      firmasına taşıma işlemidir. Bu işlem sırasında domain adınız ve tüm
+                      ayarlarınız korunur, sadece yönetim KLEACORE&apos;a geçer.
+                    </AccordionContent>
+                  </AccordionItem>
+                  <AccordionItem value="item-2">
+                    <AccordionTrigger>Transfer ne kadar sürer?</AccordionTrigger>
+                    <AccordionContent>
+                      Genel TLD&apos;ler (.com, .net, .org vb.) için transfer süresi 5-7 gündür.
+                      .tr uzantıları için bu süre 1-2 gün olabilir. E-posta onayını hızlı
+                      yaparsanız süre kısalır.
+                    </AccordionContent>
+                  </AccordionItem>
+                  <AccordionItem value="item-3">
+                    <AccordionTrigger>EPP/Auth kodu nedir ve nasıl alınır?</AccordionTrigger>
+                    <AccordionContent>
+                      EPP (Extensible Provisioning Protocol) kodu, domain transferi için
+                      gereken güvenlik şifresidir. Bu kodu mevcut kayıt firmanızın kontrol
+                      panelinden veya destek ekibinden talep edebilirsiniz. Kod olmadan
+                      transfer başlatılamaz.
+                    </AccordionContent>
+                  </AccordionItem>
+                  <AccordionItem value="item-4">
+                    <AccordionTrigger>Transfer ücreti ne kadar?</AccordionTrigger>
+                    <AccordionContent>
+                      Transfer ücreti domain uzantısına göre değişir ve genellikle yıllık
+                      kayıt ücreti ile aynıdır. Ayrıca her transferde +1 yıl uzatma hediye
+                      edilir, yani aslında 2 yıllık ücretle domain sürenizi uzatmış olursunuz.
+                    </AccordionContent>
+                  </AccordionItem>
+                  <AccordionItem value="item-5">
+                    <AccordionTrigger>Transfer sırasında sitem çalışır mı?</AccordionTrigger>
+                    <AccordionContent>
+                      Evet, DNS ayarlarınız korunduğu sürece web siteniz ve e-posta
+                      hizmetleriniz kesintisiz çalışmaya devam eder. Transfer sadece
+                      yönetim değişikliğidir, hosting ve DNS etkilenmez.
+                    </AccordionContent>
+                  </AccordionItem>
+                  <AccordionItem value="item-6">
+                    <AccordionTrigger>Yeni kayıtlı domain transfer edilebilir mi?</AccordionTrigger>
+                    <AccordionContent>
+                      Hayır, ICANN kurallarına göre yeni kaydedilen domainler 60 gün
+                      içinde transfer edilemez. Aynı şekilde yeni transfer edilmiş
+                      domainler de 60 gün beklemelidir.
+                    </AccordionContent>
+                  </AccordionItem>
+                  <AccordionItem value="item-7">
+                    <AccordionTrigger>Transfer reddedilirse ne olur?</AccordionTrigger>
+                    <AccordionContent>
+                      Transfer reddedilirse ödemeniz iade edilir. Reddetme nedenleri
+                      genellikle hatalı EPP kodu, kilitli domain veya 60 günlük bekleme
+                      süresinin dolmamış olmasıdır. Sorunu düzelttikten sonra tekrar
+                      deneyebilirsiniz.
+                    </AccordionContent>
+                  </AccordionItem>
+                  <AccordionItem value="item-8">
+                    <AccordionTrigger>Toplu transfer yapabilir miyim?</AccordionTrigger>
+                    <AccordionContent>
+                      Evet, birden fazla domaini aynı anda transfer edebilirsiniz.
+                      Toplu transfer için destek ekibimizle iletişime geçin, size
+                      özel fiyatlar ve hızlandırılmış süreç sunabiliriz.
+                    </AccordionContent>
+                  </AccordionItem>
+                </Accordion>
               </div>
             </BlurFade>
           </div>
