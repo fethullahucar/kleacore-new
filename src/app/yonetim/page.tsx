@@ -20,11 +20,15 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
+import { BlurFade } from "@/components/magicui/blur-fade";
+import { NumberTicker } from "@/components/magicui/number-ticker";
+import { BorderBeam } from "@/components/magicui/border-beam";
 
 const stats = [
   {
     title: "Toplam Müşteri",
-    value: "2,847",
+    value: 2847,
+    displayValue: "2,847",
     change: "+12%",
     changeType: "positive",
     description: "Bu ay 48 yeni kayıt",
@@ -33,7 +37,8 @@ const stats = [
   },
   {
     title: "Aktif Hizmetler",
-    value: "4,521",
+    value: 4521,
+    displayValue: "4,521",
     change: "+8%",
     changeType: "positive",
     description: "23 bekleyen aktivasyon",
@@ -42,7 +47,9 @@ const stats = [
   },
   {
     title: "Bu Ay Gelir",
-    value: "₺284.750",
+    value: 284750,
+    displayValue: "₺284.750",
+    prefix: "₺",
     change: "+18%",
     changeType: "positive",
     description: "Geçen aya göre",
@@ -51,7 +58,8 @@ const stats = [
   },
   {
     title: "Açık Talepler",
-    value: "37",
+    value: 37,
+    displayValue: "37",
     change: "-5%",
     changeType: "negative",
     description: "8 kritik öncelikli",
@@ -157,140 +165,162 @@ export default function AdminDashboard() {
   return (
     <div className="space-y-6">
       {/* Page Header */}
-      <div>
-        <h1 className="text-2xl font-bold text-white">Dashboard</h1>
-        <p className="text-zinc-400">Hoş geldin, Admin. İşte bugünkü genel bakış.</p>
-      </div>
+      <BlurFade delay={0}>
+        <div>
+          <h1 className="text-2xl font-bold text-white">Dashboard</h1>
+          <p className="text-zinc-400">Hoş geldin, Admin. İşte bugünkü genel bakış.</p>
+        </div>
+      </BlurFade>
 
       {/* Stats Grid */}
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-        {stats.map((stat) => (
-          <Link key={stat.title} href={stat.href}>
-            <Card className="bg-zinc-900 border-zinc-800 hover:border-zinc-700 transition-colors cursor-pointer">
-              <CardContent className="p-6">
-                <div className="flex items-center justify-between">
-                  <div className={cn(
-                    "flex h-10 w-10 items-center justify-center rounded-lg",
-                    "bg-zinc-800"
-                  )}>
-                    <stat.icon className="h-5 w-5 text-primary" />
+        {stats.map((stat, index) => (
+          <BlurFade key={stat.title} delay={0.1 + index * 0.1}>
+            <Link href={stat.href}>
+              <Card className="relative bg-zinc-900 border-zinc-800 hover:border-zinc-700 transition-colors cursor-pointer overflow-hidden group">
+                <BorderBeam
+                  size={120}
+                  duration={8}
+                  delay={index * 2}
+                  colorFrom="#3b82f6"
+                  colorTo="#8b5cf6"
+                />
+                <CardContent className="p-6">
+                  <div className="flex items-center justify-between">
+                    <div className={cn(
+                      "flex h-10 w-10 items-center justify-center rounded-lg",
+                      "bg-zinc-800 group-hover:bg-zinc-700 transition-colors"
+                    )}>
+                      <stat.icon className="h-5 w-5 text-primary" />
+                    </div>
+                    <div className={cn(
+                      "flex items-center gap-1 text-sm font-medium",
+                      stat.changeType === "positive" ? "text-green-500" : "text-red-500"
+                    )}>
+                      {stat.changeType === "positive" ? (
+                        <ArrowUpRight className="h-4 w-4" />
+                      ) : (
+                        <ArrowDownRight className="h-4 w-4" />
+                      )}
+                      {stat.change}
+                    </div>
                   </div>
-                  <div className={cn(
-                    "flex items-center gap-1 text-sm font-medium",
-                    stat.changeType === "positive" ? "text-green-500" : "text-red-500"
-                  )}>
-                    {stat.changeType === "positive" ? (
-                      <ArrowUpRight className="h-4 w-4" />
-                    ) : (
-                      <ArrowDownRight className="h-4 w-4" />
-                    )}
-                    {stat.change}
+                  <div className="mt-4">
+                    <p className="text-2xl font-bold text-white">
+                      {stat.prefix && <span>{stat.prefix}</span>}
+                      <NumberTicker value={stat.value} delay={0.3 + index * 0.1} className="text-white" />
+                    </p>
+                    <p className="text-sm text-zinc-400">{stat.title}</p>
                   </div>
-                </div>
-                <div className="mt-4">
-                  <p className="text-2xl font-bold text-white">{stat.value}</p>
-                  <p className="text-sm text-zinc-400">{stat.title}</p>
-                </div>
-                <p className="mt-2 text-xs text-zinc-500">{stat.description}</p>
-              </CardContent>
-            </Card>
-          </Link>
+                  <p className="mt-2 text-xs text-zinc-500">{stat.description}</p>
+                </CardContent>
+              </Card>
+            </Link>
+          </BlurFade>
         ))}
       </div>
 
       {/* Main Content Grid */}
       <div className="grid gap-6 lg:grid-cols-3">
         {/* Revenue Chart */}
-        <Card className="lg:col-span-2 bg-zinc-900 border-zinc-800">
+        <BlurFade delay={0.5} className="lg:col-span-2">
+          <Card className="bg-zinc-900 border-zinc-800">
+            <CardHeader className="flex flex-row items-center justify-between">
+              <CardTitle className="text-white">Aylık Gelir</CardTitle>
+              <Button variant="outline" size="sm" className="border-zinc-700 text-zinc-400 hover:text-white">
+                Raporu Gör
+              </Button>
+            </CardHeader>
+            <CardContent>
+              <div className="flex items-end gap-2 h-48">
+                {revenueData.map((data, index) => (
+                  <div key={data.month} className="flex-1 flex flex-col items-center gap-2">
+                    <div
+                      className="w-full bg-primary/20 rounded-t hover:bg-primary/30 transition-colors relative group"
+                      style={{ height: `${(data.amount / maxRevenue) * 100}%` }}
+                    >
+                      <div
+                        className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-primary to-primary/70 rounded-t transition-all"
+                        style={{ height: "100%" }}
+                      />
+                      <div className="absolute -top-8 left-1/2 -translate-x-1/2 bg-zinc-800 px-2 py-1 rounded text-xs text-white opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap z-10">
+                        ₺{data.amount.toLocaleString("tr-TR")}
+                      </div>
+                    </div>
+                    <span className="text-xs text-zinc-500">{data.month}</span>
+                  </div>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+        </BlurFade>
+
+        {/* Pending Tasks */}
+        <BlurFade delay={0.6}>
+          <Card className="bg-zinc-900 border-zinc-800 h-full">
+            <CardHeader>
+              <CardTitle className="text-white">Bekleyen İşlemler</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              {pendingTasks.map((task, index) => (
+                <BlurFade key={task.id} delay={0.7 + index * 0.1}>
+                  <Link
+                    href={task.href}
+                    className="flex items-start gap-3 p-3 rounded-lg bg-zinc-800/50 hover:bg-zinc-800 transition-colors"
+                  >
+                    <div className={cn(
+                      "mt-0.5 h-2 w-2 rounded-full shrink-0 animate-pulse",
+                      task.status === "critical" ? "bg-red-500" : "bg-yellow-500"
+                    )} />
+                    <div>
+                      <p className="text-sm font-medium text-white">{task.title}</p>
+                      <p className="text-xs text-zinc-500">{task.description}</p>
+                    </div>
+                  </Link>
+                </BlurFade>
+              ))}
+            </CardContent>
+          </Card>
+        </BlurFade>
+      </div>
+
+      {/* Recent Activities */}
+      <BlurFade delay={0.8}>
+        <Card className="bg-zinc-900 border-zinc-800">
           <CardHeader className="flex flex-row items-center justify-between">
-            <CardTitle className="text-white">Aylık Gelir</CardTitle>
-            <Button variant="outline" size="sm" className="border-zinc-700 text-zinc-400 hover:text-white">
-              Raporu Gör
+            <CardTitle className="text-white">Son Aktiviteler</CardTitle>
+            <Button variant="ghost" size="sm" className="text-zinc-400 hover:text-white">
+              Tümünü Gör
             </Button>
           </CardHeader>
           <CardContent>
-            <div className="flex items-end gap-2 h-48">
-              {revenueData.map((data) => (
-                <div key={data.month} className="flex-1 flex flex-col items-center gap-2">
+            <div className="space-y-4">
+              {recentActivities.map((activity, index) => (
+                <BlurFade key={activity.id} delay={0.9 + index * 0.05}>
                   <div
-                    className="w-full bg-primary/20 rounded-t hover:bg-primary/30 transition-colors relative group"
-                    style={{ height: `${(data.amount / maxRevenue) * 100}%` }}
+                    className="flex items-center gap-4 p-3 rounded-lg hover:bg-zinc-800/50 transition-colors"
                   >
-                    <div
-                      className="absolute bottom-0 left-0 right-0 bg-primary rounded-t transition-all"
-                      style={{ height: "100%" }}
-                    />
-                    <div className="absolute -top-8 left-1/2 -translate-x-1/2 bg-zinc-800 px-2 py-1 rounded text-xs text-white opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
-                      ₺{data.amount.toLocaleString("tr-TR")}
+                    <div className={cn(
+                      "flex h-10 w-10 items-center justify-center rounded-lg shrink-0",
+                      activity.iconBg
+                    )}>
+                      <activity.icon className={cn("h-5 w-5", activity.iconColor)} />
                     </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-sm font-medium text-white">{activity.title}</p>
+                      <p className="text-sm text-zinc-400 truncate">{activity.description}</p>
+                    </div>
+                    {activity.amount && (
+                      <span className="text-sm font-medium text-green-500">{activity.amount}</span>
+                    )}
+                    <span className="text-xs text-zinc-500 shrink-0">{activity.time}</span>
                   </div>
-                  <span className="text-xs text-zinc-500">{data.month}</span>
-                </div>
+                </BlurFade>
               ))}
             </div>
           </CardContent>
         </Card>
-
-        {/* Pending Tasks */}
-        <Card className="bg-zinc-900 border-zinc-800">
-          <CardHeader>
-            <CardTitle className="text-white">Bekleyen İşlemler</CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            {pendingTasks.map((task) => (
-              <Link
-                key={task.id}
-                href={task.href}
-                className="flex items-start gap-3 p-3 rounded-lg bg-zinc-800/50 hover:bg-zinc-800 transition-colors"
-              >
-                <div className={cn(
-                  "mt-0.5 h-2 w-2 rounded-full shrink-0",
-                  task.status === "critical" ? "bg-red-500" : "bg-yellow-500"
-                )} />
-                <div>
-                  <p className="text-sm font-medium text-white">{task.title}</p>
-                  <p className="text-xs text-zinc-500">{task.description}</p>
-                </div>
-              </Link>
-            ))}
-          </CardContent>
-        </Card>
-      </div>
-
-      {/* Recent Activities */}
-      <Card className="bg-zinc-900 border-zinc-800">
-        <CardHeader className="flex flex-row items-center justify-between">
-          <CardTitle className="text-white">Son Aktiviteler</CardTitle>
-          <Button variant="ghost" size="sm" className="text-zinc-400 hover:text-white">
-            Tümünü Gör
-          </Button>
-        </CardHeader>
-        <CardContent>
-          <div className="space-y-4">
-            {recentActivities.map((activity) => (
-              <div
-                key={activity.id}
-                className="flex items-center gap-4 p-3 rounded-lg hover:bg-zinc-800/50 transition-colors"
-              >
-                <div className={cn(
-                  "flex h-10 w-10 items-center justify-center rounded-lg shrink-0",
-                  activity.iconBg
-                )}>
-                  <activity.icon className={cn("h-5 w-5", activity.iconColor)} />
-                </div>
-                <div className="flex-1 min-w-0">
-                  <p className="text-sm font-medium text-white">{activity.title}</p>
-                  <p className="text-sm text-zinc-400 truncate">{activity.description}</p>
-                </div>
-                {activity.amount && (
-                  <span className="text-sm font-medium text-green-500">{activity.amount}</span>
-                )}
-                <span className="text-xs text-zinc-500 shrink-0">{activity.time}</span>
-              </div>
-            ))}
-          </div>
-        </CardContent>
-      </Card>
+      </BlurFade>
     </div>
   );
 }

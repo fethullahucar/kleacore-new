@@ -34,6 +34,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { cn } from "@/lib/utils";
+import { BlurFade } from "@/components/magicui/blur-fade";
 
 const tickets = [
   {
@@ -153,73 +154,80 @@ export default function SupportPage() {
   return (
     <div className="space-y-6">
       {/* Page Header */}
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-2xl font-bold text-white">Destek Talepleri</h1>
-          <p className="text-zinc-400">Müşteri destek taleplerini yönetin</p>
+      <BlurFade delay={0}>
+        <div className="flex items-center justify-between">
+          <div>
+            <h1 className="text-2xl font-bold text-white">Destek Talepleri</h1>
+            <p className="text-zinc-400">Müşteri destek taleplerini yönetin</p>
+          </div>
         </div>
-      </div>
+      </BlurFade>
 
       {/* Stats */}
       <div className="grid gap-4 md:grid-cols-4">
-        {stats.map((stat) => (
-          <Card key={stat.title} className="bg-zinc-900 border-zinc-800">
-            <CardContent className="p-4">
-              <div className="flex items-center justify-between">
-                <stat.icon className="h-5 w-5 text-zinc-500" />
-                <span className="text-xs text-zinc-500">{stat.change}</span>
-              </div>
-              <p className="mt-2 text-2xl font-bold text-white">{stat.value}</p>
-              <p className="text-sm text-zinc-400">{stat.title}</p>
-            </CardContent>
-          </Card>
+        {stats.map((stat, index) => (
+          <BlurFade key={stat.title} delay={0.1 + index * 0.05}>
+            <Card className="bg-zinc-900 border-zinc-800 hover:border-zinc-700 transition-colors">
+              <CardContent className="p-4">
+                <div className="flex items-center justify-between">
+                  <stat.icon className="h-5 w-5 text-zinc-500" />
+                  <span className="text-xs text-zinc-500">{stat.change}</span>
+                </div>
+                <p className="mt-2 text-2xl font-bold text-white">{stat.value}</p>
+                <p className="text-sm text-zinc-400">{stat.title}</p>
+              </CardContent>
+            </Card>
+          </BlurFade>
         ))}
       </div>
 
       {/* Filters */}
-      <Card className="bg-zinc-900 border-zinc-800">
-        <CardContent className="p-4">
-          <div className="flex flex-col sm:flex-row gap-4">
-            <div className="flex items-center gap-2">
-              <Select value={statusFilter} onValueChange={setStatusFilter}>
-                <SelectTrigger className="w-[150px] bg-zinc-800 border-zinc-700 text-white">
-                  <Filter className="mr-2 h-4 w-4" />
-                  <SelectValue placeholder="Durum" />
-                </SelectTrigger>
-                <SelectContent className="bg-zinc-900 border-zinc-800">
-                  <SelectItem value="all">Tüm Durumlar</SelectItem>
-                  <SelectItem value="open">Açık</SelectItem>
-                  <SelectItem value="waiting">Yanıt Bekliyor</SelectItem>
-                  <SelectItem value="closed">Kapalı</SelectItem>
-                </SelectContent>
-              </Select>
-              <Select value={priorityFilter} onValueChange={setPriorityFilter}>
-                <SelectTrigger className="w-[130px] bg-zinc-800 border-zinc-700 text-white">
-                  <SelectValue placeholder="Öncelik" />
-                </SelectTrigger>
-                <SelectContent className="bg-zinc-900 border-zinc-800">
-                  <SelectItem value="all">Tüm Öncelik</SelectItem>
-                  <SelectItem value="high">Yüksek</SelectItem>
-                  <SelectItem value="medium">Orta</SelectItem>
-                  <SelectItem value="low">Düşük</SelectItem>
-                </SelectContent>
-              </Select>
+      <BlurFade delay={0.3}>
+        <Card className="bg-zinc-900 border-zinc-800">
+          <CardContent className="p-4">
+            <div className="flex flex-col sm:flex-row gap-4">
+              <div className="flex items-center gap-2">
+                <Select value={statusFilter} onValueChange={setStatusFilter}>
+                  <SelectTrigger className="w-[150px] bg-zinc-800 border-zinc-700 text-white">
+                    <Filter className="mr-2 h-4 w-4" />
+                    <SelectValue placeholder="Durum" />
+                  </SelectTrigger>
+                  <SelectContent className="bg-zinc-900 border-zinc-800">
+                    <SelectItem value="all">Tüm Durumlar</SelectItem>
+                    <SelectItem value="open">Açık</SelectItem>
+                    <SelectItem value="waiting">Yanıt Bekliyor</SelectItem>
+                    <SelectItem value="closed">Kapalı</SelectItem>
+                  </SelectContent>
+                </Select>
+                <Select value={priorityFilter} onValueChange={setPriorityFilter}>
+                  <SelectTrigger className="w-[130px] bg-zinc-800 border-zinc-700 text-white">
+                    <SelectValue placeholder="Öncelik" />
+                  </SelectTrigger>
+                  <SelectContent className="bg-zinc-900 border-zinc-800">
+                    <SelectItem value="all">Tüm Öncelik</SelectItem>
+                    <SelectItem value="high">Yüksek</SelectItem>
+                    <SelectItem value="medium">Orta</SelectItem>
+                    <SelectItem value="low">Düşük</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+              <div className="relative flex-1">
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-zinc-500" />
+                <Input
+                  type="search"
+                  placeholder="Talep no, konu veya müşteri ara..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="pl-10 bg-zinc-800 border-zinc-700 text-white placeholder:text-zinc-500"
+                />
+              </div>
             </div>
-            <div className="relative flex-1">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-zinc-500" />
-              <Input
-                type="search"
-                placeholder="Talep no, konu veya müşteri ara..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-10 bg-zinc-800 border-zinc-700 text-white placeholder:text-zinc-500"
-              />
-            </div>
-          </div>
-        </CardContent>
-      </Card>
+          </CardContent>
+        </Card>
+      </BlurFade>
 
       {/* Table */}
+      <BlurFade delay={0.4}>
       <Card className="bg-zinc-900 border-zinc-800">
         <CardContent className="p-0">
           <div className="overflow-x-auto">
@@ -329,6 +337,7 @@ export default function SupportPage() {
           </div>
         </CardContent>
       </Card>
+      </BlurFade>
     </div>
   );
 }

@@ -35,6 +35,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { cn } from "@/lib/utils";
+import { BlurFade } from "@/components/magicui/blur-fade";
 
 const customers = [
   {
@@ -148,34 +149,39 @@ export default function CustomersPage() {
   return (
     <div className="space-y-6">
       {/* Page Header */}
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-2xl font-bold text-white">Müşteriler</h1>
-          <p className="text-zinc-400">Tüm müşterilerinizi yönetin</p>
+      <BlurFade delay={0}>
+        <div className="flex items-center justify-between">
+          <div>
+            <h1 className="text-2xl font-bold text-white">Müşteriler</h1>
+            <p className="text-zinc-400">Tüm müşterilerinizi yönetin</p>
+          </div>
+          <Button className="bg-primary hover:bg-primary/90">
+            <UserPlus className="mr-2 h-4 w-4" />
+            Müşteri Ekle
+          </Button>
         </div>
-        <Button className="bg-primary hover:bg-primary/90">
-          <UserPlus className="mr-2 h-4 w-4" />
-          Müşteri Ekle
-        </Button>
-      </div>
+      </BlurFade>
 
       {/* Stats */}
       <div className="grid gap-4 md:grid-cols-4">
-        {stats.map((stat) => (
-          <Card key={stat.title} className="bg-zinc-900 border-zinc-800">
-            <CardContent className="p-4">
-              <div className="flex items-center justify-between">
-                <stat.icon className="h-5 w-5 text-zinc-500" />
-                <span className="text-xs text-zinc-500">{stat.change}</span>
-              </div>
-              <p className="mt-2 text-2xl font-bold text-white">{stat.value}</p>
-              <p className="text-sm text-zinc-400">{stat.title}</p>
-            </CardContent>
-          </Card>
+        {stats.map((stat, index) => (
+          <BlurFade key={stat.title} delay={0.1 + index * 0.05}>
+            <Card className="bg-zinc-900 border-zinc-800 hover:border-zinc-700 transition-colors">
+              <CardContent className="p-4">
+                <div className="flex items-center justify-between">
+                  <stat.icon className="h-5 w-5 text-zinc-500" />
+                  <span className="text-xs text-zinc-500">{stat.change}</span>
+                </div>
+                <p className="mt-2 text-2xl font-bold text-white">{stat.value}</p>
+                <p className="text-sm text-zinc-400">{stat.title}</p>
+              </CardContent>
+            </Card>
+          </BlurFade>
         ))}
       </div>
 
       {/* Filters */}
+      <BlurFade delay={0.3}>
       <Card className="bg-zinc-900 border-zinc-800">
         <CardContent className="p-4">
           <div className="flex flex-col sm:flex-row gap-4">
@@ -206,8 +212,10 @@ export default function CustomersPage() {
           </div>
         </CardContent>
       </Card>
+      </BlurFade>
 
       {/* Table */}
+      <BlurFade delay={0.4}>
       <Card className="bg-zinc-900 border-zinc-800">
         <CardContent className="p-0">
           <div className="overflow-x-auto">
@@ -309,6 +317,7 @@ export default function CustomersPage() {
           </div>
         </CardContent>
       </Card>
+      </BlurFade>
     </div>
   );
 }

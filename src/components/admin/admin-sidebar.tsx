@@ -16,7 +16,14 @@ import {
   Settings,
   ChevronLeft,
   ChevronRight,
+  ChevronDown,
   LogOut,
+  ShoppingBag,
+  Layers,
+  Box,
+  Tag,
+  Percent,
+  ShoppingCart,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -26,7 +33,18 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 
-const menuItems = [
+interface MenuItem {
+  title: string;
+  href: string;
+  icon: React.ComponentType<{ className?: string }>;
+  children?: {
+    title: string;
+    href: string;
+    icon?: React.ComponentType<{ className?: string }>;
+  }[];
+}
+
+const menuItems: MenuItem[] = [
   {
     title: "Dashboard",
     href: "/yonetim",
@@ -36,6 +54,19 @@ const menuItems = [
     title: "Müşteriler",
     href: "/yonetim/musteriler",
     icon: Users,
+  },
+  {
+    title: "Ürünler",
+    href: "/yonetim/urunler",
+    icon: ShoppingBag,
+    children: [
+      { title: "Genel Bakış", href: "/yonetim/urunler", icon: LayoutDashboard },
+      { title: "Kategoriler", href: "/yonetim/urunler/kategoriler", icon: Layers },
+      { title: "Paketler", href: "/yonetim/urunler/paketler", icon: Box },
+      { title: "Özellikler", href: "/yonetim/urunler/ozellikler", icon: Tag },
+      { title: "Promosyonlar", href: "/yonetim/urunler/promosyonlar", icon: Percent },
+      { title: "Siparişler", href: "/yonetim/urunler/siparisler", icon: ShoppingCart },
+    ],
   },
   {
     title: "Hizmetler",
@@ -72,6 +103,7 @@ const menuItems = [
 export function AdminSidebar() {
   const pathname = usePathname();
   const [collapsed, setCollapsed] = useState(false);
+  const [expandedMenus, setExpandedMenus] = useState<string[]>([]);
 
   const isActive = (href: string) => {
     if (href === "/yonetim") {
@@ -80,12 +112,41 @@ export function AdminSidebar() {
     return pathname.startsWith(href);
   };
 
+  const isMenuExpanded = (href: string) => expandedMenus.includes(href);
+
+  const toggleMenu = (href: string) => {
+    setExpandedMenus((prev) =>
+      prev.includes(href) ? prev.filter((h) => h !== href) : [...prev, href]
+    );
+  };
+
+  const isChildActive = (children?: MenuItem["children"]) => {
+    if (!children) return false;
+    return children.some((child) => pathname === child.href || pathname.startsWith(child.href + "/"));
+  };
+
+  // Auto-expand menu if a child is active
+  const getInitialExpanded = () => {
+    const expanded: string[] = [];
+    menuItems.forEach((item) => {
+      if (item.children && isChildActive(item.children)) {
+        expanded.push(item.href);
+      }
+    });
+    return expanded;
+  };
+
+  // Set initial expanded state on mount
+  useState(() => {
+    setExpandedMenus(getInitialExpanded());
+  });
+
   return (
     <TooltipProvider delayDuration={0}>
       <aside
         className={cn(
           "fixed left-0 top-0 z-40 h-screen bg-zinc-950 border-r border-zinc-800 transition-all duration-300",
-          collapsed ? "w-[70px]" : "w-[240px]"
+          collapsed ? "w-[70px]" : "w-[260px]"
         )}
       >
         <div className="flex h-full flex-col">
@@ -126,34 +187,106 @@ export function AdminSidebar() {
           <nav className="flex-1 overflow-y-auto py-4 px-3">
             <ul className="space-y-1">
               {menuItems.map((item) => {
-                const active = isActive(item.href);
-                const menuLink = (
-                  <Link
-                    href={item.href}
-                    className={cn(
-                      "flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors",
-                      active
-                        ? "bg-primary text-white"
-                        : "text-zinc-400 hover:bg-zinc-800 hover:text-white",
-                      collapsed && "justify-center px-2"
-                    )}
-                  >
-                    <item.icon className="h-5 w-5 shrink-0" />
-                    {!collapsed && <span>{item.title}</span>}
-                  </Link>
-                );
+                const hasChildren = item.children && item.children.length > 0;
+                const active = hasChildren ? isChildActive(item.children) : isActive(item.href);
+                const expanded = isMenuExpanded(item.href);
 
-                return (
-                  <li key={item.href}>
-                    {collapsed ? (
+                // Collapsed state - show tooltip
+                if (collapsed) {
+                  const menuLink = (
+                    <Link
+                      href={item.href}
+                      className={cn(
+                        "flex items-center justify-center rounded-lg px-2 py-2.5 text-sm font-medium transition-colors",
+                        active
+                          ? "bg-primary text-white"
+                          : "text-zinc-400 hover:bg-zinc-800 hover:text-white"
+                      )}
+                    >
+                      <item.icon className="h-5 w-5 shrink-0" />
+                    </Link>
+                  );
+
+                  return (
+                    <li key={item.href}>
                       <Tooltip>
                         <TooltipTrigger asChild>{menuLink}</TooltipTrigger>
                         <TooltipContent side="right" className="bg-zinc-800 text-white border-zinc-700">
                           {item.title}
                         </TooltipContent>
                       </Tooltip>
+                    </li>
+                  );
+                }
+
+                // Expanded state with possible children
+                return (
+                  <li key={item.href}>
+                    {hasChildren ? (
+                      <>
+                        {/* Parent menu item */}
+                        <button
+                          onClick={() => toggleMenu(item.href)}
+                          className={cn(
+                            "flex w-full items-center justify-between rounded-lg px-3 py-2.5 text-sm font-medium transition-colors",
+                            active
+                              ? "bg-zinc-800 text-white"
+                              : "text-zinc-400 hover:bg-zinc-800 hover:text-white"
+                          )}
+                        >
+                          <div className="flex items-center gap-3">
+                            <item.icon className="h-5 w-5 shrink-0" />
+                            <span>{item.title}</span>
+                          </div>
+                          <ChevronDown
+                            className={cn(
+                              "h-4 w-4 transition-transform",
+                              expanded && "rotate-180"
+                            )}
+                          />
+                        </button>
+
+                        {/* Child menu items */}
+                        {expanded && (
+                          <ul className="mt-1 ml-4 space-y-1 border-l border-zinc-800 pl-3">
+                            {item.children!.map((child) => {
+                              const childActive = pathname === child.href ||
+                                (child.href !== "/yonetim/urunler" && pathname.startsWith(child.href + "/"));
+                              const ChildIcon = child.icon;
+
+                              return (
+                                <li key={child.href}>
+                                  <Link
+                                    href={child.href}
+                                    className={cn(
+                                      "flex items-center gap-2 rounded-lg px-3 py-2 text-sm transition-colors",
+                                      childActive
+                                        ? "bg-primary text-white"
+                                        : "text-zinc-400 hover:bg-zinc-800 hover:text-white"
+                                    )}
+                                  >
+                                    {ChildIcon && <ChildIcon className="h-4 w-4 shrink-0" />}
+                                    <span>{child.title}</span>
+                                  </Link>
+                                </li>
+                              );
+                            })}
+                          </ul>
+                        )}
+                      </>
                     ) : (
-                      menuLink
+                      <Link
+                        href={item.href}
+                        className={cn(
+                          "flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors",
+                          active
+                            ? "bg-primary text-white"
+                            : "text-zinc-400 hover:bg-zinc-800 hover:text-white"
+                        )}
+                      >
+                        <item.icon className="h-5 w-5 shrink-0" />
+                        <span>{item.title}</span>
+                      </Link>
                     )}
                   </li>
                 );

@@ -22,6 +22,7 @@ import { Switch } from "@/components/ui/switch";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Separator } from "@/components/ui/separator";
 import { Badge } from "@/components/ui/badge";
+import { BlurFade } from "@/components/magicui/blur-fade";
 
 const adminUsers = [
   { id: 1, name: "Admin", email: "admin@kleacore.com", role: "Super Admin", lastLogin: "2024-06-25 14:32" },
@@ -43,11 +44,14 @@ export default function SettingsPage() {
   return (
     <div className="space-y-6">
       {/* Page Header */}
-      <div>
-        <h1 className="text-2xl font-bold text-white">Ayarlar</h1>
-        <p className="text-zinc-400">Sistem ayarlarını yapılandırın</p>
-      </div>
+      <BlurFade delay={0}>
+        <div>
+          <h1 className="text-2xl font-bold text-white">Ayarlar</h1>
+          <p className="text-zinc-400">Sistem ayarlarını yapılandırın</p>
+        </div>
+      </BlurFade>
 
+      <BlurFade delay={0.1}>
       <Tabs defaultValue="general" className="w-full">
         <TabsList className="bg-zinc-800 border border-zinc-700 flex-wrap h-auto gap-1 p-1">
           <TabsTrigger value="general" className="data-[state=active]:bg-zinc-700">
@@ -488,6 +492,7 @@ export default function SettingsPage() {
           </Card>
         </TabsContent>
       </Tabs>
+      </BlurFade>
     </div>
   );
 }

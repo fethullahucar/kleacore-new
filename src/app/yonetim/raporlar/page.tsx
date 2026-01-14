@@ -25,6 +25,7 @@ import {
 } from "@/components/ui/select";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { cn } from "@/lib/utils";
+import { BlurFade } from "@/components/magicui/blur-fade";
 
 const revenueData = [
   { month: "Oca", revenue: 185000, expenses: 42000 },
@@ -74,32 +75,35 @@ export default function ReportsPage() {
   return (
     <div className="space-y-6">
       {/* Page Header */}
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-2xl font-bold text-white">Raporlar</h1>
-          <p className="text-zinc-400">İş performansınızı analiz edin</p>
+      <BlurFade delay={0}>
+        <div className="flex items-center justify-between">
+          <div>
+            <h1 className="text-2xl font-bold text-white">Raporlar</h1>
+            <p className="text-zinc-400">İş performansınızı analiz edin</p>
+          </div>
+          <div className="flex items-center gap-3">
+            <Select value={period} onValueChange={setPeriod}>
+              <SelectTrigger className="w-[160px] bg-zinc-800 border-zinc-700 text-white">
+                <Calendar className="mr-2 h-4 w-4" />
+                <SelectValue placeholder="Dönem" />
+              </SelectTrigger>
+              <SelectContent className="bg-zinc-900 border-zinc-800">
+                <SelectItem value="7days">Son 7 Gün</SelectItem>
+                <SelectItem value="30days">Son 30 Gün</SelectItem>
+                <SelectItem value="3months">Son 3 Ay</SelectItem>
+                <SelectItem value="6months">Son 6 Ay</SelectItem>
+                <SelectItem value="1year">Son 1 Yıl</SelectItem>
+              </SelectContent>
+            </Select>
+            <Button variant="outline" className="border-zinc-700 text-zinc-400 hover:text-white">
+              <Download className="mr-2 h-4 w-4" />
+              Rapor İndir
+            </Button>
+          </div>
         </div>
-        <div className="flex items-center gap-3">
-          <Select value={period} onValueChange={setPeriod}>
-            <SelectTrigger className="w-[160px] bg-zinc-800 border-zinc-700 text-white">
-              <Calendar className="mr-2 h-4 w-4" />
-              <SelectValue placeholder="Dönem" />
-            </SelectTrigger>
-            <SelectContent className="bg-zinc-900 border-zinc-800">
-              <SelectItem value="7days">Son 7 Gün</SelectItem>
-              <SelectItem value="30days">Son 30 Gün</SelectItem>
-              <SelectItem value="3months">Son 3 Ay</SelectItem>
-              <SelectItem value="6months">Son 6 Ay</SelectItem>
-              <SelectItem value="1year">Son 1 Yıl</SelectItem>
-            </SelectContent>
-          </Select>
-          <Button variant="outline" className="border-zinc-700 text-zinc-400 hover:text-white">
-            <Download className="mr-2 h-4 w-4" />
-            Rapor İndir
-          </Button>
-        </div>
-      </div>
+      </BlurFade>
 
+      <BlurFade delay={0.1}>
       <Tabs defaultValue="revenue" className="w-full">
         <TabsList className="bg-zinc-800 border border-zinc-700">
           <TabsTrigger value="revenue" className="data-[state=active]:bg-zinc-700">
@@ -402,6 +406,7 @@ export default function ReportsPage() {
           </Card>
         </TabsContent>
       </Tabs>
+      </BlurFade>
     </div>
   );
 }
