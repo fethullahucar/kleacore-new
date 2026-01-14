@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import { Topbar } from "@/components/layout/topbar";
 import { Header } from "@/components/layout/header";
