@@ -115,7 +115,7 @@ export function Hero() {
             </Link>
           </Button>
           <Button size="lg" variant="outline" className="h-14 px-8 text-lg border-primary/20 hover:bg-primary/5" asChild>
-            <Link href="/kurumsal/iletisim">
+            <Link href="/iletisim">
               Bize Ulaşın
             </Link>
           </Button>

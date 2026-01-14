@@ -6,111 +6,111 @@ import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { BlurFade } from "@/components/magicui/blur-fade";
 import {
-  Mail,
-  Phone,
   MapPin,
+  Mail,
   Clock,
-  Send,
   MessageSquare,
   Headphones,
   Building2,
-  CheckCircle,
+  Send,
+  Zap,
+  Globe,
+  Briefcase,
 } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 
 const contactInfo = [
   {
-    icon: Phone,
-    title: "Telefon",
-    value: "0850 123 45 67",
-    description: "Pazartesi - Cuma, 09:00 - 18:00",
-  },
-  {
     icon: Mail,
     title: "E-posta",
-    value: "info@klehosting.com",
-    description: "24 saat içinde yanıt",
+    details: ["support@kleacore.com", "sales@kleacore.com"],
+    description: "24 saat içinde yanıt garantisi",
   },
   {
     icon: MapPin,
     title: "Adres",
-    value: "Maslak, İstanbul",
-    description: "Türkiye",
+    details: ["30 N Gould St Ste R", "Sheridan, WY 82801, USA"],
+    description: "KLEAWORK DIGITAL LLC",
   },
   {
     icon: Clock,
     title: "Çalışma Saatleri",
-    value: "7/24 Destek",
-    description: "Teknik destek her zaman aktif",
+    details: ["Teknik destek: 7/24", "Satış: Hafta içi 09:00 - 18:00"],
+    description: "Tüm zaman dilimlerinde hizmet",
+  },
+  {
+    icon: Briefcase,
+    title: "Şirket Bilgileri",
+    details: ["KLEAWORK DIGITAL LLC", "EIN: 36-5157418"],
+    description: "Wyoming, USA",
+  },
+];
+
+const supportChannels = [
+  {
+    icon: Headphones,
+    title: "Teknik Destek",
+    description: "7/24 teknik destek hattı",
+    action: "Destek Talebi",
+    href: "/musteri/destek",
+  },
+  {
+    icon: MessageSquare,
+    title: "Canlı Sohbet",
+    description: "Anlık yardım alın",
+    action: "Sohbet Başlat",
+    href: "#",
+  },
+  {
+    icon: Building2,
+    title: "Kurumsal Satış",
+    description: "Özel çözümler için",
+    action: "Teklif Al",
+    href: "#",
   },
 ];
 
 const departments = [
-  { value: "satis", label: "Satış" },
-  { value: "teknik", label: "Teknik Destek" },
-  { value: "muhasebe", label: "Muhasebe" },
-  { value: "diger", label: "Diğer" },
+  { name: "Satış", email: "sales@kleacore.com", description: "Yeni projeler ve fiyatlandırma" },
+  { name: "Teknik Destek", email: "support@kleacore.com", description: "Teknik sorunlar ve yardım" },
+  { name: "Muhasebe", email: "billing@kleacore.com", description: "Fatura ve ödeme işlemleri" },
+  { name: "Genel", email: "info@kleacore.com", description: "Diğer tüm konular" },
 ];
 
-const quickLinks = [
+const features = [
+  {
+    icon: Zap,
+    title: "Hızlı Yanıt",
+    description: "Taleplerinize en geç 24 saat içinde dönüş yapıyoruz.",
+  },
+  {
+    icon: Globe,
+    title: "Global Erişim",
+    description: "Dünyanın her yerinden bize ulaşabilirsiniz.",
+  },
   {
     icon: Headphones,
-    title: "Canlı Destek",
-    description: "Anında yardım alın",
-    href: "#",
-  },
-  {
-    icon: MessageSquare,
-    title: "Destek Talebi",
-    description: "Ticket oluşturun",
-    href: "/musteri/destek",
-  },
-  {
-    icon: Building2,
-    title: "Hakkımızda",
-    description: "Bizi tanıyın",
-    href: "/hakkimizda",
+    title: "7/24 Destek",
+    description: "Teknik ekibimiz her an yanınızda.",
   },
 ];
 
 export default function IletisimPage() {
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     phone: "",
-    department: "",
     subject: "",
     message: "",
   });
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitting(true);
-
-    // Simüle edilmiş form gönderimi
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-
-    setIsSubmitting(false);
-    setIsSubmitted(true);
-  };
-
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    setFormData({ ...formData, [e.target.id]: e.target.value });
+    // Form submission logic
+    console.log(formData);
   };
 
   return (
@@ -124,31 +124,35 @@ export default function IletisimPage() {
             <BlurFade delay={0.1} inView>
               <div className="text-center mb-12">
                 <div className="inline-flex items-center gap-2 rounded-full border bg-background px-4 py-1.5 text-sm font-medium mb-4">
-                  <Mail className="h-4 w-4 text-primary" />
-                  İletişim
+                  <MessageSquare className="h-4 w-4 text-primary" />
+                  7/24 Destek
                 </div>
                 <h1 className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">
-                  Bizimle İletişime Geçin
+                  Bize Ulaşın
                 </h1>
                 <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
-                  Sorularınız, önerileriniz veya destek talepleriniz için bize
-                  ulaşın. En kısa sürede size dönüş yapacağız.
+                  Sorularınız için bize ulaşın. Sizin dilinizden konuşan ekibimiz
+                  yardımcı olmaktan mutluluk duyacaktır.
                 </p>
               </div>
             </BlurFade>
 
             {/* Contact Info Cards */}
             <BlurFade delay={0.2} inView>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto mb-16">
+              <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 max-w-6xl mx-auto">
                 {contactInfo.map((info) => (
-                  <Card
-                    key={info.title}
-                    className="text-center hover:border-primary/50 transition-colors"
-                  >
-                    <CardContent className="p-4">
-                      <info.icon className="h-6 w-6 text-primary mx-auto mb-2" />
-                      <p className="font-semibold text-sm">{info.value}</p>
-                      <p className="text-xs text-muted-foreground">
+                  <Card key={info.title} className="text-center hover:border-primary/50 transition-colors">
+                    <CardContent className="p-6">
+                      <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 mb-4">
+                        <info.icon className="h-6 w-6 text-primary" />
+                      </div>
+                      <h3 className="font-semibold mb-2">{info.title}</h3>
+                      {info.details.map((detail) => (
+                        <p key={detail} className="text-sm font-medium">
+                          {detail}
+                        </p>
+                      ))}
+                      <p className="text-xs text-muted-foreground mt-2">
                         {info.description}
                       </p>
                     </CardContent>
@@ -159,239 +163,172 @@ export default function IletisimPage() {
           </div>
         </section>
 
-        {/* Contact Form & Quick Links */}
+        {/* Features */}
+        <section className="py-12 border-b bg-muted/30">
+          <div className="container">
+            <div className="grid gap-8 md:grid-cols-3 max-w-4xl mx-auto">
+              {features.map((feature) => (
+                <div key={feature.title} className="flex items-start gap-4">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 shrink-0">
+                    <feature.icon className="h-5 w-5 text-primary" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold">{feature.title}</h3>
+                    <p className="text-sm text-muted-foreground">{feature.description}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Contact Form & Support */}
         <section className="py-16 md:py-24">
           <div className="container">
-            <div className="grid gap-12 lg:grid-cols-3 max-w-6xl mx-auto">
-              {/* Contact Form */}
-              <BlurFade delay={0.1} inView className="lg:col-span-2">
+            <div className="grid gap-12 lg:grid-cols-2 max-w-6xl mx-auto">
+              {/* Form */}
+              <BlurFade delay={0.1} inView>
                 <Card>
                   <CardHeader>
-                    <CardTitle className="flex items-center gap-2">
-                      <Send className="h-5 w-5 text-primary" />
-                      İletişim Formu
-                    </CardTitle>
+                    <CardTitle>Bize Yazın</CardTitle>
+                    <p className="text-sm text-muted-foreground">
+                      Formu doldurun, en kısa sürede size dönüş yapalım.
+                    </p>
                   </CardHeader>
                   <CardContent>
-                    {isSubmitted ? (
-                      <div className="text-center py-12">
-                        <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-green-500/10 mb-4">
-                          <CheckCircle className="h-8 w-8 text-green-500" />
+                    <form onSubmit={handleSubmit} className="space-y-4">
+                      <div className="grid gap-4 sm:grid-cols-2">
+                        <div className="space-y-2">
+                          <Label htmlFor="name">Ad Soyad</Label>
+                          <Input
+                            id="name"
+                            placeholder="Adınız Soyadınız"
+                            value={formData.name}
+                            onChange={(e) =>
+                              setFormData({ ...formData, name: e.target.value })
+                            }
+                            required
+                          />
                         </div>
-                        <h3 className="text-xl font-semibold mb-2">
-                          Mesajınız Gönderildi
-                        </h3>
-                        <p className="text-muted-foreground mb-6">
-                          En kısa sürede size dönüş yapacağız.
-                        </p>
-                        <Button
-                          variant="outline"
-                          onClick={() => {
-                            setIsSubmitted(false);
-                            setFormData({
-                              name: "",
-                              email: "",
-                              phone: "",
-                              department: "",
-                              subject: "",
-                              message: "",
-                            });
-                          }}
-                        >
-                          Yeni Mesaj Gönder
-                        </Button>
+                        <div className="space-y-2">
+                          <Label htmlFor="email">E-posta</Label>
+                          <Input
+                            id="email"
+                            type="email"
+                            placeholder="ornek@email.com"
+                            value={formData.email}
+                            onChange={(e) =>
+                              setFormData({ ...formData, email: e.target.value })
+                            }
+                            required
+                          />
+                        </div>
                       </div>
-                    ) : (
-                      <form onSubmit={handleSubmit} className="space-y-6">
-                        <div className="grid gap-4 sm:grid-cols-2">
-                          <div className="space-y-2">
-                            <Label htmlFor="name">Ad Soyad</Label>
-                            <Input
-                              id="name"
-                              placeholder="Adınız Soyadınız"
-                              value={formData.name}
-                              onChange={handleChange}
-                              required
-                              disabled={isSubmitting}
-                            />
-                          </div>
-                          <div className="space-y-2">
-                            <Label htmlFor="email">E-posta</Label>
-                            <Input
-                              id="email"
-                              type="email"
-                              placeholder="ornek@email.com"
-                              value={formData.email}
-                              onChange={handleChange}
-                              required
-                              disabled={isSubmitting}
-                            />
-                          </div>
+                      <div className="grid gap-4 sm:grid-cols-2">
+                        <div className="space-y-2">
+                          <Label htmlFor="phone">Telefon (Opsiyonel)</Label>
+                          <Input
+                            id="phone"
+                            placeholder="+90 555 123 45 67"
+                            value={formData.phone}
+                            onChange={(e) =>
+                              setFormData({ ...formData, phone: e.target.value })
+                            }
+                          />
                         </div>
-
-                        <div className="grid gap-4 sm:grid-cols-2">
-                          <div className="space-y-2">
-                            <Label htmlFor="phone">Telefon (Opsiyonel)</Label>
-                            <Input
-                              id="phone"
-                              type="tel"
-                              placeholder="0555 123 45 67"
-                              value={formData.phone}
-                              onChange={handleChange}
-                              disabled={isSubmitting}
-                            />
-                          </div>
-                          <div className="space-y-2">
-                            <Label htmlFor="department">Departman</Label>
-                            <Select
-                              value={formData.department}
-                              onValueChange={(value) =>
-                                setFormData({ ...formData, department: value })
-                              }
-                              disabled={isSubmitting}
-                            >
-                              <SelectTrigger>
-                                <SelectValue placeholder="Departman seçin" />
-                              </SelectTrigger>
-                              <SelectContent>
-                                {departments.map((dept) => (
-                                  <SelectItem key={dept.value} value={dept.value}>
-                                    {dept.label}
-                                  </SelectItem>
-                                ))}
-                              </SelectContent>
-                            </Select>
-                          </div>
-                        </div>
-
                         <div className="space-y-2">
                           <Label htmlFor="subject">Konu</Label>
                           <Input
                             id="subject"
-                            placeholder="Mesajınızın konusu"
+                            placeholder="Mesaj konusu"
                             value={formData.subject}
-                            onChange={handleChange}
+                            onChange={(e) =>
+                              setFormData({ ...formData, subject: e.target.value })
+                            }
                             required
-                            disabled={isSubmitting}
                           />
                         </div>
-
-                        <div className="space-y-2">
-                          <Label htmlFor="message">Mesajınız</Label>
-                          <Textarea
-                            id="message"
-                            placeholder="Mesajınızı buraya yazın..."
-                            rows={6}
-                            value={formData.message}
-                            onChange={handleChange}
-                            required
-                            disabled={isSubmitting}
-                          />
-                        </div>
-
-                        <Button
-                          type="submit"
-                          className="w-full"
-                          disabled={isSubmitting}
-                        >
-                          {isSubmitting ? (
-                            <>
-                              <span className="animate-spin mr-2">⏳</span>
-                              Gönderiliyor...
-                            </>
-                          ) : (
-                            <>
-                              <Send className="mr-2 h-4 w-4" />
-                              Mesaj Gönder
-                            </>
-                          )}
-                        </Button>
-                      </form>
-                    )}
+                      </div>
+                      <div className="space-y-2">
+                        <Label htmlFor="message">Mesajınız</Label>
+                        <textarea
+                          id="message"
+                          className="flex min-h-[150px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                          placeholder="Size nasıl yardımcı olabiliriz?"
+                          value={formData.message}
+                          onChange={(e) =>
+                            setFormData({ ...formData, message: e.target.value })
+                          }
+                          required
+                        />
+                      </div>
+                      <Button type="submit" className="w-full">
+                        <Send className="mr-2 h-4 w-4" />
+                        Mesaj Gönder
+                      </Button>
+                    </form>
                   </CardContent>
                 </Card>
               </BlurFade>
 
-              {/* Sidebar */}
+              {/* Support Channels & Company Info */}
               <BlurFade delay={0.2} inView>
                 <div className="space-y-6">
-                  {/* Quick Links */}
+                  {/* Quick Support */}
+                  <div className="grid gap-4 sm:grid-cols-3">
+                    {supportChannels.map((channel) => (
+                      <Card
+                        key={channel.title}
+                        className="text-center hover:border-primary/50 transition-colors cursor-pointer"
+                      >
+                        <CardContent className="p-4">
+                          <channel.icon className="h-8 w-8 text-primary mx-auto mb-2" />
+                          <h4 className="font-medium text-sm">{channel.title}</h4>
+                          <p className="text-xs text-muted-foreground mb-2">
+                            {channel.description}
+                          </p>
+                          <Button variant="link" size="sm" className="h-auto p-0" asChild>
+                            <a href={channel.href}>{channel.action}</a>
+                          </Button>
+                        </CardContent>
+                      </Card>
+                    ))}
+                  </div>
+
+                  {/* Company Info */}
                   <Card>
-                    <CardHeader>
-                      <CardTitle className="text-lg">Hızlı Erişim</CardTitle>
-                    </CardHeader>
-                    <CardContent className="space-y-3">
-                      {quickLinks.map((link) => (
-                        <a
-                          key={link.title}
-                          href={link.href}
-                          className="flex items-center gap-3 p-3 rounded-lg hover:bg-muted transition-colors"
-                        >
-                          <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 flex-shrink-0">
-                            <link.icon className="h-5 w-5 text-primary" />
+                    <CardContent className="p-6">
+                      <h3 className="font-semibold text-lg mb-4">Şirket Bilgileri</h3>
+                      <div className="space-y-4">
+                        <div>
+                          <p className="font-medium">KLEAWORK DIGITAL LLC</p>
+                          <p className="text-sm text-muted-foreground">
+                            30 N Gould St Ste R, Sheridan, WY 82801, USA
+                          </p>
+                        </div>
+                        <div className="grid grid-cols-2 gap-4 pt-4 border-t">
+                          <div>
+                            <p className="text-xs text-muted-foreground">EIN</p>
+                            <p className="text-sm font-medium">36-5157418</p>
                           </div>
                           <div>
-                            <p className="font-medium text-sm">{link.title}</p>
-                            <p className="text-xs text-muted-foreground">
-                              {link.description}
-                            </p>
+                            <p className="text-xs text-muted-foreground">Kuruluş</p>
+                            <p className="text-sm font-medium">Wyoming, USA - 2026</p>
                           </div>
-                        </a>
-                      ))}
-                    </CardContent>
-                  </Card>
-
-                  {/* Office Hours */}
-                  <Card>
-                    <CardHeader>
-                      <CardTitle className="text-lg">Ofis Saatleri</CardTitle>
-                    </CardHeader>
-                    <CardContent className="space-y-2 text-sm">
-                      <div className="flex justify-between">
-                        <span className="text-muted-foreground">
-                          Pazartesi - Cuma
-                        </span>
-                        <span className="font-medium">09:00 - 18:00</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span className="text-muted-foreground">Cumartesi</span>
-                        <span className="font-medium">10:00 - 14:00</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span className="text-muted-foreground">Pazar</span>
-                        <span className="font-medium">Kapalı</span>
-                      </div>
-                      <div className="pt-3 mt-3 border-t">
-                        <p className="text-xs text-muted-foreground">
-                          Teknik destek 7/24 aktiftir. Satış ve muhasebe
-                          departmanları mesai saatlerinde hizmet vermektedir.
-                        </p>
+                        </div>
                       </div>
                     </CardContent>
                   </Card>
 
-                  {/* Social */}
-                  <Card>
-                    <CardHeader>
-                      <CardTitle className="text-lg">Sosyal Medya</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="flex gap-3">
-                        {["Twitter", "LinkedIn", "Instagram", "YouTube"].map(
-                          (social) => (
-                            <Button
-                              key={social}
-                              variant="outline"
-                              size="icon"
-                              className="h-10 w-10"
-                            >
-                              <span className="text-xs font-medium">
-                                {social[0]}
-                              </span>
-                            </Button>
-                          )
-                        )}
-                      </div>
+                  {/* Why Us */}
+                  <Card className="bg-primary/5 border-primary/20">
+                    <CardContent className="p-6">
+                      <h3 className="font-semibold mb-2">Neden KLEACORE?</h3>
+                      <p className="text-sm text-muted-foreground">
+                        2026&apos;nın modern standartlarıyla kurulduğumuz için eski nesil
+                        hantallıklardan uzağız. Karmaşık terimlerle değil, sizin dilinizden
+                        konuşan bir destek anlayışıyla her zaman yanınızdayız.
+                      </p>
                     </CardContent>
                   </Card>
                 </div>
@@ -400,29 +337,64 @@ export default function IletisimPage() {
           </div>
         </section>
 
-        {/* Map Section */}
+        {/* Departments */}
         <section className="py-16 md:py-24 bg-muted/30">
           <div className="container">
             <BlurFade delay={0.1} inView>
-              <div className="max-w-6xl mx-auto">
-                <div className="text-center mb-8">
-                  <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">
-                    Ofisimizi Ziyaret Edin
-                  </h2>
-                  <p className="mt-2 text-muted-foreground">
-                    Maslak, İstanbul - Türkiye
-                  </p>
+              <div className="text-center mb-12">
+                <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+                  Departmanlar
+                </h2>
+                <p className="mt-4 text-muted-foreground">
+                  Doğrudan ilgili birime ulaşın
+                </p>
+              </div>
+            </BlurFade>
+
+            <BlurFade delay={0.2} inView>
+              <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 max-w-5xl mx-auto">
+                {departments.map((dept) => (
+                  <Card key={dept.name} className="hover:border-primary/50 transition-colors">
+                    <CardContent className="p-6">
+                      <h3 className="font-semibold mb-1">{dept.name}</h3>
+                      <p className="text-xs text-muted-foreground mb-3">{dept.description}</p>
+                      <div className="flex items-center gap-2 text-sm">
+                        <Mail className="h-4 w-4 text-primary" />
+                        <a
+                          href={`mailto:${dept.email}`}
+                          className="text-primary hover:underline"
+                        >
+                          {dept.email}
+                        </a>
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </BlurFade>
+          </div>
+        </section>
+
+        {/* FAQ CTA */}
+        <section className="py-16 md:py-24">
+          <div className="container">
+            <BlurFade delay={0.1} inView>
+              <div className="max-w-3xl mx-auto text-center">
+                <h2 className="text-3xl font-bold tracking-tight sm:text-4xl mb-4">
+                  Hızlı Cevaplar mı Arıyorsunuz?
+                </h2>
+                <p className="text-muted-foreground mb-8">
+                  Sık sorulan sorular ve bilgi bankamızda aradığınız cevabı
+                  bulabilirsiniz. 7/24 erişilebilir destek kaynaklarımız yanınızda.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                  <Button size="lg" className="px-8" asChild>
+                    <a href="/musteri/destek">Destek Merkezi</a>
+                  </Button>
+                  <Button size="lg" variant="outline" className="px-8" asChild>
+                    <a href="/musteri/panel">Müşteri Paneli</a>
+                  </Button>
                 </div>
-                <Card className="overflow-hidden">
-                  <div className="aspect-[21/9] bg-muted flex items-center justify-center">
-                    <div className="text-center">
-                      <MapPin className="h-12 w-12 text-muted-foreground mx-auto mb-3" />
-                      <p className="text-muted-foreground">
-                        Harita burada görüntülenecek
-                      </p>
-                    </div>
-                  </div>
-                </Card>
               </div>
             </BlurFade>
           </div>

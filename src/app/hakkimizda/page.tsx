@@ -278,7 +278,7 @@ export default function HakkimizdaPage() {
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <Button size="lg" className="px-8" asChild>
-                    <Link href="/kurumsal/iletisim">Bize Ulaşın</Link>
+                    <Link href="/iletisim">Bize Ulaşın</Link>
                   </Button>
                   <Button size="lg" variant="outline" className="px-8" asChild>
                     <Link href="/hosting/linux">Paketleri İncele</Link>

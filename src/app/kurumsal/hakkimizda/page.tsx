@@ -301,7 +301,7 @@ export default function HakkimizdaPage() {
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <a
-                    href="/kurumsal/iletisim"
+                    href="/iletisim"
                     className="inline-flex items-center justify-center rounded-lg bg-primary px-8 py-3 text-sm font-medium text-primary-foreground hover:bg-primary/90 transition-colors"
                   >
                     Bize Ulaşın
