@@ -9,6 +9,12 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import {
   Search,
   Loader2,
   User,
@@ -18,6 +24,11 @@ import {
   Globe,
   Mail,
   RefreshCw,
+  Check,
+  Shield,
+  Zap,
+  HeartHandshake,
+  Lock,
 } from "lucide-react";
 
 interface WhoisData {
@@ -348,6 +359,179 @@ export default function WhoisPage() {
             </div>
           </section>
         )}
+
+        {/* Why Choose Us */}
+        <section className="py-16 md:py-24 bg-muted/30">
+          <div className="container">
+            <BlurFade delay={0.1} inView>
+              <div className="text-center mb-12">
+                <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+                  Neden KLEACORE?
+                </h2>
+                <p className="mt-4 text-muted-foreground max-w-2xl mx-auto">
+                  Domain hizmetlerinde güvenilir çözüm ortağınız
+                </p>
+              </div>
+            </BlurFade>
+
+            <BlurFade delay={0.2} inView>
+              <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+                <div className="text-center p-6 rounded-xl bg-card border">
+                  <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-primary/10">
+                    <Search className="h-7 w-7 text-primary" />
+                  </div>
+                  <h3 className="font-semibold mb-2">Hızlı Sorgulama</h3>
+                  <p className="text-sm text-muted-foreground">
+                    Anlık WHOIS sorgu sonuçları
+                  </p>
+                </div>
+                <div className="text-center p-6 rounded-xl bg-card border">
+                  <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-green-500/10">
+                    <Shield className="h-7 w-7 text-green-500" />
+                  </div>
+                  <h3 className="font-semibold mb-2">WHOIS Gizliliği</h3>
+                  <p className="text-sm text-muted-foreground">
+                    Ücretsiz gizlilik koruması
+                  </p>
+                </div>
+                <div className="text-center p-6 rounded-xl bg-card border">
+                  <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-blue-500/10">
+                    <Globe className="h-7 w-7 text-blue-500" />
+                  </div>
+                  <h3 className="font-semibold mb-2">500+ Uzantı</h3>
+                  <p className="text-sm text-muted-foreground">
+                    Tüm popüler TLD&apos;ler desteklenir
+                  </p>
+                </div>
+                <div className="text-center p-6 rounded-xl bg-card border">
+                  <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-purple-500/10">
+                    <HeartHandshake className="h-7 w-7 text-purple-500" />
+                  </div>
+                  <h3 className="font-semibold mb-2">7/24 Destek</h3>
+                  <p className="text-sm text-muted-foreground">
+                    Uzman ekibimiz her zaman yanınızda
+                  </p>
+                </div>
+              </div>
+            </BlurFade>
+
+            <BlurFade delay={0.3} inView>
+              <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                {[
+                  "Detaylı sorgu sonuçları",
+                  "Kolay domain transfer",
+                  "Rekabetçi fiyatlar",
+                  "Anında aktivasyon",
+                  "DNS yönetimi",
+                  "Otomatik yenileme",
+                  "E-posta yönlendirme",
+                  "Güvenli ödeme",
+                ].map((item) => (
+                  <div
+                    key={item}
+                    className="flex items-center gap-3 p-3 rounded-lg bg-background border"
+                  >
+                    <Check className="h-5 w-5 text-green-500 shrink-0" />
+                    <span className="text-sm">{item}</span>
+                  </div>
+                ))}
+              </div>
+            </BlurFade>
+          </div>
+        </section>
+
+        {/* FAQ */}
+        <section className="py-16 md:py-24">
+          <div className="container">
+            <BlurFade delay={0.1} inView>
+              <div className="text-center mb-12">
+                <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+                  Sıkça Sorulan Sorular
+                </h2>
+                <p className="mt-4 text-muted-foreground max-w-2xl mx-auto">
+                  WHOIS sorgulama hakkında merak edilenler
+                </p>
+              </div>
+            </BlurFade>
+
+            <BlurFade delay={0.2} inView>
+              <div className="max-w-3xl mx-auto">
+                <Accordion type="single" collapsible className="w-full">
+                  <AccordionItem value="item-1">
+                    <AccordionTrigger>WHOIS nedir?</AccordionTrigger>
+                    <AccordionContent>
+                      WHOIS, domain adlarının kayıt bilgilerini sorgulamaya yarayan bir
+                      protokoldür. Bu sorgu ile bir domainin kime ait olduğunu, hangi
+                      kayıt firması tarafından yönetildiğini, kayıt ve bitiş tarihlerini,
+                      nameserver bilgilerini öğrenebilirsiniz.
+                    </AccordionContent>
+                  </AccordionItem>
+                  <AccordionItem value="item-2">
+                    <AccordionTrigger>WHOIS sorgusu ücretsiz mi?</AccordionTrigger>
+                    <AccordionContent>
+                      Evet, KLEACORE üzerinden WHOIS sorgulaması tamamen ücretsizdir.
+                      Dilediğiniz kadar sorgu yapabilirsiniz. Herhangi bir üyelik veya
+                      ödeme gerektirmez.
+                    </AccordionContent>
+                  </AccordionItem>
+                  <AccordionItem value="item-3">
+                    <AccordionTrigger>WHOIS gizliliği nedir?</AccordionTrigger>
+                    <AccordionContent>
+                      WHOIS gizliliği, domain sahibinin kişisel bilgilerinin (ad, adres,
+                      telefon, e-posta) WHOIS sorgularında görünmesini engelleyen bir
+                      hizmettir. KLEACORE&apos;da bu hizmet tüm domainler için ücretsizdir
+                      ve kişisel bilgileriniz &quot;REDACTED FOR PRIVACY&quot; olarak görünür.
+                    </AccordionContent>
+                  </AccordionItem>
+                  <AccordionItem value="item-4">
+                    <AccordionTrigger>Neden bazı bilgiler gizli görünüyor?</AccordionTrigger>
+                    <AccordionContent>
+                      GDPR ve diğer gizlilik düzenlemeleri nedeniyle, birçok kayıt firması
+                      domain sahiplerinin kişisel bilgilerini varsayılan olarak gizler.
+                      Bu nedenle sorgularda &quot;REDACTED FOR PRIVACY&quot; veya benzeri ifadeler
+                      görebilirsiniz.
+                    </AccordionContent>
+                  </AccordionItem>
+                  <AccordionItem value="item-5">
+                    <AccordionTrigger>Domain müsait mi nasıl anlarım?</AccordionTrigger>
+                    <AccordionContent>
+                      WHOIS sorgusu yaptığınızda &quot;Domain kayıtlı değil&quot; veya benzeri bir
+                      mesaj alırsanız, domain müsait olabilir. Kesin sonuç için domain
+                      kayıt sayfamızdan sorgulama yapmanızı öneririz.
+                    </AccordionContent>
+                  </AccordionItem>
+                  <AccordionItem value="item-6">
+                    <AccordionTrigger>Nameserver nedir?</AccordionTrigger>
+                    <AccordionContent>
+                      Nameserver (NS), domainin DNS kayıtlarını barındıran sunuculardır.
+                      Bir domain adresine erişildiğinde, nameserver&apos;lar o domainin hangi
+                      IP adresine yönlendirileceğini belirler. WHOIS sorgusunda genellikle
+                      ns1 ve ns2 şeklinde iki nameserver görürsünüz.
+                    </AccordionContent>
+                  </AccordionItem>
+                  <AccordionItem value="item-7">
+                    <AccordionTrigger>Domain durumu ne anlama gelir?</AccordionTrigger>
+                    <AccordionContent>
+                      Domain durumları (status), domainin mevcut halini gösterir.
+                      &quot;clientTransferProhibited&quot; transfer kilidini, &quot;clientDeleteProhibited&quot;
+                      silme korumasını, &quot;ok&quot; normal durumu ifade eder. Bu durumlar domainin
+                      güvenlik ayarlarını yansıtır.
+                    </AccordionContent>
+                  </AccordionItem>
+                  <AccordionItem value="item-8">
+                    <AccordionTrigger>Bir domaini nasıl transfer edebilirim?</AccordionTrigger>
+                    <AccordionContent>
+                      WHOIS sorgusunda gördüğünüz bir domaini transfer etmek için, önce
+                      mevcut kayıt firmasından EPP/Auth kodunu almanız gerekir. Ardından
+                      domain transfer sayfamızdan işlemi başlatabilirsiniz. KLEACORE&apos;a
+                      transfer edilen her domain için +1 yıl uzatma hediye edilir.
+                    </AccordionContent>
+                  </AccordionItem>
+                </Accordion>
+              </div>
+            </BlurFade>
+          </div>
+        </section>
       </main>
       <Footer />
     </div>
