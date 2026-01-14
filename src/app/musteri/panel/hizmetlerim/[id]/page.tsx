@@ -740,13 +740,17 @@ export default function HizmetDetayPage() {
                 )}
 
                 <div className="pt-4 border-t space-y-2">
-                  <Button className="w-full" variant="outline">
-                    <RefreshCcw className="mr-2 h-4 w-4" />
-                    Hizmeti Yenile
+                  <Button className="w-full" variant="outline" asChild>
+                    <Link href={`/musteri/panel/hizmetlerim/${id}/yenile`}>
+                      <RefreshCcw className="mr-2 h-4 w-4" />
+                      Hizmeti Yenile
+                    </Link>
                   </Button>
-                  <Button className="w-full" variant="outline">
-                    <CreditCard className="mr-2 h-4 w-4" />
-                    Faturayı Görüntüle
+                  <Button className="w-full" variant="outline" asChild>
+                    <Link href={`/musteri/panel/hizmetlerim/${id}/fatura`}>
+                      <CreditCard className="mr-2 h-4 w-4" />
+                      Faturayı Görüntüle
+                    </Link>
                   </Button>
                 </div>
               </CardContent>
