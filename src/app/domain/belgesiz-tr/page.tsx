@@ -10,6 +10,12 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { BorderBeam } from "@/components/magicui/border-beam";
 import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import {
   Check,
   Search,
   Loader2,
@@ -17,6 +23,9 @@ import {
   Zap,
   Clock,
   Shield,
+  HeartHandshake,
+  Globe,
+  Lock,
 } from "lucide-react";
 
 const belgesizTlds = [
@@ -301,6 +310,178 @@ export default function BelgesizTRPage() {
                     </ul>
                   </CardContent>
                 </Card>
+              </div>
+            </BlurFade>
+          </div>
+        </section>
+
+        {/* Why Choose Us */}
+        <section className="py-16 md:py-24">
+          <div className="container">
+            <BlurFade delay={0.1} inView>
+              <div className="text-center mb-12">
+                <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+                  Neden KLEACORE?
+                </h2>
+                <p className="mt-4 text-muted-foreground max-w-2xl mx-auto">
+                  Belgesiz .TR domain kaydında güvenilir çözüm ortağınız
+                </p>
+              </div>
+            </BlurFade>
+
+            <BlurFade delay={0.2} inView>
+              <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+                <div className="text-center p-6 rounded-xl bg-card border">
+                  <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-primary/10">
+                    <FileX className="h-7 w-7 text-primary" />
+                  </div>
+                  <h3 className="font-semibold mb-2">Belge Gerektirmez</h3>
+                  <p className="text-sm text-muted-foreground">
+                    Kimlik veya şirket belgesi olmadan kayıt
+                  </p>
+                </div>
+                <div className="text-center p-6 rounded-xl bg-card border">
+                  <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-green-500/10">
+                    <Zap className="h-7 w-7 text-green-500" />
+                  </div>
+                  <h3 className="font-semibold mb-2">Anında Aktivasyon</h3>
+                  <p className="text-sm text-muted-foreground">
+                    Ödeme sonrası domain hemen aktif olur
+                  </p>
+                </div>
+                <div className="text-center p-6 rounded-xl bg-card border">
+                  <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-blue-500/10">
+                    <Globe className="h-7 w-7 text-blue-500" />
+                  </div>
+                  <h3 className="font-semibold mb-2">Türkiye Uzantısı</h3>
+                  <p className="text-sm text-muted-foreground">
+                    .TR ile yerel güvenilirlik sağlayın
+                  </p>
+                </div>
+                <div className="text-center p-6 rounded-xl bg-card border">
+                  <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-purple-500/10">
+                    <HeartHandshake className="h-7 w-7 text-purple-500" />
+                  </div>
+                  <h3 className="font-semibold mb-2">7/24 Destek</h3>
+                  <p className="text-sm text-muted-foreground">
+                    Uzman ekibimiz her zaman yanınızda
+                  </p>
+                </div>
+              </div>
+            </BlurFade>
+
+            <BlurFade delay={0.3} inView>
+              <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                {[
+                  "Uygun fiyat: ₺79/yıl",
+                  "Kolay DNS yönetimi",
+                  "Ücretsiz WHOIS gizliliği",
+                  "Otomatik yenileme",
+                  "E-posta yönlendirme",
+                  "Domain kilitleme",
+                  "Hızlı kayıt süreci",
+                  "Güvenli ödeme",
+                ].map((item) => (
+                  <div
+                    key={item}
+                    className="flex items-center gap-3 p-3 rounded-lg bg-muted/50 border"
+                  >
+                    <Check className="h-5 w-5 text-green-500 shrink-0" />
+                    <span className="text-sm">{item}</span>
+                  </div>
+                ))}
+              </div>
+            </BlurFade>
+          </div>
+        </section>
+
+        {/* FAQ */}
+        <section className="py-16 md:py-24 bg-muted/30">
+          <div className="container">
+            <BlurFade delay={0.1} inView>
+              <div className="text-center mb-12">
+                <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+                  Sıkça Sorulan Sorular
+                </h2>
+                <p className="mt-4 text-muted-foreground max-w-2xl mx-auto">
+                  Belgesiz .TR domain hakkında merak edilenler
+                </p>
+              </div>
+            </BlurFade>
+
+            <BlurFade delay={0.2} inView>
+              <div className="max-w-3xl mx-auto">
+                <Accordion type="single" collapsible className="w-full">
+                  <AccordionItem value="item-1">
+                    <AccordionTrigger>Belgesiz .TR domain nedir?</AccordionTrigger>
+                    <AccordionContent>
+                      Belgesiz .TR domainler (.gen.tr, .web.tr, .tv.tr vb.), kimlik veya şirket
+                      belgesi gerektirmeden kaydedebileceğiniz Türkiye uzantılı alan adlarıdır.
+                      Normal .com.tr, .net.tr gibi uzantıların aksine herhangi bir evrak
+                      yüklemeden anında kayıt yapabilirsiniz.
+                    </AccordionContent>
+                  </AccordionItem>
+                  <AccordionItem value="item-2">
+                    <AccordionTrigger>Hangi uzantılar belge gerektirmez?</AccordionTrigger>
+                    <AccordionContent>
+                      .gen.tr, .web.tr, .tv.tr, .name.tr, .info.tr ve .bbs.tr uzantıları
+                      belge gerektirmez. Bu uzantıları herkes kimlik veya şirket belgesi
+                      olmadan kaydedebilir.
+                    </AccordionContent>
+                  </AccordionItem>
+                  <AccordionItem value="item-3">
+                    <AccordionTrigger>Kayıt işlemi ne kadar sürer?</AccordionTrigger>
+                    <AccordionContent>
+                      Belgesiz .TR domain kayıtları anında gerçekleşir. Ödemenizi tamamladıktan
+                      sonra domain adınız hemen aktif hale gelir ve kullanmaya başlayabilirsiniz.
+                      Belgeli uzantıların aksine bekleme süresi yoktur.
+                    </AccordionContent>
+                  </AccordionItem>
+                  <AccordionItem value="item-4">
+                    <AccordionTrigger>Belgesiz ve belgeli uzantılar arasındaki fark nedir?</AccordionTrigger>
+                    <AccordionContent>
+                      Belgeli uzantılar (.com.tr, .net.tr, .org.tr) için kimlik veya vergi
+                      levhası gerekir ve aktivasyon 1-2 iş günü sürer. Belgesiz uzantılar
+                      ise anında aktif olur ve evrak gerektirmez. Fonksiyonel olarak ikisi
+                      de aynı şekilde çalışır.
+                    </AccordionContent>
+                  </AccordionItem>
+                  <AccordionItem value="item-5">
+                    <AccordionTrigger>SEO açısından bir fark var mı?</AccordionTrigger>
+                    <AccordionContent>
+                      Hayır, arama motorları açısından belgeli veya belgesiz .TR uzantıları
+                      arasında bir fark yoktur. Her iki uzantı türü de Türkiye odaklı
+                      aramalarda yerel avantaj sağlar. Önemli olan domain yaşı ve içerik
+                      kalitesidir.
+                    </AccordionContent>
+                  </AccordionItem>
+                  <AccordionItem value="item-6">
+                    <AccordionTrigger>Yabancı uyruklu kişiler kaydedebilir mi?</AccordionTrigger>
+                    <AccordionContent>
+                      Evet, belgesiz .TR domainleri herkes kaydedebilir. Türk vatandaşı
+                      olmanız veya Türkiye&apos;de şirketinizin olması gerekmez. Yurt dışından
+                      da rahatlıkla kayıt yapabilirsiniz.
+                    </AccordionContent>
+                  </AccordionItem>
+                  <AccordionItem value="item-7">
+                    <AccordionTrigger>Domain süresini uzatabilir miyim?</AccordionTrigger>
+                    <AccordionContent>
+                      Evet, belgesiz .TR domainleri diğer domainler gibi yenilenebilir.
+                      Süresi dolmadan önce otomatik yenileme özelliğini aktif edebilir
+                      veya manuel olarak uzatabilirsiniz. Yenileme ücreti kayıt ücreti
+                      ile aynıdır.
+                    </AccordionContent>
+                  </AccordionItem>
+                  <AccordionItem value="item-8">
+                    <AccordionTrigger>Hangi uzantıyı tercih etmeliyim?</AccordionTrigger>
+                    <AccordionContent>
+                      .gen.tr genel kullanım için en popüler seçenektir. Web projeleri için
+                      .web.tr, kişisel siteler için .name.tr, medya ve yayıncılık için .tv.tr
+                      tercih edilebilir. Hepsi aynı fiyattır, projenize en uygun olanı
+                      seçebilirsiniz.
+                    </AccordionContent>
+                  </AccordionItem>
+                </Accordion>
               </div>
             </BlurFade>
           </div>
