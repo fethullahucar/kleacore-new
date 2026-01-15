@@ -113,7 +113,17 @@ const navItems: NavItem[] = [
     ],
   },
   { title: "Sunucular", href: "/yonetim/sunucular", icon: Server },
-  { title: "Destek", href: "/yonetim/destek", icon: Headphones },
+  {
+    title: "Destek",
+    href: "/yonetim/destek",
+    icon: Headphones,
+    children: [
+      { title: "Genel Bakış", href: "/yonetim/destek", icon: LayoutDashboard },
+      { title: "Açık Talepler", href: "/yonetim/destek?status=open", icon: Clock },
+      { title: "Yanıt Bekleyen", href: "/yonetim/destek?status=waiting", icon: Timer },
+      { title: "Kapalı Talepler", href: "/yonetim/destek?status=closed", icon: CheckCircle },
+    ],
+  },
   {
     title: "Faturalar",
     href: "/yonetim/faturalar",
