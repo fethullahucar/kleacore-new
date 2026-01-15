@@ -13,16 +13,13 @@ import {
   BarChart3,
   PieChart,
   FileText,
+  ArrowUpRight,
+  ArrowDownRight,
+  Server,
+  ShoppingCart,
 } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { cn } from "@/lib/utils";
 import { BlurFade } from "@/components/magicui/blur-fade";
@@ -72,53 +69,82 @@ const maxRevenue = Math.max(...revenueData.map((d) => d.revenue));
 export default function ReportsPage() {
   const [period, setPeriod] = useState("6months");
 
+  const periodFilters = [
+    { value: "7days", label: "Son 7 Gün" },
+    { value: "30days", label: "Son 30 Gün" },
+    { value: "3months", label: "Son 3 Ay" },
+    { value: "6months", label: "Son 6 Ay" },
+    { value: "1year", label: "Son 1 Yıl" },
+  ];
+
   return (
     <div className="space-y-6">
       {/* Page Header */}
       <BlurFade delay={0}>
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div>
             <h1 className="text-2xl font-bold text-zinc-900 dark:text-white">Raporlar</h1>
-            <p className="text-zinc-600 dark:text-zinc-400">İş performansınızı analiz edin</p>
+            <p className="text-sm text-zinc-600 dark:text-zinc-400 mt-1">
+              İş performansınızı analiz edin ve detaylı raporlar görüntüleyin
+            </p>
           </div>
-          <div className="flex items-center gap-3">
-            <Select value={period} onValueChange={setPeriod}>
-              <SelectTrigger className="w-[160px] bg-zinc-100 dark:bg-zinc-200 dark:bg-zinc-800 border-zinc-300 dark:border-zinc-700 text-zinc-900 dark:text-white">
-                <Calendar className="mr-2 h-4 w-4" />
-                <SelectValue placeholder="Dönem" />
-              </SelectTrigger>
-              <SelectContent className="bg-white dark:bg-zinc-900 border-zinc-200 dark:border-zinc-800">
-                <SelectItem value="7days">Son 7 Gün</SelectItem>
-                <SelectItem value="30days">Son 30 Gün</SelectItem>
-                <SelectItem value="3months">Son 3 Ay</SelectItem>
-                <SelectItem value="6months">Son 6 Ay</SelectItem>
-                <SelectItem value="1year">Son 1 Yıl</SelectItem>
-              </SelectContent>
-            </Select>
-            <Button variant="outline" className="border-zinc-300 dark:border-zinc-700 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white">
-              <Download className="mr-2 h-4 w-4" />
-              Rapor İndir
+          <Button className="bg-primary hover:bg-primary/90">
+            <Download className="h-4 w-4 mr-2" />
+            Rapor İndir
+          </Button>
+        </div>
+      </BlurFade>
+
+      {/* Period Filter */}
+      <BlurFade delay={0.05}>
+        <div className="flex items-center gap-2 overflow-x-auto scrollbar-hide">
+          {periodFilters.map((filter) => (
+            <Button
+              key={filter.value}
+              variant={period === filter.value ? "default" : "outline"}
+              onClick={() => setPeriod(filter.value)}
+              className={cn(
+                "whitespace-nowrap",
+                period === filter.value
+                  ? "bg-primary hover:bg-primary/90"
+                  : "bg-white dark:bg-zinc-900 border-zinc-200 dark:border-zinc-800 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800"
+              )}
+            >
+              <Calendar className="h-4 w-4 mr-2" />
+              {filter.label}
             </Button>
-          </div>
+          ))}
         </div>
       </BlurFade>
 
       <BlurFade delay={0.1}>
       <Tabs defaultValue="revenue" className="w-full">
-        <TabsList className="bg-zinc-100 dark:bg-zinc-200 dark:bg-zinc-800 border border-zinc-300 dark:border-zinc-700">
-          <TabsTrigger value="revenue" className="data-[state=active]:bg-zinc-200 dark:data-[state=active]:bg-zinc-700">
+        <TabsList className="bg-zinc-50 dark:bg-zinc-900/50 border border-zinc-200 dark:border-zinc-800 p-1">
+          <TabsTrigger
+            value="revenue"
+            className="data-[state=active]:bg-white data-[state=active]:dark:bg-zinc-800 data-[state=active]:shadow-sm"
+          >
             <DollarSign className="mr-2 h-4 w-4" />
             Gelir
           </TabsTrigger>
-          <TabsTrigger value="customers" className="data-[state=active]:bg-zinc-200 dark:data-[state=active]:bg-zinc-700">
+          <TabsTrigger
+            value="customers"
+            className="data-[state=active]:bg-white data-[state=active]:dark:bg-zinc-800 data-[state=active]:shadow-sm"
+          >
             <Users className="mr-2 h-4 w-4" />
             Müşteriler
           </TabsTrigger>
-          <TabsTrigger value="services" className="data-[state=active]:bg-zinc-200 dark:data-[state=active]:bg-zinc-700">
+          <TabsTrigger
+            value="services"
+            className="data-[state=active]:bg-white data-[state=active]:dark:bg-zinc-800 data-[state=active]:shadow-sm"
+          >
             <Package className="mr-2 h-4 w-4" />
             Hizmetler
           </TabsTrigger>
-          <TabsTrigger value="support" className="data-[state=active]:bg-zinc-200 dark:data-[state=active]:bg-zinc-700">
+          <TabsTrigger
+            value="support"
+            className="data-[state=active]:bg-white data-[state=active]:dark:bg-zinc-800 data-[state=active]:shadow-sm"
+          >
             <Headphones className="mr-2 h-4 w-4" />
             Destek
           </TabsTrigger>
@@ -129,46 +155,71 @@ export default function ReportsPage() {
           {/* Summary Cards */}
           <div className="grid gap-4 md:grid-cols-4">
             <Card className="bg-white dark:bg-zinc-900 border-zinc-200 dark:border-zinc-800">
-              <CardContent className="p-4">
+              <CardContent className="p-6">
                 <div className="flex items-center justify-between">
-                  <DollarSign className="h-5 w-5 text-zinc-500" />
-                  <div className="flex items-center gap-1 text-green-500">
-                    <TrendingUp className="h-4 w-4" />
-                    <span className="text-sm">+18%</span>
+                  <div className="p-3 rounded-lg bg-green-500/10">
+                    <DollarSign className="h-6 w-6 text-green-500" />
+                  </div>
+                  <div className="flex items-center gap-1 text-sm font-medium text-green-500">
+                    <ArrowUpRight className="h-4 w-4" />
+                    +18%
                   </div>
                 </div>
-                <p className="mt-2 text-2xl font-bold text-zinc-900 dark:text-white">₺1.392.750</p>
-                <p className="text-sm text-zinc-600 dark:text-zinc-400">Toplam Gelir</p>
+                <div className="mt-4">
+                  <p className="text-sm text-zinc-600 dark:text-zinc-400">Toplam Gelir</p>
+                  <p className="text-2xl font-bold text-zinc-900 dark:text-white mt-1">₺1.392.750</p>
+                </div>
               </CardContent>
             </Card>
             <Card className="bg-white dark:bg-zinc-900 border-zinc-200 dark:border-zinc-800">
-              <CardContent className="p-4">
+              <CardContent className="p-6">
                 <div className="flex items-center justify-between">
-                  <TrendingDown className="h-5 w-5 text-zinc-500" />
-                  <span className="text-xs text-zinc-500">6 ay</span>
+                  <div className="p-3 rounded-lg bg-red-500/10">
+                    <TrendingDown className="h-6 w-6 text-red-500" />
+                  </div>
+                  <div className="flex items-center gap-1 text-sm font-medium text-red-500">
+                    <ArrowDownRight className="h-4 w-4" />
+                    +12%
+                  </div>
                 </div>
-                <p className="mt-2 text-2xl font-bold text-zinc-900 dark:text-white">₺300.000</p>
-                <p className="text-sm text-zinc-600 dark:text-zinc-400">Toplam Gider</p>
+                <div className="mt-4">
+                  <p className="text-sm text-zinc-600 dark:text-zinc-400">Toplam Gider</p>
+                  <p className="text-2xl font-bold text-zinc-900 dark:text-white mt-1">₺300.000</p>
+                </div>
               </CardContent>
             </Card>
             <Card className="bg-white dark:bg-zinc-900 border-zinc-200 dark:border-zinc-800">
-              <CardContent className="p-4">
+              <CardContent className="p-6">
                 <div className="flex items-center justify-between">
-                  <BarChart3 className="h-5 w-5 text-zinc-500" />
-                  <span className="text-xs text-green-500">%78</span>
+                  <div className="p-3 rounded-lg bg-blue-500/10">
+                    <BarChart3 className="h-6 w-6 text-blue-500" />
+                  </div>
+                  <div className="flex items-center gap-1 text-sm font-medium text-green-500">
+                    <ArrowUpRight className="h-4 w-4" />
+                    +21%
+                  </div>
                 </div>
-                <p className="mt-2 text-2xl font-bold text-zinc-900 dark:text-white">₺1.092.750</p>
-                <p className="text-sm text-zinc-600 dark:text-zinc-400">Net Kar</p>
+                <div className="mt-4">
+                  <p className="text-sm text-zinc-600 dark:text-zinc-400">Net Kar</p>
+                  <p className="text-2xl font-bold text-zinc-900 dark:text-white mt-1">₺1.092.750</p>
+                </div>
               </CardContent>
             </Card>
             <Card className="bg-white dark:bg-zinc-900 border-zinc-200 dark:border-zinc-800">
-              <CardContent className="p-4">
+              <CardContent className="p-6">
                 <div className="flex items-center justify-between">
-                  <FileText className="h-5 w-5 text-zinc-500" />
-                  <span className="text-xs text-zinc-500">Aylık ort.</span>
+                  <div className="p-3 rounded-lg bg-purple-500/10">
+                    <FileText className="h-6 w-6 text-purple-500" />
+                  </div>
+                  <div className="flex items-center gap-1 text-sm font-medium text-green-500">
+                    <ArrowUpRight className="h-4 w-4" />
+                    +15%
+                  </div>
                 </div>
-                <p className="mt-2 text-2xl font-bold text-zinc-900 dark:text-white">₺232.125</p>
-                <p className="text-sm text-zinc-600 dark:text-zinc-400">Ortalama Gelir</p>
+                <div className="mt-4">
+                  <p className="text-sm text-zinc-600 dark:text-zinc-400">Aylık Ortalama</p>
+                  <p className="text-2xl font-bold text-zinc-900 dark:text-white mt-1">₺232.125</p>
+                </div>
               </CardContent>
             </Card>
           </div>
@@ -204,7 +255,7 @@ export default function ReportsPage() {
                   </div>
                 ))}
               </div>
-              <div className="flex items-center justify-center gap-6 mt-4 pt-4 border-t border-zinc-800">
+              <div className="flex items-center justify-center gap-6 mt-4 pt-4 border-t border-zinc-200 dark:border-zinc-800">
                 <div className="flex items-center gap-2">
                   <div className="h-3 w-3 rounded bg-primary" />
                   <span className="text-sm text-zinc-600 dark:text-zinc-400">Gelir</span>
@@ -250,15 +301,15 @@ export default function ReportsPage() {
                 <CardTitle className="text-zinc-900 dark:text-white">Müşteri Metrikleri</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
-                <div className="flex items-center justify-between p-3 rounded-lg bg-zinc-100 dark:bg-zinc-200 dark:bg-zinc-800/50">
+                <div className="flex items-center justify-between p-3 rounded-lg bg-zinc-50 dark:bg-zinc-800/50">
                   <span className="text-sm text-zinc-600 dark:text-zinc-400">Büyüme Oranı</span>
                   <span className="text-sm font-medium text-green-500">+{customerStats.growthRate}%</span>
                 </div>
-                <div className="flex items-center justify-between p-3 rounded-lg bg-zinc-100 dark:bg-zinc-200 dark:bg-zinc-800/50">
+                <div className="flex items-center justify-between p-3 rounded-lg bg-zinc-50 dark:bg-zinc-800/50">
                   <span className="text-sm text-zinc-600 dark:text-zinc-400">Ort. Müşteri Ömrü</span>
                   <span className="text-sm font-medium text-zinc-900 dark:text-white">{customerStats.avgLifetime}</span>
                 </div>
-                <div className="flex items-center justify-between p-3 rounded-lg bg-zinc-100 dark:bg-zinc-200 dark:bg-zinc-800/50">
+                <div className="flex items-center justify-between p-3 rounded-lg bg-zinc-50 dark:bg-zinc-800/50">
                   <span className="text-sm text-zinc-600 dark:text-zinc-400">Ort. Müşteri Değeri</span>
                   <span className="text-sm font-medium text-zinc-900 dark:text-white">{customerStats.avgRevenue}</span>
                 </div>
@@ -334,19 +385,19 @@ export default function ReportsPage() {
                 <CardTitle className="text-zinc-900 dark:text-white">Hizmet İstatistikleri</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
-                <div className="flex items-center justify-between p-3 rounded-lg bg-zinc-100 dark:bg-zinc-200 dark:bg-zinc-800/50">
+                <div className="flex items-center justify-between p-3 rounded-lg bg-zinc-50 dark:bg-zinc-800/50">
                   <span className="text-sm text-zinc-600 dark:text-zinc-400">Toplam Aktif Hizmet</span>
                   <span className="text-sm font-medium text-zinc-900 dark:text-white">4,521</span>
                 </div>
-                <div className="flex items-center justify-between p-3 rounded-lg bg-zinc-100 dark:bg-zinc-200 dark:bg-zinc-800/50">
+                <div className="flex items-center justify-between p-3 rounded-lg bg-zinc-50 dark:bg-zinc-800/50">
                   <span className="text-sm text-zinc-600 dark:text-zinc-400">Bu Ay Yeni Satış</span>
                   <span className="text-sm font-medium text-green-500">+342</span>
                 </div>
-                <div className="flex items-center justify-between p-3 rounded-lg bg-zinc-100 dark:bg-zinc-200 dark:bg-zinc-800/50">
+                <div className="flex items-center justify-between p-3 rounded-lg bg-zinc-50 dark:bg-zinc-800/50">
                   <span className="text-sm text-zinc-600 dark:text-zinc-400">Yenileme Oranı</span>
                   <span className="text-sm font-medium text-zinc-900 dark:text-white">87.5%</span>
                 </div>
-                <div className="flex items-center justify-between p-3 rounded-lg bg-zinc-100 dark:bg-zinc-200 dark:bg-zinc-800/50">
+                <div className="flex items-center justify-between p-3 rounded-lg bg-zinc-50 dark:bg-zinc-800/50">
                   <span className="text-sm text-zinc-600 dark:text-zinc-400">İptal Oranı</span>
                   <span className="text-sm font-medium text-red-500">2.3%</span>
                 </div>
@@ -395,7 +446,7 @@ export default function ReportsPage() {
             <CardContent>
               <div className="space-y-3">
                 {supportStats.topIssues.map((item, index) => (
-                  <div key={item.issue} className="flex items-center gap-4 p-3 rounded-lg bg-zinc-100 dark:bg-zinc-200 dark:bg-zinc-800/50">
+                  <div key={item.issue} className="flex items-center gap-4 p-3 rounded-lg bg-zinc-50 dark:bg-zinc-800/50">
                     <span className="text-lg font-bold text-zinc-500 w-6">{index + 1}</span>
                     <span className="flex-1 text-sm text-zinc-700 dark:text-zinc-300">{item.issue}</span>
                     <span className="text-sm font-medium text-zinc-900 dark:text-white">{item.count} talep</span>
