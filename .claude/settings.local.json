@@ -29,7 +29,12 @@
       "Bash(pnpm update:*)",
       "Bash(find:*)",
       "Bash(ls -la \"C:\\\\Users\\\\User\\\\Desktop\\\\theme\\\\src\\\\app\\\\musteri\\\\panel\"\" | grep -E \"page.tsx)",
-      "Bash(^w \")"
+      "Bash(^w \")",
+      "Bash(npm run build:*)",
+      "Bash(git stash:*)",
+      "Bash(git commit -m \"$\\(cat <<''EOF''\nAdd comprehensive admin panel improvements with dark mode support\n\n- Update all admin pages with consistent dark mode styling\n- Add status filter buttons with counts for müşteriler, faturalar, hizmetler sections\n- Add dropdown menus for row actions across all data tables\n- Create complete hizmetler \\(services\\) section with subpages\n- Create complete faturalar \\(invoices\\) section with subpages\n- Create complete müşteriler \\(customers\\) section with subpages\n- Create siparisler \\(orders\\) section\n- Add BlurFade animations for smooth page transitions\n- Update admin components \\(sidebar, header, footer\\) with dark mode\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>\nEOF\n\\)\")",
+      "Bash(ls:*)",
+      "Bash(echo:*)"
     ]
   }
 }

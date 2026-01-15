@@ -85,7 +85,7 @@ const quickLinks = [
   { title: "Paketler", href: "/yonetim/urunler/paketler", icon: Box, count: 40 },
   { title: "Özellikler", href: "/yonetim/urunler/ozellikler", icon: Tag, count: 19 },
   { title: "Promosyonlar", href: "/yonetim/urunler/promosyonlar", icon: Percent, count: 4 },
-  { title: "Siparişler", href: "/yonetim/urunler/siparisler", icon: ShoppingCart, count: 156 },
+  { title: "Siparişler", href: "/yonetim/siparisler", icon: ShoppingCart, count: 156 },
 ];
 
 const stats = [
@@ -104,7 +104,7 @@ const stats = [
     icon: Clock,
     color: "text-yellow-500",
     bgColor: "bg-yellow-500/10",
-    href: "/yonetim/urunler/siparisler?durum=pending",
+    href: "/yonetim/siparisler?durum=pending",
   },
   {
     title: "Bugün Tamamlanan",
@@ -235,7 +235,7 @@ export default function ProductsDashboardPage() {
                 size="sm"
                 className="text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white"
               >
-                <Link href="/yonetim/urunler/siparisler">
+                <Link href="/yonetim/siparisler">
                   Tümünü Gör
                   <ArrowUpRight className="ml-1 h-4 w-4" />
                 </Link>
@@ -255,7 +255,7 @@ export default function ProductsDashboardPage() {
                       <div className="flex items-center gap-3">
                         <div className="flex flex-col">
                           <Link
-                            href={`/yonetim/urunler/siparisler/${order.id}`}
+                            href={`/yonetim/siparisler/${order.id}`}
                             className="text-sm font-mono text-primary hover:underline"
                           >
                             {order.orderNumber}

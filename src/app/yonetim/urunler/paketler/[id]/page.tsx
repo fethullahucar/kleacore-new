@@ -517,7 +517,7 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
                   </CardDescription>
                 </div>
                 <Button asChild variant="outline" className="border-zinc-700 text-zinc-300 hover:bg-zinc-800">
-                  <Link href={`/yonetim/urunler/siparisler?urun=${product.id}`}>
+                  <Link href={`/yonetim/siparisler?urun=${product.id}`}>
                     Tümünü Gör
                   </Link>
                 </Button>
@@ -546,7 +546,7 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
                           >
                             <td className="p-3">
                               <Link
-                                href={`/yonetim/urunler/siparisler/${order.id}`}
+                                href={`/yonetim/siparisler/${order.id}`}
                                 className="text-sm font-mono text-primary hover:underline"
                               >
                                 {order.orderNumber}

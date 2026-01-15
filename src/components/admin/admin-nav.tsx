@@ -33,6 +33,8 @@ import {
   AlertTriangle,
   FilePlus,
   Receipt,
+  Package,
+  PlusCircle,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import {
@@ -95,6 +97,19 @@ const navItems: NavItem[] = [
       { title: "Yükseltme/Düşürme", href: "/yonetim/siparisler/yukseltme-dusurme", icon: ArrowUpDown },
       { title: "Eklentiler", href: "/yonetim/siparisler/eklentiler", icon: Puzzle },
       { title: "İptal Talepleri", href: "/yonetim/siparisler/iptal-talepleri", icon: MessageSquareX },
+    ],
+  },
+  {
+    title: "Hizmetler",
+    href: "/yonetim/hizmetler",
+    icon: Package,
+    children: [
+      { title: "Genel Bakış", href: "/yonetim/hizmetler", icon: LayoutDashboard },
+      { title: "Tüm Hizmetler", href: "/yonetim/hizmetler/tum-hizmetler", icon: Package },
+      { title: "Aktif", href: "/yonetim/hizmetler/aktif", icon: CheckCircle },
+      { title: "Askıda", href: "/yonetim/hizmetler/askida", icon: Pause },
+      { title: "İptal Edilen", href: "/yonetim/hizmetler/iptal", icon: XCircle },
+      { title: "Hizmet Ekle", href: "/yonetim/hizmet-ekle", icon: PlusCircle },
     ],
   },
   { title: "Sunucular", href: "/yonetim/sunucular", icon: Server },

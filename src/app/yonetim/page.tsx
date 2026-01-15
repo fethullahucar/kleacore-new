@@ -145,7 +145,7 @@ const middleStats = [
     icon: ShoppingCart,
     color: "text-blue-500",
     bgColor: "bg-blue-500/10",
-    href: "/yonetim/urunler/siparisler?durum=processing",
+    href: "/yonetim/siparisler?durum=processing",
   },
   {
     title: "Hatırlatma",
@@ -289,7 +289,7 @@ export default function AdminDashboard() {
           <CardHeader className="flex flex-row items-center justify-between">
             <CardTitle className="text-zinc-900 dark:text-white">Son Siparişler</CardTitle>
             <Button asChild variant="ghost" size="sm" className="text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white">
-              <Link href="/yonetim/urunler/siparisler">
+              <Link href="/yonetim/siparisler">
                 Tümünü Gör
                 <ArrowUpRight className="ml-1 h-4 w-4" />
               </Link>
@@ -349,7 +349,7 @@ export default function AdminDashboard() {
                       </td>
                       <td className="py-3 text-right">
                         <Link
-                          href={`/yonetim/urunler/siparisler/${order.id}`}
+                          href={`/yonetim/siparisler/${order.id}`}
                           className="inline-flex items-center justify-center h-8 w-8 rounded-lg bg-zinc-100 dark:bg-zinc-800 hover:bg-zinc-200 dark:hover:bg-zinc-700 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors"
                         >
                           <Search className="h-4 w-4" />
