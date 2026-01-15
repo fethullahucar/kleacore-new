@@ -369,7 +369,7 @@ export default function PromotionsPage() {
                   className={cn(
                     "ml-2",
                     isActive
-                      ? "bg-white/20 text-white"
+                      ? "bg-white dark:bg-zinc-900 text-primary"
                       : "bg-zinc-200 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400"
                   )}
                 >

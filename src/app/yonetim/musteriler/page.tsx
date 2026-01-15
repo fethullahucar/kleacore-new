@@ -248,9 +248,9 @@ export default function CustomersPage() {
             >
               {filter.label}
               <span className={cn(
-                "ml-2 px-1.5 py-0.5 rounded text-xs",
+                "ml-2 px-1.5 py-0.5 rounded text-xs font-medium",
                 statusFilter === filter.value
-                  ? "bg-white/20 text-white"
+                  ? "bg-white dark:bg-zinc-900 text-primary"
                   : filter.color || "bg-zinc-200 dark:bg-zinc-700 text-zinc-600 dark:text-zinc-400"
               )}>
                 {filter.count}
