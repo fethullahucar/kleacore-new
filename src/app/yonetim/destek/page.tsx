@@ -157,8 +157,8 @@ export default function SupportPage() {
       <BlurFade delay={0}>
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-2xl font-bold text-white">Destek Talepleri</h1>
-            <p className="text-zinc-400">Müşteri destek taleplerini yönetin</p>
+            <h1 className="text-2xl font-bold text-zinc-900 dark:text-white">Destek Talepleri</h1>
+            <p className="text-zinc-600 dark:text-zinc-400">Müşteri destek taleplerini yönetin</p>
           </div>
         </div>
       </BlurFade>
@@ -167,14 +167,14 @@ export default function SupportPage() {
       <div className="grid gap-4 md:grid-cols-4">
         {stats.map((stat, index) => (
           <BlurFade key={stat.title} delay={0.1 + index * 0.05}>
-            <Card className="bg-zinc-900 border-zinc-800 hover:border-zinc-700 transition-colors">
+            <Card className="bg-white dark:bg-zinc-900 border-zinc-200 dark:border-zinc-800 hover:border-zinc-300 dark:hover:border-zinc-700 transition-colors">
               <CardContent className="p-4">
                 <div className="flex items-center justify-between">
                   <stat.icon className="h-5 w-5 text-zinc-500" />
                   <span className="text-xs text-zinc-500">{stat.change}</span>
                 </div>
-                <p className="mt-2 text-2xl font-bold text-white">{stat.value}</p>
-                <p className="text-sm text-zinc-400">{stat.title}</p>
+                <p className="mt-2 text-2xl font-bold text-zinc-900 dark:text-white">{stat.value}</p>
+                <p className="text-sm text-zinc-600 dark:text-zinc-400">{stat.title}</p>
               </CardContent>
             </Card>
           </BlurFade>
@@ -183,16 +183,16 @@ export default function SupportPage() {
 
       {/* Filters */}
       <BlurFade delay={0.3}>
-        <Card className="bg-zinc-900 border-zinc-800">
+        <Card className="bg-white dark:bg-zinc-900 border-zinc-200 dark:border-zinc-800">
           <CardContent className="p-4">
             <div className="flex flex-col sm:flex-row gap-4">
               <div className="flex items-center gap-2">
                 <Select value={statusFilter} onValueChange={setStatusFilter}>
-                  <SelectTrigger className="w-[150px] bg-zinc-800 border-zinc-700 text-white">
+                  <SelectTrigger className="w-[150px] bg-zinc-100 dark:bg-zinc-800 border-zinc-300 dark:border-zinc-700 text-zinc-900 dark:text-white">
                     <Filter className="mr-2 h-4 w-4" />
                     <SelectValue placeholder="Durum" />
                   </SelectTrigger>
-                  <SelectContent className="bg-zinc-900 border-zinc-800">
+                  <SelectContent className="bg-white dark:bg-zinc-900 border-zinc-200 dark:border-zinc-800">
                     <SelectItem value="all">Tüm Durumlar</SelectItem>
                     <SelectItem value="open">Açık</SelectItem>
                     <SelectItem value="waiting">Yanıt Bekliyor</SelectItem>
@@ -200,10 +200,10 @@ export default function SupportPage() {
                   </SelectContent>
                 </Select>
                 <Select value={priorityFilter} onValueChange={setPriorityFilter}>
-                  <SelectTrigger className="w-[130px] bg-zinc-800 border-zinc-700 text-white">
+                  <SelectTrigger className="w-[130px] bg-zinc-100 dark:bg-zinc-800 border-zinc-300 dark:border-zinc-700 text-zinc-900 dark:text-white">
                     <SelectValue placeholder="Öncelik" />
                   </SelectTrigger>
-                  <SelectContent className="bg-zinc-900 border-zinc-800">
+                  <SelectContent className="bg-white dark:bg-zinc-900 border-zinc-200 dark:border-zinc-800">
                     <SelectItem value="all">Tüm Öncelik</SelectItem>
                     <SelectItem value="high">Yüksek</SelectItem>
                     <SelectItem value="medium">Orta</SelectItem>
@@ -218,7 +218,7 @@ export default function SupportPage() {
                   placeholder="Talep no, konu veya müşteri ara..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="pl-10 bg-zinc-800 border-zinc-700 text-white placeholder:text-zinc-500"
+                  className="pl-10 bg-zinc-100 dark:bg-zinc-800 border-zinc-300 dark:border-zinc-700 text-zinc-900 dark:text-white placeholder:text-zinc-500"
                 />
               </div>
             </div>
@@ -228,32 +228,32 @@ export default function SupportPage() {
 
       {/* Table */}
       <BlurFade delay={0.4}>
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-white dark:bg-zinc-900 border-zinc-200 dark:border-zinc-800">
         <CardContent className="p-0">
           <div className="overflow-x-auto">
             <table className="w-full">
               <thead>
-                <tr className="border-b border-zinc-800">
-                  <th className="text-left p-4 text-sm font-medium text-zinc-400">Talep</th>
-                  <th className="text-left p-4 text-sm font-medium text-zinc-400">Müşteri</th>
-                  <th className="text-left p-4 text-sm font-medium text-zinc-400">Departman</th>
-                  <th className="text-left p-4 text-sm font-medium text-zinc-400">Öncelik</th>
-                  <th className="text-left p-4 text-sm font-medium text-zinc-400">Durum</th>
-                  <th className="text-left p-4 text-sm font-medium text-zinc-400">Atanan</th>
-                  <th className="text-left p-4 text-sm font-medium text-zinc-400">Son Yanıt</th>
-                  <th className="text-right p-4 text-sm font-medium text-zinc-400">İşlemler</th>
+                <tr className="border-b border-zinc-200 dark:border-zinc-800">
+                  <th className="text-left p-4 text-sm font-medium text-zinc-600 dark:text-zinc-400">Talep</th>
+                  <th className="text-left p-4 text-sm font-medium text-zinc-600 dark:text-zinc-400">Müşteri</th>
+                  <th className="text-left p-4 text-sm font-medium text-zinc-600 dark:text-zinc-400">Departman</th>
+                  <th className="text-left p-4 text-sm font-medium text-zinc-600 dark:text-zinc-400">Öncelik</th>
+                  <th className="text-left p-4 text-sm font-medium text-zinc-600 dark:text-zinc-400">Durum</th>
+                  <th className="text-left p-4 text-sm font-medium text-zinc-600 dark:text-zinc-400">Atanan</th>
+                  <th className="text-left p-4 text-sm font-medium text-zinc-600 dark:text-zinc-400">Son Yanıt</th>
+                  <th className="text-right p-4 text-sm font-medium text-zinc-600 dark:text-zinc-400">İşlemler</th>
                 </tr>
               </thead>
               <tbody>
                 {filteredTickets.map((ticket) => (
                   <tr
                     key={ticket.id}
-                    className="border-b border-zinc-800 hover:bg-zinc-800/50 transition-colors"
+                    className="border-b border-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-800/50 transition-colors"
                   >
                     <td className="p-4">
                       <Link
                         href={`/yonetim/destek/${ticket.id}`}
-                        className="text-sm font-medium text-white hover:text-primary"
+                        className="text-sm font-medium text-zinc-900 dark:text-white hover:text-primary"
                       >
                         {ticket.subject}
                       </Link>
@@ -266,13 +266,13 @@ export default function SupportPage() {
                     <td className="p-4">
                       <Link
                         href={`/yonetim/musteriler/${ticket.customerId}`}
-                        className="text-sm text-zinc-400 hover:text-white"
+                        className="text-sm text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white"
                       >
                         {ticket.customer}
                       </Link>
                     </td>
                     <td className="p-4">
-                      <span className="text-sm text-zinc-400">{ticket.department}</span>
+                      <span className="text-sm text-zinc-600 dark:text-zinc-400">{ticket.department}</span>
                     </td>
                     <td className="p-4">
                       <span className={cn(
@@ -289,22 +289,22 @@ export default function SupportPage() {
                     </td>
                     <td className="p-4">
                       {ticket.assignedTo ? (
-                        <span className="text-sm text-zinc-300">{ticket.assignedTo}</span>
+                        <span className="text-sm text-zinc-700 dark:text-zinc-300">{ticket.assignedTo}</span>
                       ) : (
                         <span className="text-sm text-zinc-500">Atanmamış</span>
                       )}
                     </td>
                     <td className="p-4">
-                      <span className="text-sm text-zinc-400">{ticket.lastReply}</span>
+                      <span className="text-sm text-zinc-600 dark:text-zinc-400">{ticket.lastReply}</span>
                     </td>
                     <td className="p-4 text-right">
                       <DropdownMenu>
                         <DropdownMenuTrigger asChild>
-                          <Button variant="ghost" size="icon" className="text-zinc-400 hover:text-white">
+                          <Button variant="ghost" size="icon" className="text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white">
                             <MoreVertical className="h-4 w-4" />
                           </Button>
                         </DropdownMenuTrigger>
-                        <DropdownMenuContent align="end" className="bg-zinc-900 border-zinc-800">
+                        <DropdownMenuContent align="end" className="bg-white dark:bg-zinc-900 border-zinc-200 dark:border-zinc-800">
                           <DropdownMenuItem asChild className="cursor-pointer">
                             <Link href={`/yonetim/destek/${ticket.id}`}>
                               <Eye className="mr-2 h-4 w-4" />
@@ -315,7 +315,7 @@ export default function SupportPage() {
                             <User className="mr-2 h-4 w-4" />
                             Bana Ata
                           </DropdownMenuItem>
-                          <DropdownMenuSeparator className="bg-zinc-800" />
+                          <DropdownMenuSeparator className="bg-zinc-200 dark:bg-zinc-800" />
                           {ticket.status !== "closed" ? (
                             <DropdownMenuItem className="cursor-pointer text-green-400">
                               <CheckCircle className="mr-2 h-4 w-4" />

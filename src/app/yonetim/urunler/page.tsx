@@ -148,8 +148,8 @@ export default function ProductsDashboardPage() {
       <BlurFade delay={0}>
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-2xl font-bold text-white">Ürün Yönetimi</h1>
-            <p className="text-zinc-400">Ürünler, siparişler ve promosyonlar</p>
+            <h1 className="text-2xl font-bold text-zinc-900 dark:text-white">Ürün Yönetimi</h1>
+            <p className="text-zinc-600 dark:text-zinc-400">Ürünler, siparişler ve promosyonlar</p>
           </div>
           <Button asChild className="bg-primary hover:bg-primary/90">
             <Link href="/yonetim/urunler/paketler/yeni">
@@ -164,7 +164,7 @@ export default function ProductsDashboardPage() {
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         {stats.map((stat, index) => (
           <BlurFade key={stat.title} delay={0.1 + index * 0.05}>
-            <Card className="bg-zinc-900 border-zinc-800 hover:border-zinc-700 transition-colors">
+            <Card className="bg-white dark:bg-zinc-900 border-zinc-200 dark:border-zinc-800 hover:border-zinc-300 dark:hover:border-zinc-700 transition-colors">
               {stat.href ? (
                 <Link href={stat.href}>
                   <CardContent className="p-4">
@@ -174,8 +174,8 @@ export default function ProductsDashboardPage() {
                       </div>
                       <ArrowUpRight className="h-4 w-4 text-zinc-600" />
                     </div>
-                    <p className="mt-3 text-2xl font-bold text-white">{stat.value}</p>
-                    <p className="text-sm text-zinc-400">{stat.title}</p>
+                    <p className="mt-3 text-2xl font-bold text-zinc-900 dark:text-white">{stat.value}</p>
+                    <p className="text-sm text-zinc-600 dark:text-zinc-400">{stat.title}</p>
                     <p className="text-xs text-zinc-500 mt-1">{stat.description}</p>
                   </CardContent>
                 </Link>
@@ -186,8 +186,8 @@ export default function ProductsDashboardPage() {
                       <stat.icon className={cn("h-5 w-5", stat.color)} />
                     </div>
                   </div>
-                  <p className="mt-3 text-2xl font-bold text-white">{stat.value}</p>
-                  <p className="text-sm text-zinc-400">{stat.title}</p>
+                  <p className="mt-3 text-2xl font-bold text-zinc-900 dark:text-white">{stat.value}</p>
+                  <p className="text-sm text-zinc-600 dark:text-zinc-400">{stat.title}</p>
                   <p className="text-xs text-zinc-500 mt-1">{stat.description}</p>
                 </CardContent>
               )}
@@ -203,13 +203,13 @@ export default function ProductsDashboardPage() {
             <Link
               key={link.href}
               href={link.href}
-              className="flex items-center gap-3 p-4 rounded-lg bg-zinc-900 border border-zinc-800 hover:border-zinc-700 hover:bg-zinc-800/50 transition-all group"
+              className="flex items-center gap-3 p-4 rounded-lg bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 hover:border-zinc-300 dark:hover:border-zinc-700 hover:bg-zinc-100 dark:hover:bg-zinc-800/50 transition-all group"
             >
-              <div className="p-2 rounded-lg bg-zinc-800 group-hover:bg-zinc-700 transition-colors">
-                <link.icon className="h-5 w-5 text-zinc-400 group-hover:text-white transition-colors" />
+              <div className="p-2 rounded-lg bg-zinc-100 dark:bg-zinc-800 group-hover:bg-zinc-200 dark:group-hover:bg-zinc-700 transition-colors">
+                <link.icon className="h-5 w-5 text-zinc-600 dark:text-zinc-400 group-hover:text-zinc-900 dark:group-hover:text-white transition-colors" />
               </div>
               <div className="flex-1">
-                <p className="text-sm font-medium text-white">{link.title}</p>
+                <p className="text-sm font-medium text-zinc-900 dark:text-white">{link.title}</p>
                 <p className="text-xs text-zinc-500">{link.count} kayıt</p>
               </div>
               <ArrowUpRight className="h-4 w-4 text-zinc-600 group-hover:text-zinc-400 transition-colors" />
@@ -221,10 +221,10 @@ export default function ProductsDashboardPage() {
       <div className="grid gap-6 lg:grid-cols-3">
         {/* Recent Orders */}
         <BlurFade delay={0.4}>
-          <Card className="bg-zinc-900 border-zinc-800 lg:col-span-2">
+          <Card className="bg-white dark:bg-zinc-900 border-zinc-200 dark:border-zinc-800 lg:col-span-2">
             <CardHeader className="flex flex-row items-center justify-between pb-2">
               <div>
-                <CardTitle className="text-white">Son Siparişler</CardTitle>
+                <CardTitle className="text-zinc-900 dark:text-white">Son Siparişler</CardTitle>
                 <CardDescription className="text-zinc-400">
                   Son gelen siparişler
                 </CardDescription>
@@ -233,7 +233,7 @@ export default function ProductsDashboardPage() {
                 asChild
                 variant="ghost"
                 size="sm"
-                className="text-zinc-400 hover:text-white"
+                className="text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white"
               >
                 <Link href="/yonetim/urunler/siparisler">
                   Tümünü Gör
@@ -250,7 +250,7 @@ export default function ProductsDashboardPage() {
                   return (
                     <div
                       key={order.id}
-                      className="flex items-center justify-between p-3 rounded-lg bg-zinc-800/50 hover:bg-zinc-800 transition-colors"
+                      className="flex items-center justify-between p-3 rounded-lg bg-zinc-100 dark:bg-zinc-800/50 hover:bg-zinc-200 dark:hover:bg-zinc-800 transition-colors"
                     >
                       <div className="flex items-center gap-3">
                         <div className="flex flex-col">
@@ -266,7 +266,7 @@ export default function ProductsDashboardPage() {
                         </div>
                       </div>
                       <div className="text-right">
-                        <p className="text-sm font-medium text-white">
+                        <p className="text-sm font-medium text-zinc-900 dark:text-white">
                           {formatPrice(order.totalAmount)}
                         </p>
                         <p className="text-xs text-zinc-500">{order.productName}</p>
@@ -291,11 +291,11 @@ export default function ProductsDashboardPage() {
 
         {/* Stock Alerts */}
         <BlurFade delay={0.45}>
-          <Card className="bg-zinc-900 border-zinc-800">
+          <Card className="bg-white dark:bg-zinc-900 border-zinc-200 dark:border-zinc-800">
             <CardHeader>
               <div className="flex items-center gap-2">
                 <AlertTriangle className="h-5 w-5 text-yellow-500" />
-                <CardTitle className="text-white">Stok Uyarıları</CardTitle>
+                <CardTitle className="text-zinc-900 dark:text-white">Stok Uyarıları</CardTitle>
               </div>
               <CardDescription className="text-zinc-400">
                 Düşük stoklu ürünler
@@ -316,7 +316,7 @@ export default function ProductsDashboardPage() {
                     >
                       <div className="flex items-center justify-between">
                         <div>
-                          <p className="text-sm font-medium text-white">
+                          <p className="text-sm font-medium text-zinc-900 dark:text-white">
                             {alert.productName}
                           </p>
                           <code className="text-xs text-zinc-500">{alert.sku}</code>
@@ -338,7 +338,7 @@ export default function ProductsDashboardPage() {
               ) : (
                 <div className="text-center py-6">
                   <CheckCircle className="h-10 w-10 text-green-500 mx-auto mb-2" />
-                  <p className="text-sm text-zinc-400">Tüm stoklar yeterli</p>
+                  <p className="text-sm text-zinc-600 dark:text-zinc-400">Tüm stoklar yeterli</p>
                 </div>
               )}
             </CardContent>
@@ -348,10 +348,10 @@ export default function ProductsDashboardPage() {
 
       {/* Categories Overview */}
       <BlurFade delay={0.5}>
-        <Card className="bg-zinc-900 border-zinc-800">
+        <Card className="bg-white dark:bg-zinc-900 border-zinc-200 dark:border-zinc-800">
           <CardHeader className="flex flex-row items-center justify-between pb-2">
             <div>
-              <CardTitle className="text-white">Kategoriler</CardTitle>
+              <CardTitle className="text-zinc-900 dark:text-white">Kategoriler</CardTitle>
               <CardDescription className="text-zinc-400">
                 Kategori bazlı ürün dağılımı
               </CardDescription>
@@ -360,7 +360,7 @@ export default function ProductsDashboardPage() {
               asChild
               variant="ghost"
               size="sm"
-              className="text-zinc-400 hover:text-white"
+              className="text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white"
             >
               <Link href="/yonetim/urunler/kategoriler">
                 Tümünü Gör
@@ -387,12 +387,12 @@ export default function ProductsDashboardPage() {
                   <Link
                     key={slug}
                     href={`/yonetim/urunler/paketler?kategori=${slug}`}
-                    className="flex flex-col items-center p-4 rounded-lg bg-zinc-800/50 hover:bg-zinc-800 border border-transparent hover:border-zinc-700 transition-all text-center group"
+                    className="flex flex-col items-center p-4 rounded-lg bg-zinc-100 dark:bg-zinc-800/50 hover:bg-zinc-200 dark:hover:bg-zinc-800 border border-transparent hover:border-zinc-300 dark:hover:border-zinc-700 transition-all text-center group"
                   >
                     <div className={cn("p-3 rounded-lg mb-2", config.color)}>
                       <Icon className="h-6 w-6" />
                     </div>
-                    <p className="text-sm font-medium text-white group-hover:text-primary transition-colors">
+                    <p className="text-sm font-medium text-zinc-900 dark:text-white group-hover:text-primary transition-colors">
                       {config.name}
                     </p>
                     <p className="text-xs text-zinc-500 mt-1">

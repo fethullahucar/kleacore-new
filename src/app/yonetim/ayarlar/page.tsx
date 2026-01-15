@@ -46,39 +46,39 @@ export default function SettingsPage() {
       {/* Page Header */}
       <BlurFade delay={0}>
         <div>
-          <h1 className="text-2xl font-bold text-white">Ayarlar</h1>
-          <p className="text-zinc-400">Sistem ayarlarını yapılandırın</p>
+          <h1 className="text-2xl font-bold text-zinc-900 dark:text-white">Ayarlar</h1>
+          <p className="text-zinc-600 dark:text-zinc-400">Sistem ayarlarını yapılandırın</p>
         </div>
       </BlurFade>
 
       <BlurFade delay={0.1}>
       <Tabs defaultValue="general" className="w-full">
-        <TabsList className="bg-zinc-800 border border-zinc-700 flex-wrap h-auto gap-1 p-1">
-          <TabsTrigger value="general" className="data-[state=active]:bg-zinc-700">
+        <TabsList className="bg-zinc-100 dark:bg-zinc-200 dark:bg-zinc-800 border border-zinc-300 dark:border-zinc-700 flex-wrap h-auto gap-1 p-1">
+          <TabsTrigger value="general" className="data-[state=active]:bg-zinc-200 dark:data-[state=active]:bg-zinc-700">
             <Building2 className="mr-2 h-4 w-4" />
             Genel
           </TabsTrigger>
-          <TabsTrigger value="email" className="data-[state=active]:bg-zinc-700">
+          <TabsTrigger value="email" className="data-[state=active]:bg-zinc-200 dark:data-[state=active]:bg-zinc-700">
             <Mail className="mr-2 h-4 w-4" />
             E-posta
           </TabsTrigger>
-          <TabsTrigger value="notifications" className="data-[state=active]:bg-zinc-700">
+          <TabsTrigger value="notifications" className="data-[state=active]:bg-zinc-200 dark:data-[state=active]:bg-zinc-700">
             <Bell className="mr-2 h-4 w-4" />
             Bildirimler
           </TabsTrigger>
-          <TabsTrigger value="payment" className="data-[state=active]:bg-zinc-700">
+          <TabsTrigger value="payment" className="data-[state=active]:bg-zinc-200 dark:data-[state=active]:bg-zinc-700">
             <CreditCard className="mr-2 h-4 w-4" />
             Ödeme
           </TabsTrigger>
-          <TabsTrigger value="security" className="data-[state=active]:bg-zinc-700">
+          <TabsTrigger value="security" className="data-[state=active]:bg-zinc-200 dark:data-[state=active]:bg-zinc-700">
             <Shield className="mr-2 h-4 w-4" />
             Güvenlik
           </TabsTrigger>
-          <TabsTrigger value="users" className="data-[state=active]:bg-zinc-700">
+          <TabsTrigger value="users" className="data-[state=active]:bg-zinc-200 dark:data-[state=active]:bg-zinc-700">
             <Users className="mr-2 h-4 w-4" />
             Kullanıcılar
           </TabsTrigger>
-          <TabsTrigger value="api" className="data-[state=active]:bg-zinc-700">
+          <TabsTrigger value="api" className="data-[state=active]:bg-zinc-200 dark:data-[state=active]:bg-zinc-700">
             <Key className="mr-2 h-4 w-4" />
             API
           </TabsTrigger>
@@ -86,9 +86,9 @@ export default function SettingsPage() {
 
         {/* General Settings */}
         <TabsContent value="general" className="mt-6 space-y-6">
-          <Card className="bg-zinc-900 border-zinc-800">
+          <Card className="bg-white dark:bg-zinc-900 border-zinc-200 dark:border-zinc-800">
             <CardHeader>
-              <CardTitle className="text-white">Şirket Bilgileri</CardTitle>
+              <CardTitle className="text-zinc-900 dark:text-white">Şirket Bilgileri</CardTitle>
               <CardDescription className="text-zinc-500">
                 Şirketinizin temel bilgilerini güncelleyin
               </CardDescription>
@@ -96,59 +96,59 @@ export default function SettingsPage() {
             <CardContent className="space-y-4">
               <div className="grid gap-4 md:grid-cols-2">
                 <div className="space-y-2">
-                  <Label className="text-zinc-300">Şirket Adı</Label>
+                  <Label className="text-zinc-700 dark:text-zinc-300">Şirket Adı</Label>
                   <Input
                     defaultValue="KLEACORE"
-                    className="bg-zinc-800 border-zinc-700 text-white"
+                    className="bg-zinc-100 dark:bg-zinc-200 dark:bg-zinc-800 border-zinc-300 dark:border-zinc-700 text-zinc-900 dark:text-white"
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label className="text-zinc-300">Vergi Numarası</Label>
+                  <Label className="text-zinc-700 dark:text-zinc-300">Vergi Numarası</Label>
                   <Input
                     defaultValue="36-5157418"
-                    className="bg-zinc-800 border-zinc-700 text-white"
+                    className="bg-zinc-100 dark:bg-zinc-200 dark:bg-zinc-800 border-zinc-300 dark:border-zinc-700 text-zinc-900 dark:text-white"
                   />
                 </div>
               </div>
               <div className="space-y-2">
-                <Label className="text-zinc-300">Adres</Label>
+                <Label className="text-zinc-700 dark:text-zinc-300">Adres</Label>
                 <Textarea
                   defaultValue="30 N Gould St Ste R, Sheridan, WY 82801, USA"
-                  className="bg-zinc-800 border-zinc-700 text-white min-h-20"
+                  className="bg-zinc-100 dark:bg-zinc-200 dark:bg-zinc-800 border-zinc-300 dark:border-zinc-700 text-zinc-900 dark:text-white min-h-20"
                 />
               </div>
               <div className="grid gap-4 md:grid-cols-2">
                 <div className="space-y-2">
-                  <Label className="text-zinc-300">E-posta</Label>
+                  <Label className="text-zinc-700 dark:text-zinc-300">E-posta</Label>
                   <Input
                     defaultValue="support@kleacore.com"
-                    className="bg-zinc-800 border-zinc-700 text-white"
+                    className="bg-zinc-100 dark:bg-zinc-200 dark:bg-zinc-800 border-zinc-300 dark:border-zinc-700 text-zinc-900 dark:text-white"
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label className="text-zinc-300">Telefon</Label>
+                  <Label className="text-zinc-700 dark:text-zinc-300">Telefon</Label>
                   <Input
                     defaultValue="+1 (307) 555-0123"
-                    className="bg-zinc-800 border-zinc-700 text-white"
+                    className="bg-zinc-100 dark:bg-zinc-200 dark:bg-zinc-800 border-zinc-300 dark:border-zinc-700 text-zinc-900 dark:text-white"
                   />
                 </div>
               </div>
             </CardContent>
           </Card>
 
-          <Card className="bg-zinc-900 border-zinc-800">
+          <Card className="bg-white dark:bg-zinc-900 border-zinc-200 dark:border-zinc-800">
             <CardHeader>
-              <CardTitle className="text-white">Logo</CardTitle>
+              <CardTitle className="text-zinc-900 dark:text-white">Logo</CardTitle>
               <CardDescription className="text-zinc-500">
                 Site logonuzu güncelleyin
               </CardDescription>
             </CardHeader>
             <CardContent>
               <div className="flex items-center gap-4">
-                <div className="h-16 w-32 bg-zinc-800 rounded-lg flex items-center justify-center">
+                <div className="h-16 w-32 bg-zinc-200 dark:bg-zinc-800 rounded-lg flex items-center justify-center">
                   <span className="text-white font-bold">KLEACORE</span>
                 </div>
-                <Button variant="outline" className="border-zinc-700 text-zinc-400 hover:text-white">
+                <Button variant="outline" className="border-zinc-300 dark:border-zinc-700 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white">
                   <Upload className="mr-2 h-4 w-4" />
                   Logo Yükle
                 </Button>
@@ -166,9 +166,9 @@ export default function SettingsPage() {
 
         {/* Email Settings */}
         <TabsContent value="email" className="mt-6 space-y-6">
-          <Card className="bg-zinc-900 border-zinc-800">
+          <Card className="bg-white dark:bg-zinc-900 border-zinc-200 dark:border-zinc-800">
             <CardHeader>
-              <CardTitle className="text-white">SMTP Ayarları</CardTitle>
+              <CardTitle className="text-zinc-900 dark:text-white">SMTP Ayarları</CardTitle>
               <CardDescription className="text-zinc-500">
                 E-posta gönderimi için SMTP sunucunuzu yapılandırın
               </CardDescription>
@@ -176,43 +176,43 @@ export default function SettingsPage() {
             <CardContent className="space-y-4">
               <div className="grid gap-4 md:grid-cols-2">
                 <div className="space-y-2">
-                  <Label className="text-zinc-300">SMTP Sunucu</Label>
+                  <Label className="text-zinc-700 dark:text-zinc-300">SMTP Sunucu</Label>
                   <Input
                     defaultValue="smtp.kleacore.com"
-                    className="bg-zinc-800 border-zinc-700 text-white"
+                    className="bg-zinc-100 dark:bg-zinc-200 dark:bg-zinc-800 border-zinc-300 dark:border-zinc-700 text-zinc-900 dark:text-white"
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label className="text-zinc-300">Port</Label>
+                  <Label className="text-zinc-700 dark:text-zinc-300">Port</Label>
                   <Input
                     defaultValue="587"
-                    className="bg-zinc-800 border-zinc-700 text-white"
+                    className="bg-zinc-100 dark:bg-zinc-200 dark:bg-zinc-800 border-zinc-300 dark:border-zinc-700 text-zinc-900 dark:text-white"
                   />
                 </div>
               </div>
               <div className="grid gap-4 md:grid-cols-2">
                 <div className="space-y-2">
-                  <Label className="text-zinc-300">Kullanıcı Adı</Label>
+                  <Label className="text-zinc-700 dark:text-zinc-300">Kullanıcı Adı</Label>
                   <Input
                     defaultValue="noreply@kleacore.com"
-                    className="bg-zinc-800 border-zinc-700 text-white"
+                    className="bg-zinc-100 dark:bg-zinc-200 dark:bg-zinc-800 border-zinc-300 dark:border-zinc-700 text-zinc-900 dark:text-white"
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label className="text-zinc-300">Şifre</Label>
+                  <Label className="text-zinc-700 dark:text-zinc-300">Şifre</Label>
                   <Input
                     type="password"
                     defaultValue="************"
-                    className="bg-zinc-800 border-zinc-700 text-white"
+                    className="bg-zinc-100 dark:bg-zinc-200 dark:bg-zinc-800 border-zinc-300 dark:border-zinc-700 text-zinc-900 dark:text-white"
                   />
                 </div>
               </div>
             </CardContent>
           </Card>
 
-          <Card className="bg-zinc-900 border-zinc-800">
+          <Card className="bg-white dark:bg-zinc-900 border-zinc-200 dark:border-zinc-800">
             <CardHeader>
-              <CardTitle className="text-white">E-posta Şablonları</CardTitle>
+              <CardTitle className="text-zinc-900 dark:text-white">E-posta Şablonları</CardTitle>
               <CardDescription className="text-zinc-500">
                 Otomatik e-posta şablonlarını düzenleyin
               </CardDescription>
@@ -228,13 +228,13 @@ export default function SettingsPage() {
                 ].map((template) => (
                   <div
                     key={template.name}
-                    className="flex items-center justify-between p-3 rounded-lg bg-zinc-800/50 hover:bg-zinc-800 transition-colors"
+                    className="flex items-center justify-between p-3 rounded-lg bg-zinc-100 dark:bg-zinc-200 dark:bg-zinc-800/50 hover:bg-zinc-200 dark:hover:bg-zinc-200 dark:bg-zinc-800 transition-colors"
                   >
                     <div>
-                      <p className="text-sm font-medium text-white">{template.name}</p>
+                      <p className="text-sm font-medium text-zinc-900 dark:text-white">{template.name}</p>
                       <p className="text-xs text-zinc-500">{template.description}</p>
                     </div>
-                    <Button variant="ghost" size="sm" className="text-zinc-400 hover:text-white">
+                    <Button variant="ghost" size="sm" className="text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white">
                       Düzenle
                     </Button>
                   </div>
@@ -246,9 +246,9 @@ export default function SettingsPage() {
 
         {/* Notifications */}
         <TabsContent value="notifications" className="mt-6 space-y-6">
-          <Card className="bg-zinc-900 border-zinc-800">
+          <Card className="bg-white dark:bg-zinc-900 border-zinc-200 dark:border-zinc-800">
             <CardHeader>
-              <CardTitle className="text-white">Bildirim Tercihleri</CardTitle>
+              <CardTitle className="text-zinc-900 dark:text-white">Bildirim Tercihleri</CardTitle>
               <CardDescription className="text-zinc-500">
                 Hangi bildirimleri almak istediğinizi seçin
               </CardDescription>
@@ -256,7 +256,7 @@ export default function SettingsPage() {
             <CardContent className="space-y-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-white">E-posta Bildirimleri</p>
+                  <p className="text-sm font-medium text-zinc-900 dark:text-white">E-posta Bildirimleri</p>
                   <p className="text-xs text-zinc-500">Önemli güncellemeler için e-posta alın</p>
                 </div>
                 <Switch
@@ -264,10 +264,10 @@ export default function SettingsPage() {
                   onCheckedChange={setEmailNotifications}
                 />
               </div>
-              <Separator className="bg-zinc-800" />
+              <Separator className="bg-zinc-200 dark:bg-zinc-800" />
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-white">SMS Bildirimleri</p>
+                  <p className="text-sm font-medium text-zinc-900 dark:text-white">SMS Bildirimleri</p>
                   <p className="text-xs text-zinc-500">Kritik durumlar için SMS alın</p>
                 </div>
                 <Switch
@@ -275,10 +275,10 @@ export default function SettingsPage() {
                   onCheckedChange={setSmsNotifications}
                 />
               </div>
-              <Separator className="bg-zinc-800" />
+              <Separator className="bg-zinc-200 dark:bg-zinc-800" />
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-white">Otomatik Faturalama</p>
+                  <p className="text-sm font-medium text-zinc-900 dark:text-white">Otomatik Faturalama</p>
                   <p className="text-xs text-zinc-500">Faturaları otomatik oluştur ve gönder</p>
                 </div>
                 <Switch
@@ -292,9 +292,9 @@ export default function SettingsPage() {
 
         {/* Payment Settings */}
         <TabsContent value="payment" className="mt-6 space-y-6">
-          <Card className="bg-zinc-900 border-zinc-800">
+          <Card className="bg-white dark:bg-zinc-900 border-zinc-200 dark:border-zinc-800">
             <CardHeader>
-              <CardTitle className="text-white">Ödeme Yöntemleri</CardTitle>
+              <CardTitle className="text-zinc-900 dark:text-white">Ödeme Yöntemleri</CardTitle>
               <CardDescription className="text-zinc-500">
                 Kabul edilen ödeme yöntemlerini yapılandırın
               </CardDescription>
@@ -307,12 +307,12 @@ export default function SettingsPage() {
               ].map((method) => (
                 <div
                   key={method.name}
-                  className="flex items-center justify-between p-4 rounded-lg bg-zinc-800/50"
+                  className="flex items-center justify-between p-4 rounded-lg bg-zinc-100 dark:bg-zinc-200 dark:bg-zinc-800/50"
                 >
                   <div className="flex items-center gap-3">
                     <CreditCard className="h-5 w-5 text-zinc-500" />
                     <div>
-                      <p className="text-sm font-medium text-white">{method.name}</p>
+                      <p className="text-sm font-medium text-zinc-900 dark:text-white">{method.name}</p>
                       <p className="text-xs text-zinc-500">{method.provider}</p>
                     </div>
                   </div>
@@ -320,7 +320,7 @@ export default function SettingsPage() {
                     <Badge variant={method.status === "active" ? "default" : "secondary"}>
                       {method.status === "active" ? "Aktif" : "Pasif"}
                     </Badge>
-                    <Button variant="ghost" size="sm" className="text-zinc-400 hover:text-white">
+                    <Button variant="ghost" size="sm" className="text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white">
                       Yapılandır
                     </Button>
                   </div>
@@ -332,9 +332,9 @@ export default function SettingsPage() {
 
         {/* Security */}
         <TabsContent value="security" className="mt-6 space-y-6">
-          <Card className="bg-zinc-900 border-zinc-800">
+          <Card className="bg-white dark:bg-zinc-900 border-zinc-200 dark:border-zinc-800">
             <CardHeader>
-              <CardTitle className="text-white">Güvenlik Ayarları</CardTitle>
+              <CardTitle className="text-zinc-900 dark:text-white">Güvenlik Ayarları</CardTitle>
               <CardDescription className="text-zinc-500">
                 Hesap güvenliğinizi yönetin
               </CardDescription>
@@ -342,7 +342,7 @@ export default function SettingsPage() {
             <CardContent className="space-y-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-white">İki Faktörlü Doğrulama</p>
+                  <p className="text-sm font-medium text-zinc-900 dark:text-white">İki Faktörlü Doğrulama</p>
                   <p className="text-xs text-zinc-500">Giriş için ek güvenlik katmanı</p>
                 </div>
                 <Switch
@@ -350,23 +350,23 @@ export default function SettingsPage() {
                   onCheckedChange={setTwoFactor}
                 />
               </div>
-              <Separator className="bg-zinc-800" />
+              <Separator className="bg-zinc-200 dark:bg-zinc-800" />
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-white">Şifre Değiştir</p>
+                  <p className="text-sm font-medium text-zinc-900 dark:text-white">Şifre Değiştir</p>
                   <p className="text-xs text-zinc-500">Son değişiklik: 3 ay önce</p>
                 </div>
-                <Button variant="outline" size="sm" className="border-zinc-700 text-zinc-400 hover:text-white">
+                <Button variant="outline" size="sm" className="border-zinc-300 dark:border-zinc-700 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white">
                   Değiştir
                 </Button>
               </div>
-              <Separator className="bg-zinc-800" />
+              <Separator className="bg-zinc-200 dark:bg-zinc-800" />
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-white">Aktif Oturumlar</p>
+                  <p className="text-sm font-medium text-zinc-900 dark:text-white">Aktif Oturumlar</p>
                   <p className="text-xs text-zinc-500">2 aktif oturum</p>
                 </div>
-                <Button variant="outline" size="sm" className="border-zinc-700 text-zinc-400 hover:text-white">
+                <Button variant="outline" size="sm" className="border-zinc-300 dark:border-zinc-700 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white">
                   Görüntüle
                 </Button>
               </div>
@@ -376,10 +376,10 @@ export default function SettingsPage() {
 
         {/* Users */}
         <TabsContent value="users" className="mt-6 space-y-6">
-          <Card className="bg-zinc-900 border-zinc-800">
+          <Card className="bg-white dark:bg-zinc-900 border-zinc-200 dark:border-zinc-800">
             <CardHeader className="flex flex-row items-center justify-between">
               <div>
-                <CardTitle className="text-white">Admin Kullanıcıları</CardTitle>
+                <CardTitle className="text-zinc-900 dark:text-white">Admin Kullanıcıları</CardTitle>
                 <CardDescription className="text-zinc-500">
                   Yönetim paneline erişimi olan kullanıcılar
                 </CardDescription>
@@ -394,14 +394,14 @@ export default function SettingsPage() {
                 {adminUsers.map((user) => (
                   <div
                     key={user.id}
-                    className="flex items-center justify-between p-4 rounded-lg bg-zinc-800/50"
+                    className="flex items-center justify-between p-4 rounded-lg bg-zinc-100 dark:bg-zinc-200 dark:bg-zinc-800/50"
                   >
                     <div className="flex items-center gap-3">
                       <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary text-white text-sm font-medium">
                         {user.name.split(" ").map((n) => n[0]).join("")}
                       </div>
                       <div>
-                        <p className="text-sm font-medium text-white">{user.name}</p>
+                        <p className="text-sm font-medium text-zinc-900 dark:text-white">{user.name}</p>
                         <p className="text-xs text-zinc-500">{user.email}</p>
                       </div>
                     </div>
@@ -410,7 +410,7 @@ export default function SettingsPage() {
                         <Badge variant="outline">{user.role}</Badge>
                         <p className="text-xs text-zinc-500 mt-1">Son: {user.lastLogin}</p>
                       </div>
-                      <Button variant="ghost" size="sm" className="text-zinc-400 hover:text-white">
+                      <Button variant="ghost" size="sm" className="text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white">
                         Düzenle
                       </Button>
                     </div>
@@ -423,10 +423,10 @@ export default function SettingsPage() {
 
         {/* API */}
         <TabsContent value="api" className="mt-6 space-y-6">
-          <Card className="bg-zinc-900 border-zinc-800">
+          <Card className="bg-white dark:bg-zinc-900 border-zinc-200 dark:border-zinc-800">
             <CardHeader className="flex flex-row items-center justify-between">
               <div>
-                <CardTitle className="text-white">API Anahtarları</CardTitle>
+                <CardTitle className="text-zinc-900 dark:text-white">API Anahtarları</CardTitle>
                 <CardDescription className="text-zinc-500">
                   Entegrasyonlar için API anahtarlarınızı yönetin
                 </CardDescription>
@@ -441,10 +441,10 @@ export default function SettingsPage() {
                 {apiKeys.map((key) => (
                   <div
                     key={key.id}
-                    className="flex items-center justify-between p-4 rounded-lg bg-zinc-800/50"
+                    className="flex items-center justify-between p-4 rounded-lg bg-zinc-100 dark:bg-zinc-200 dark:bg-zinc-800/50"
                   >
                     <div>
-                      <p className="text-sm font-medium text-white">{key.name}</p>
+                      <p className="text-sm font-medium text-zinc-900 dark:text-white">{key.name}</p>
                       <p className="text-xs font-mono text-zinc-500">{key.key}</p>
                     </div>
                     <div className="flex items-center gap-4">
@@ -462,26 +462,26 @@ export default function SettingsPage() {
             </CardContent>
           </Card>
 
-          <Card className="bg-zinc-900 border-zinc-800">
+          <Card className="bg-white dark:bg-zinc-900 border-zinc-200 dark:border-zinc-800">
             <CardHeader>
-              <CardTitle className="text-white">Webhook URL&apos;leri</CardTitle>
+              <CardTitle className="text-zinc-900 dark:text-white">Webhook URL&apos;leri</CardTitle>
               <CardDescription className="text-zinc-500">
                 Olayları harici sistemlere bildirin
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="space-y-2">
-                <Label className="text-zinc-300">Sipariş Webhook</Label>
+                <Label className="text-zinc-700 dark:text-zinc-300">Sipariş Webhook</Label>
                 <Input
                   placeholder="https://example.com/webhook/orders"
-                  className="bg-zinc-800 border-zinc-700 text-white placeholder:text-zinc-600"
+                  className="bg-zinc-100 dark:bg-zinc-200 dark:bg-zinc-800 border-zinc-300 dark:border-zinc-700 text-zinc-900 dark:text-white placeholder:text-zinc-600"
                 />
               </div>
               <div className="space-y-2">
-                <Label className="text-zinc-300">Ödeme Webhook</Label>
+                <Label className="text-zinc-700 dark:text-zinc-300">Ödeme Webhook</Label>
                 <Input
                   placeholder="https://example.com/webhook/payments"
-                  className="bg-zinc-800 border-zinc-700 text-white placeholder:text-zinc-600"
+                  className="bg-zinc-100 dark:bg-zinc-200 dark:bg-zinc-800 border-zinc-300 dark:border-zinc-700 text-zinc-900 dark:text-white placeholder:text-zinc-600"
                 />
               </div>
               <Button className="bg-primary hover:bg-primary/90">

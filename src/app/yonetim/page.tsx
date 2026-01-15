@@ -2,217 +2,256 @@
 
 import Link from "next/link";
 import {
-  Users,
-  Package,
   TrendingUp,
   Headphones,
   ArrowUpRight,
-  ArrowDownRight,
   DollarSign,
-  Clock,
-  AlertCircle,
-  CheckCircle2,
   UserPlus,
-  CreditCard,
-  Server,
+  ShoppingCart,
+  FileWarning,
+  CalendarClock,
+  Bell,
+  Search,
 } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 import { BlurFade } from "@/components/magicui/blur-fade";
-import { NumberTicker } from "@/components/magicui/number-ticker";
-import { BorderBeam } from "@/components/magicui/border-beam";
 
+// Top 4 Stats
 const stats = [
   {
-    title: "Toplam Müşteri",
-    value: 2847,
-    displayValue: "2,847",
-    change: "+12%",
-    changeType: "positive",
-    description: "Bu ay 48 yeni kayıt",
-    icon: Users,
+    title: "Bugün Satış Ciro",
+    value: "₺12.450",
+    description: "Dün: ₺10.050",
+    icon: DollarSign,
+    color: "text-green-500",
+    bgColor: "bg-green-500/10",
+    href: "/yonetim/faturalar",
+  },
+  {
+    title: "Toplam Kasa (Aylık)",
+    value: "₺284.750",
+    description: "Geçen ay: ₺241.200",
+    icon: TrendingUp,
+    color: "text-blue-500",
+    bgColor: "bg-blue-500/10",
+    href: "/yonetim/raporlar",
+  },
+  {
+    title: "Müşteri Kaydı Bugün",
+    value: "12",
+    description: "Bu hafta: 48 kayıt",
+    icon: UserPlus,
+    color: "text-purple-500",
+    bgColor: "bg-purple-500/10",
     href: "/yonetim/musteriler",
   },
   {
-    title: "Aktif Hizmetler",
-    value: 4521,
-    displayValue: "4,521",
-    change: "+8%",
-    changeType: "positive",
-    description: "23 bekleyen aktivasyon",
-    icon: Package,
-    href: "/yonetim/hizmetler",
-  },
-  {
-    title: "Bu Ay Gelir",
-    value: 284750,
-    displayValue: "₺284.750",
-    prefix: "₺",
-    change: "+18%",
-    changeType: "positive",
-    description: "Geçen aya göre",
-    icon: DollarSign,
-    href: "/yonetim/faturalar",
-  },
-  {
-    title: "Açık Talepler",
-    value: 37,
-    displayValue: "37",
-    change: "-5%",
-    changeType: "negative",
+    title: "Bekleyen Destek",
+    value: "37",
     description: "8 kritik öncelikli",
     icon: Headphones,
+    color: "text-orange-500",
+    bgColor: "bg-orange-500/10",
     href: "/yonetim/destek",
   },
 ];
 
-const recentActivities = [
+// Recent Orders
+const recentOrders = [
   {
-    id: 1,
-    type: "order",
-    title: "Yeni sipariş",
-    description: "Ahmet Yılmaz - Profesyonel Hosting paketi",
-    amount: "₺299,00",
-    time: "5 dk önce",
-    icon: Package,
-    iconBg: "bg-blue-500/10",
-    iconColor: "text-blue-500",
+    id: "S-2024-00345",
+    customer: "Ahmet Yılmaz",
+    customerId: "M-001",
+    product: "Pro Hosting",
+    category: "Hosting",
+    renewalDate: "2025-06-20",
+    amount: 1198.80,
+    status: "pending",
   },
   {
-    id: 2,
-    type: "payment",
-    title: "Ödeme alındı",
-    description: "Fatura #2024-0156 - Mehmet Kaya",
-    amount: "₺1.250,00",
-    time: "12 dk önce",
-    icon: CreditCard,
-    iconBg: "bg-green-500/10",
-    iconColor: "text-green-500",
+    id: "S-2024-00344",
+    customer: "Ayşe Demir",
+    customerId: "M-002",
+    product: "VDS Small",
+    category: "VDS",
+    renewalDate: "2025-06-19",
+    amount: 418.80,
+    status: "processing",
   },
   {
-    id: 3,
-    type: "support",
-    title: "Yeni destek talebi",
-    description: "Ayşe Demir - DNS yapılandırma sorunu",
-    amount: null,
-    time: "25 dk önce",
-    icon: Headphones,
-    iconBg: "bg-orange-500/10",
-    iconColor: "text-orange-500",
+    id: "S-2024-00343",
+    customer: "Mehmet Kaya",
+    customerId: "M-003",
+    product: ".com Domain",
+    category: "Domain",
+    renewalDate: "2025-06-18",
+    amount: 154.80,
+    status: "completed",
   },
   {
-    id: 4,
-    type: "user",
-    title: "Yeni müşteri kaydı",
-    description: "Can Özkan - can@example.com",
-    amount: null,
-    time: "1 saat önce",
-    icon: UserPlus,
-    iconBg: "bg-purple-500/10",
-    iconColor: "text-purple-500",
+    id: "S-2024-00342",
+    customer: "Fatma Şahin",
+    customerId: "M-004",
+    product: "Starter Hosting",
+    category: "Hosting",
+    renewalDate: "2025-06-17",
+    amount: 58.80,
+    status: "completed",
   },
   {
-    id: 5,
-    type: "server",
-    title: "Sunucu uyarısı",
-    description: "SRV-03 - CPU kullanımı %92",
-    amount: null,
-    time: "2 saat önce",
-    icon: Server,
-    iconBg: "bg-red-500/10",
-    iconColor: "text-red-500",
+    id: "S-2024-00341",
+    customer: "Can Özkan",
+    customerId: "M-005",
+    product: "SSL Sertifika",
+    category: "SSL",
+    renewalDate: "2025-06-16",
+    amount: 299.00,
+    status: "processing",
   },
 ];
 
-const pendingTasks = [
+const orderStatusConfig: Record<string, { label: string; color: string }> = {
+  pending: { label: "Beklemede", color: "bg-yellow-500/10 text-yellow-500" },
+  processing: { label: "İşleniyor", color: "bg-blue-500/10 text-blue-500" },
+  completed: { label: "Tamamlandı", color: "bg-green-500/10 text-green-500" },
+};
+
+// Middle 4 Cards Stats
+const middleStats = [
   {
-    id: 1,
-    title: "8 kritik destek talebi",
-    description: "Acil yanıt bekliyor",
-    status: "critical",
-    href: "/yonetim/destek",
+    title: "Gecikmiş Fatura",
+    value: 12,
+    description: "Toplam: ₺8.450",
+    icon: FileWarning,
+    color: "text-red-500",
+    bgColor: "bg-red-500/10",
+    href: "/yonetim/faturalar?durum=overdue",
   },
   {
-    id: 2,
-    title: "23 hizmet aktivasyonu",
+    title: "Yaklaşan Ödeme",
+    value: 23,
+    description: "7 gün içinde",
+    icon: CalendarClock,
+    color: "text-yellow-500",
+    bgColor: "bg-yellow-500/10",
+    href: "/yonetim/faturalar?durum=upcoming",
+  },
+  {
+    title: "İşlemdeki Sipariş",
+    value: 8,
     description: "Onay bekliyor",
-    status: "warning",
-    href: "/yonetim/hizmetler",
+    icon: ShoppingCart,
+    color: "text-blue-500",
+    bgColor: "bg-blue-500/10",
+    href: "/yonetim/urunler/siparisler?durum=processing",
   },
   {
-    id: 3,
-    title: "12 ödenmemiş fatura",
-    description: "Hatırlatma gönderilecek",
-    status: "warning",
-    href: "/yonetim/faturalar",
+    title: "Hatırlatma",
+    value: 5,
+    description: "Bugün yapılacak",
+    icon: Bell,
+    color: "text-purple-500",
+    bgColor: "bg-purple-500/10",
+    href: "#",
   },
 ];
 
-const revenueData = [
-  { month: "Oca", amount: 185000 },
-  { month: "Şub", amount: 198000 },
-  { month: "Mar", amount: 215000 },
-  { month: "Nis", amount: 242000 },
-  { month: "May", amount: 268000 },
-  { month: "Haz", amount: 284750 },
+// Upcoming Due Invoices
+const upcomingInvoices = [
+  {
+    id: "F-2024-0189",
+    customer: "Ahmet Yılmaz",
+    customerId: "M-001",
+    amount: 299.00,
+    dueDate: "2024-06-22",
+    daysLeft: 2,
+    service: "Pro Hosting",
+  },
+  {
+    id: "F-2024-0185",
+    customer: "Zeynep Arslan",
+    customerId: "M-006",
+    amount: 599.00,
+    dueDate: "2024-06-23",
+    daysLeft: 3,
+    service: "Kurumsal Hosting",
+  },
+  {
+    id: "F-2024-0182",
+    customer: "Elif Çelik",
+    customerId: "M-008",
+    amount: 449.00,
+    dueDate: "2024-06-24",
+    daysLeft: 4,
+    service: "VPS Sunucu",
+  },
+  {
+    id: "F-2024-0178",
+    customer: "Ali Yıldız",
+    customerId: "M-007",
+    amount: 149.00,
+    dueDate: "2024-06-25",
+    daysLeft: 5,
+    service: "Kurumsal E-posta",
+  },
+  {
+    id: "F-2024-0175",
+    customer: "Ayşe Demir",
+    customerId: "M-002",
+    amount: 899.00,
+    dueDate: "2024-06-26",
+    daysLeft: 6,
+    service: "VDS Sunucu Pro",
+  },
+  {
+    id: "F-2024-0171",
+    customer: "Can Özkan",
+    customerId: "M-005",
+    amount: 199.00,
+    dueDate: "2024-06-27",
+    daysLeft: 7,
+    service: "Başlangıç Hosting",
+  },
 ];
-
-const maxRevenue = Math.max(...revenueData.map((d) => d.amount));
 
 export default function AdminDashboard() {
+  const formatPrice = (price: number) => {
+    return new Intl.NumberFormat("tr-TR", {
+      style: "currency",
+      currency: "TRY",
+      minimumFractionDigits: 2,
+    }).format(price);
+  };
+
   return (
     <div className="space-y-6">
       {/* Page Header */}
       <BlurFade delay={0}>
         <div>
-          <h1 className="text-2xl font-bold text-white">Dashboard</h1>
-          <p className="text-zinc-400">Hoş geldin, Admin. İşte bugünkü genel bakış.</p>
+          <h1 className="text-2xl font-bold text-zinc-900 dark:text-white">Dashboard</h1>
+          <p className="text-zinc-600 dark:text-zinc-400">Hoş geldin, Admin. İşte bugünkü genel bakış.</p>
         </div>
       </BlurFade>
 
-      {/* Stats Grid */}
+      {/* Top Stats Grid */}
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         {stats.map((stat, index) => (
-          <BlurFade key={stat.title} delay={0.1 + index * 0.1}>
+          <BlurFade key={stat.title} delay={0.1 + index * 0.05}>
             <Link href={stat.href}>
-              <Card className="relative bg-zinc-900 border-zinc-800 hover:border-zinc-700 transition-colors cursor-pointer overflow-hidden group">
-                <BorderBeam
-                  size={120}
-                  duration={8}
-                  delay={index * 2}
-                  colorFrom="#3b82f6"
-                  colorTo="#8b5cf6"
-                />
-                <CardContent className="p-6">
-                  <div className="flex items-center justify-between">
-                    <div className={cn(
-                      "flex h-10 w-10 items-center justify-center rounded-lg",
-                      "bg-zinc-800 group-hover:bg-zinc-700 transition-colors"
-                    )}>
-                      <stat.icon className="h-5 w-5 text-primary" />
+              <Card className="bg-white dark:bg-zinc-900 border-zinc-200 dark:border-zinc-800 hover:border-zinc-300 dark:hover:border-zinc-700 transition-colors cursor-pointer">
+                <CardContent className="p-4">
+                  <div className="flex items-center gap-4">
+                    <div className={cn("p-3 rounded-lg", stat.bgColor)}>
+                      <stat.icon className={cn("h-6 w-6", stat.color)} />
                     </div>
-                    <div className={cn(
-                      "flex items-center gap-1 text-sm font-medium",
-                      stat.changeType === "positive" ? "text-green-500" : "text-red-500"
-                    )}>
-                      {stat.changeType === "positive" ? (
-                        <ArrowUpRight className="h-4 w-4" />
-                      ) : (
-                        <ArrowDownRight className="h-4 w-4" />
-                      )}
-                      {stat.change}
+                    <div>
+                      <p className="text-2xl font-bold text-zinc-900 dark:text-white">{stat.value}</p>
+                      <p className="text-sm text-zinc-600 dark:text-zinc-400">{stat.title}</p>
+                      <p className="text-xs text-zinc-500">{stat.description}</p>
                     </div>
                   </div>
-                  <div className="mt-4">
-                    <p className="text-2xl font-bold text-white">
-                      {stat.prefix && <span>{stat.prefix}</span>}
-                      <NumberTicker value={stat.value} delay={0.3 + index * 0.1} className="text-white" />
-                    </p>
-                    <p className="text-sm text-zinc-400">{stat.title}</p>
-                  </div>
-                  <p className="mt-2 text-xs text-zinc-500">{stat.description}</p>
                 </CardContent>
               </Card>
             </Link>
@@ -220,103 +259,188 @@ export default function AdminDashboard() {
         ))}
       </div>
 
-      {/* Main Content Grid */}
-      <div className="grid gap-6 lg:grid-cols-3">
-        {/* Revenue Chart */}
-        <BlurFade delay={0.5} className="lg:col-span-2">
-          <Card className="bg-zinc-900 border-zinc-800">
-            <CardHeader className="flex flex-row items-center justify-between">
-              <CardTitle className="text-white">Aylık Gelir</CardTitle>
-              <Button variant="outline" size="sm" className="border-zinc-700 text-zinc-400 hover:text-white">
-                Raporu Gör
-              </Button>
-            </CardHeader>
-            <CardContent>
-              <div className="flex items-end gap-2 h-48">
-                {revenueData.map((data, index) => (
-                  <div key={data.month} className="flex-1 flex flex-col items-center gap-2">
-                    <div
-                      className="w-full bg-primary/20 rounded-t hover:bg-primary/30 transition-colors relative group"
-                      style={{ height: `${(data.amount / maxRevenue) * 100}%` }}
-                    >
-                      <div
-                        className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-primary to-primary/70 rounded-t transition-all"
-                        style={{ height: "100%" }}
-                      />
-                      <div className="absolute -top-8 left-1/2 -translate-x-1/2 bg-zinc-800 px-2 py-1 rounded text-xs text-white opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap z-10">
-                        ₺{data.amount.toLocaleString("tr-TR")}
-                      </div>
+      {/* Middle Stats Grid */}
+      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+        {middleStats.map((stat, index) => (
+          <BlurFade key={stat.title} delay={0.5 + index * 0.05}>
+            <Link href={stat.href}>
+              <Card className="bg-white dark:bg-zinc-900 border-zinc-200 dark:border-zinc-800 hover:border-zinc-300 dark:hover:border-zinc-700 transition-colors cursor-pointer">
+                <CardContent className="p-4">
+                  <div className="flex items-center gap-4">
+                    <div className={cn("p-3 rounded-lg", stat.bgColor)}>
+                      <stat.icon className={cn("h-6 w-6", stat.color)} />
                     </div>
-                    <span className="text-xs text-zinc-500">{data.month}</span>
-                  </div>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
-        </BlurFade>
-
-        {/* Pending Tasks */}
-        <BlurFade delay={0.6}>
-          <Card className="bg-zinc-900 border-zinc-800 h-full">
-            <CardHeader>
-              <CardTitle className="text-white">Bekleyen İşlemler</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              {pendingTasks.map((task, index) => (
-                <BlurFade key={task.id} delay={0.7 + index * 0.1}>
-                  <Link
-                    href={task.href}
-                    className="flex items-start gap-3 p-3 rounded-lg bg-zinc-800/50 hover:bg-zinc-800 transition-colors"
-                  >
-                    <div className={cn(
-                      "mt-0.5 h-2 w-2 rounded-full shrink-0 animate-pulse",
-                      task.status === "critical" ? "bg-red-500" : "bg-yellow-500"
-                    )} />
                     <div>
-                      <p className="text-sm font-medium text-white">{task.title}</p>
-                      <p className="text-xs text-zinc-500">{task.description}</p>
+                      <p className="text-2xl font-bold text-zinc-900 dark:text-white">{stat.value}</p>
+                      <p className="text-sm text-zinc-600 dark:text-zinc-400">{stat.title}</p>
+                      <p className="text-xs text-zinc-500">{stat.description}</p>
                     </div>
-                  </Link>
-                </BlurFade>
-              ))}
-            </CardContent>
-          </Card>
-        </BlurFade>
+                  </div>
+                </CardContent>
+              </Card>
+            </Link>
+          </BlurFade>
+        ))}
       </div>
 
-      {/* Recent Activities */}
-      <BlurFade delay={0.8}>
-        <Card className="bg-zinc-900 border-zinc-800">
+      {/* Recent Orders */}
+      <BlurFade delay={0.7}>
+        <Card className="bg-white dark:bg-zinc-900 border-zinc-200 dark:border-zinc-800">
           <CardHeader className="flex flex-row items-center justify-between">
-            <CardTitle className="text-white">Son Aktiviteler</CardTitle>
-            <Button variant="ghost" size="sm" className="text-zinc-400 hover:text-white">
-              Tümünü Gör
+            <CardTitle className="text-zinc-900 dark:text-white">Son Siparişler</CardTitle>
+            <Button asChild variant="ghost" size="sm" className="text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white">
+              <Link href="/yonetim/urunler/siparisler">
+                Tümünü Gör
+                <ArrowUpRight className="ml-1 h-4 w-4" />
+              </Link>
             </Button>
           </CardHeader>
           <CardContent>
-            <div className="space-y-4">
-              {recentActivities.map((activity, index) => (
-                <BlurFade key={activity.id} delay={0.9 + index * 0.05}>
-                  <div
-                    className="flex items-center gap-4 p-3 rounded-lg hover:bg-zinc-800/50 transition-colors"
-                  >
-                    <div className={cn(
-                      "flex h-10 w-10 items-center justify-center rounded-lg shrink-0",
-                      activity.iconBg
-                    )}>
-                      <activity.icon className={cn("h-5 w-5", activity.iconColor)} />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <p className="text-sm font-medium text-white">{activity.title}</p>
-                      <p className="text-sm text-zinc-400 truncate">{activity.description}</p>
-                    </div>
-                    {activity.amount && (
-                      <span className="text-sm font-medium text-green-500">{activity.amount}</span>
-                    )}
-                    <span className="text-xs text-zinc-500 shrink-0">{activity.time}</span>
-                  </div>
-                </BlurFade>
-              ))}
+            <div className="overflow-x-auto">
+              <table className="w-full">
+                <thead>
+                  <tr className="border-b border-zinc-200 dark:border-zinc-800">
+                    <th className="text-left pb-3 text-sm font-medium text-zinc-600 dark:text-zinc-400">Müşteri</th>
+                    <th className="text-left pb-3 text-sm font-medium text-zinc-600 dark:text-zinc-400">Ürün/Hizmet</th>
+                    <th className="text-left pb-3 text-sm font-medium text-zinc-600 dark:text-zinc-400">Ürün Grubu</th>
+                    <th className="text-left pb-3 text-sm font-medium text-zinc-600 dark:text-zinc-400">Yenilenen/Bitiş</th>
+                    <th className="text-left pb-3 text-sm font-medium text-zinc-600 dark:text-zinc-400">Tutar</th>
+                    <th className="text-left pb-3 text-sm font-medium text-zinc-600 dark:text-zinc-400">Durum</th>
+                    <th className="text-right pb-3 text-sm font-medium text-zinc-600 dark:text-zinc-400">İncele</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {recentOrders.map((order) => (
+                    <tr
+                      key={order.id}
+                      className="border-b border-zinc-200 dark:border-zinc-800 last:border-0 hover:bg-zinc-100 dark:hover:bg-zinc-800/50 transition-colors"
+                    >
+                      <td className="py-3">
+                        <Link
+                          href={`/yonetim/musteriler/${order.customerId}`}
+                          className="text-sm text-zinc-900 dark:text-white hover:text-primary"
+                        >
+                          {order.customer}
+                        </Link>
+                      </td>
+                      <td className="py-3">
+                        <span className="text-sm text-zinc-900 dark:text-white">{order.product}</span>
+                      </td>
+                      <td className="py-3">
+                        <span className="text-sm text-zinc-600 dark:text-zinc-400">{order.category}</span>
+                      </td>
+                      <td className="py-3">
+                        <span className="text-sm text-zinc-600 dark:text-zinc-400">
+                          {new Date(order.renewalDate).toLocaleDateString("tr-TR")}
+                        </span>
+                      </td>
+                      <td className="py-3">
+                        <span className="text-sm font-medium text-zinc-900 dark:text-white">
+                          {formatPrice(order.amount)}
+                        </span>
+                      </td>
+                      <td className="py-3">
+                        <span className={cn(
+                          "inline-flex px-2 py-0.5 rounded text-xs font-medium",
+                          orderStatusConfig[order.status].color
+                        )}>
+                          {orderStatusConfig[order.status].label}
+                        </span>
+                      </td>
+                      <td className="py-3 text-right">
+                        <Link
+                          href={`/yonetim/urunler/siparisler/${order.id}`}
+                          className="inline-flex items-center justify-center h-8 w-8 rounded-lg bg-zinc-100 dark:bg-zinc-800 hover:bg-zinc-200 dark:hover:bg-zinc-700 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors"
+                        >
+                          <Search className="h-4 w-4" />
+                        </Link>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </CardContent>
+        </Card>
+      </BlurFade>
+
+      {/* Upcoming Due Invoices */}
+      <BlurFade delay={0.8}>
+        <Card className="bg-white dark:bg-zinc-900 border-zinc-200 dark:border-zinc-800">
+          <CardHeader className="flex flex-row items-center justify-between">
+            <div>
+              <CardTitle className="text-zinc-900 dark:text-white">Ödeme Tarihi Yaklaşan Faturalar</CardTitle>
+              <p className="text-sm text-zinc-500 mt-1">7 gün içinde ödenmesi gereken faturalar</p>
+            </div>
+            <Button asChild variant="ghost" size="sm" className="text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white">
+              <Link href="/yonetim/faturalar?durum=upcoming">
+                Tümünü Gör
+                <ArrowUpRight className="ml-1 h-4 w-4" />
+              </Link>
+            </Button>
+          </CardHeader>
+          <CardContent>
+            <div className="overflow-x-auto">
+              <table className="w-full">
+                <thead>
+                  <tr className="border-b border-zinc-200 dark:border-zinc-800">
+                    <th className="text-left pb-3 text-sm font-medium text-zinc-600 dark:text-zinc-400">Müşteri</th>
+                    <th className="text-left pb-3 text-sm font-medium text-zinc-600 dark:text-zinc-400">Ürün/Hizmet</th>
+                    <th className="text-left pb-3 text-sm font-medium text-zinc-600 dark:text-zinc-400">Son Ödeme</th>
+                    <th className="text-left pb-3 text-sm font-medium text-zinc-600 dark:text-zinc-400">Tutar</th>
+                    <th className="text-left pb-3 text-sm font-medium text-zinc-600 dark:text-zinc-400">Kalan</th>
+                    <th className="text-right pb-3 text-sm font-medium text-zinc-600 dark:text-zinc-400">İncele</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {upcomingInvoices.map((invoice) => (
+                    <tr
+                      key={invoice.id}
+                      className="border-b border-zinc-200 dark:border-zinc-800 last:border-0 hover:bg-zinc-100 dark:hover:bg-zinc-800/50 transition-colors"
+                    >
+                      <td className="py-3">
+                        <Link
+                          href={`/yonetim/musteriler/${invoice.customerId}`}
+                          className="text-sm text-zinc-900 dark:text-white hover:text-primary"
+                        >
+                          {invoice.customer}
+                        </Link>
+                      </td>
+                      <td className="py-3">
+                        <span className="text-sm text-zinc-900 dark:text-white">{invoice.service}</span>
+                      </td>
+                      <td className="py-3">
+                        <span className="text-sm text-zinc-600 dark:text-zinc-400">
+                          {new Date(invoice.dueDate).toLocaleDateString("tr-TR")}
+                        </span>
+                      </td>
+                      <td className="py-3">
+                        <span className="text-sm font-medium text-zinc-900 dark:text-white">
+                          {formatPrice(invoice.amount)}
+                        </span>
+                      </td>
+                      <td className="py-3">
+                        <span className={cn(
+                          "inline-flex px-2 py-0.5 rounded text-xs font-medium",
+                          invoice.daysLeft <= 2 ? "bg-red-500/10 text-red-500" :
+                          invoice.daysLeft <= 4 ? "bg-yellow-500/10 text-yellow-500" :
+                          "bg-zinc-500/10 text-zinc-500"
+                        )}>
+                          {invoice.daysLeft} gün
+                        </span>
+                      </td>
+                      <td className="py-3 text-right">
+                        <Link
+                          href={`/yonetim/faturalar/${invoice.id}`}
+                          className="inline-flex items-center justify-center h-8 w-8 rounded-lg bg-zinc-100 dark:bg-zinc-800 hover:bg-zinc-200 dark:hover:bg-zinc-700 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors"
+                        >
+                          <Search className="h-4 w-4" />
+                        </Link>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
           </CardContent>
         </Card>
