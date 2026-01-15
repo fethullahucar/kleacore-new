@@ -17,15 +17,16 @@ export default function AdminLayout({
           {/* Logo - Absolutely Centered */}
           <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
             <Link href="/yonetim" className="flex items-center gap-3">
+              {/* Light mode: invert logo to dark, Dark mode: keep white */}
               <Image
                 src="/logo.svg"
                 alt="KLEACORE"
                 width={160}
                 height={36}
-                className="h-8 w-auto dark:brightness-0 dark:invert"
+                className="h-8 w-auto invert dark:invert-0"
                 priority
               />
-              <span className="text-[10px] font-semibold text-white bg-primary px-2 py-1 rounded">
+              <span className="text-[10px] font-bold tracking-wide text-white bg-primary px-2.5 py-1 rounded-md shadow-sm">
                 ADMIN
               </span>
             </Link>
