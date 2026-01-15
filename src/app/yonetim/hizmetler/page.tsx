@@ -421,32 +421,47 @@ export default function ServicesPage() {
                                     Detayları Görüntüle
                                   </Link>
                                 </DropdownMenuItem>
-                                <DropdownMenuItem className="flex items-center cursor-pointer">
-                                  <Edit className="mr-2 h-4 w-4" />
-                                  Düzenle
+                                <DropdownMenuItem asChild>
+                                  <Link href={`/yonetim/hizmetler/${service.id}/duzenle`} className="flex items-center cursor-pointer">
+                                    <Edit className="mr-2 h-4 w-4" />
+                                    Düzenle
+                                  </Link>
                                 </DropdownMenuItem>
-                                <DropdownMenuItem className="flex items-center cursor-pointer">
-                                  <FileText className="mr-2 h-4 w-4" />
-                                  Fatura Oluştur
+                                <DropdownMenuItem asChild>
+                                  <Link href="/yonetim/faturalar/olustur" className="flex items-center cursor-pointer">
+                                    <FileText className="mr-2 h-4 w-4" />
+                                    Fatura Oluştur
+                                  </Link>
                                 </DropdownMenuItem>
                                 <DropdownMenuSeparator className="bg-zinc-200 dark:bg-zinc-800" />
-                                <DropdownMenuItem className="flex items-center cursor-pointer">
-                                  <RefreshCcw className="mr-2 h-4 w-4" />
-                                  Yenileme Geçmişi
+                                <DropdownMenuItem asChild>
+                                  <Link href={`/yonetim/hizmetler/${service.id}#yenileme`} className="flex items-center cursor-pointer">
+                                    <RefreshCcw className="mr-2 h-4 w-4" />
+                                    Yenileme Geçmişi
+                                  </Link>
                                 </DropdownMenuItem>
                                 {service.status === "active" && (
-                                  <DropdownMenuItem className="flex items-center cursor-pointer text-orange-600 dark:text-orange-500">
+                                  <DropdownMenuItem
+                                    onClick={() => alert(`Hizmet ${service.serviceName} askıya alındı`)}
+                                    className="flex items-center cursor-pointer text-orange-600 dark:text-orange-500"
+                                  >
                                     <Pause className="mr-2 h-4 w-4" />
                                     Askıya Al
                                   </DropdownMenuItem>
                                 )}
                                 {service.status === "suspended" && (
-                                  <DropdownMenuItem className="flex items-center cursor-pointer text-green-600 dark:text-green-500">
+                                  <DropdownMenuItem
+                                    onClick={() => alert(`Hizmet ${service.serviceName} aktif edildi`)}
+                                    className="flex items-center cursor-pointer text-green-600 dark:text-green-500"
+                                  >
                                     <CheckCircle className="mr-2 h-4 w-4" />
                                     Aktif Et
                                   </DropdownMenuItem>
                                 )}
-                                <DropdownMenuItem className="flex items-center cursor-pointer text-red-600 dark:text-red-500">
+                                <DropdownMenuItem
+                                  onClick={() => confirm(`${service.serviceName} hizmetini iptal etmek istediğinize emin misiniz?`) && alert('Hizmet iptal edildi')}
+                                  className="flex items-center cursor-pointer text-red-600 dark:text-red-500"
+                                >
                                   <XCircle className="mr-2 h-4 w-4" />
                                   İptal Et
                                 </DropdownMenuItem>

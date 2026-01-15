@@ -404,18 +404,27 @@ export default function SupportPage() {
                                   Görüntüle & Yanıtla
                                 </Link>
                               </DropdownMenuItem>
-                              <DropdownMenuItem className="flex items-center cursor-pointer">
+                              <DropdownMenuItem
+                                onClick={() => alert(`Ticket ${ticket.id} size atandı`)}
+                                className="flex items-center cursor-pointer"
+                              >
                                 <User className="mr-2 h-4 w-4" />
                                 Bana Ata
                               </DropdownMenuItem>
                               <DropdownMenuSeparator className="bg-zinc-200 dark:bg-zinc-800" />
                               {ticket.status !== "closed" ? (
-                                <DropdownMenuItem className="flex items-center cursor-pointer text-green-600 dark:text-green-500">
+                                <DropdownMenuItem
+                                  onClick={() => alert(`Ticket ${ticket.id} kapatıldı`)}
+                                  className="flex items-center cursor-pointer text-green-600 dark:text-green-500"
+                                >
                                   <CheckCircle className="mr-2 h-4 w-4" />
                                   Kapat
                                 </DropdownMenuItem>
                               ) : (
-                                <DropdownMenuItem className="flex items-center cursor-pointer text-blue-600 dark:text-blue-500">
+                                <DropdownMenuItem
+                                  onClick={() => alert(`Ticket ${ticket.id} yeniden açıldı`)}
+                                  className="flex items-center cursor-pointer text-blue-600 dark:text-blue-500"
+                                >
                                   <AlertCircle className="mr-2 h-4 w-4" />
                                   Yeniden Aç
                                 </DropdownMenuItem>

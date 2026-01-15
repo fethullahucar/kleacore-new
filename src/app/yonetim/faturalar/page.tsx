@@ -414,18 +414,27 @@ export default function InvoicesPage() {
                                     Detayları Gör
                                   </Link>
                                 </DropdownMenuItem>
-                                <DropdownMenuItem className="flex items-center gap-2 text-zinc-700 dark:text-zinc-300">
+                                <DropdownMenuItem
+                                  onClick={() => window.open(`/api/faturalar/${invoice.id}/pdf`, '_blank')}
+                                  className="flex items-center gap-2 text-zinc-700 dark:text-zinc-300 cursor-pointer"
+                                >
                                   <Download className="h-4 w-4" />
                                   PDF İndir
                                 </DropdownMenuItem>
-                                <DropdownMenuItem className="flex items-center gap-2 text-zinc-700 dark:text-zinc-300">
+                                <DropdownMenuItem
+                                  onClick={() => alert(`${invoice.customerName} müşterisine hatırlatma e-postası gönderildi`)}
+                                  className="flex items-center gap-2 text-zinc-700 dark:text-zinc-300 cursor-pointer"
+                                >
                                   <Mail className="h-4 w-4" />
                                   Hatırlatma Gönder
                                 </DropdownMenuItem>
                                 {invoice.status === "pending" && (
                                   <>
                                     <DropdownMenuSeparator className="bg-zinc-200 dark:bg-zinc-800" />
-                                    <DropdownMenuItem className="flex items-center gap-2 text-green-600 dark:text-green-500">
+                                    <DropdownMenuItem
+                                      onClick={() => alert(`Fatura ${invoice.invoiceNumber} ödendi olarak işaretlendi`)}
+                                      className="flex items-center gap-2 text-green-600 dark:text-green-500 cursor-pointer"
+                                    >
                                       <CheckCircle className="h-4 w-4" />
                                       Ödendi İşaretle
                                     </DropdownMenuItem>

@@ -375,18 +375,24 @@ export default function CustomersPage() {
                                   Detayları Görüntüle
                                 </Link>
                               </DropdownMenuItem>
-                              <DropdownMenuItem className="flex items-center cursor-pointer">
-                                <Mail className="mr-2 h-4 w-4" />
-                                E-posta Gönder
+                              <DropdownMenuItem asChild>
+                                <Link href={`mailto:${customer.email}`} className="flex items-center cursor-pointer">
+                                  <Mail className="mr-2 h-4 w-4" />
+                                  E-posta Gönder
+                                </Link>
                               </DropdownMenuItem>
-                              <DropdownMenuItem className="flex items-center cursor-pointer">
-                                <FileText className="mr-2 h-4 w-4" />
-                                Fatura Oluştur
+                              <DropdownMenuItem asChild>
+                                <Link href="/yonetim/faturalar/olustur" className="flex items-center cursor-pointer">
+                                  <FileText className="mr-2 h-4 w-4" />
+                                  Fatura Oluştur
+                                </Link>
                               </DropdownMenuItem>
                               <DropdownMenuSeparator className="bg-zinc-200 dark:bg-zinc-800" />
-                              <DropdownMenuItem className="flex items-center cursor-pointer">
-                                <Clock className="mr-2 h-4 w-4" />
-                                Aktivite Geçmişi
+                              <DropdownMenuItem asChild>
+                                <Link href={`/yonetim/musteriler/${customer.id}#aktivite`} className="flex items-center cursor-pointer">
+                                  <Clock className="mr-2 h-4 w-4" />
+                                  Aktivite Geçmişi
+                                </Link>
                               </DropdownMenuItem>
                               {customer.status === "active" && (
                                 <DropdownMenuItem className="flex items-center cursor-pointer text-orange-600 dark:text-orange-500">
