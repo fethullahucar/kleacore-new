@@ -26,7 +26,7 @@ export default function AdminLayout({
                 className="h-8 w-auto invert dark:invert-0"
                 priority
               />
-              <span className="text-[10px] font-bold tracking-wide text-white bg-primary px-2.5 py-1 rounded-md shadow-sm">
+              <span className="text-[10px] font-bold tracking-wide text-zinc-900 dark:text-white bg-zinc-200 dark:bg-zinc-800 px-2.5 py-1 rounded-md">
                 ADMIN
               </span>
             </Link>
