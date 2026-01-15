@@ -35,6 +35,7 @@ import {
   Receipt,
   Package,
   PlusCircle,
+  Timer,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import {
